@@ -1,12 +1,26 @@
 ---
-name: Markdown with examples
+name: Markdown
 description: 'Description'
 imports:
-  'HelloWorld': './HelloWorld.js'
+  'Button': './Button.js'
 ---
 
-### Markdown with examples
+## Markdown with examples
+
+Default state
 
 ```example
-<HelloWorld name='World' />
+<Button onClick={() => alert('click')}>Button</Button>
+```
+
+Primary button
+
+```example
+<Button primary>Primary</Button>
+```
+
+Disabled button
+
+```example
+<Button disabled>Disabled</Button>
 ```

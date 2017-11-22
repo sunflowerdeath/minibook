@@ -2,35 +2,37 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import MiniBook from 'minibook'
 
-import HelloWorld from './HelloWorld'
+import Button from './Button'
 import MarkdownStory from './markdown.md'
 
 const sections = {
 	example: {
 		name: 'Section',
-		component: HelloWorld,
+		component: Button,
 		stories: {
 			props: {
 				name: 'Component',
 				description: 'Story description',
 				props: {
-					name: 'Minibook'
+					children: 'Button'
 				}
 			},
 			render: {
 				name: 'Render function',
 				description: 'You can provide custom render function for a story',
 				props: {
-					name: 'Render'
+					children: 'Click me!'
 				},
-				render: (Component, props) => <Component {...props} />
+				render: (Component, props) => (
+					<Component {...props} onClick={() => alert('Click')} />
+				)
 			},
 			iframe: {
 				name: 'Iframe',
 				description: 'Story can be another page displayed in the iframe',
 				src: '/frame.html'
 			},
-			'markdown-with-example': {
+			'markdown': {
 				name: MarkdownStory.attributes.name,
 				description: MarkdownStory.attributes.description,
 				render: MarkdownStory.render
