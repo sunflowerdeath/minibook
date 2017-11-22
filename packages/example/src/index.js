@@ -23,6 +23,7 @@ const sections = {
 				props: {
 					children: 'Click me!'
 				},
+				// eslint-disable-next-line react/display-name
 				render: (Component, props) => (
 					<Component {...props} onClick={() => alert('Click')} />
 				)
@@ -30,13 +31,9 @@ const sections = {
 			iframe: {
 				name: 'Iframe',
 				description: 'Story can be another page displayed in the iframe',
-				src: '/frame.html'
+				src: '/page.html'
 			},
-			'markdown': {
-				name: MarkdownStory.attributes.name,
-				description: MarkdownStory.attributes.description,
-				render: MarkdownStory.render
-			}
+			markdown: MarkdownStory
 		}
 	}
 }

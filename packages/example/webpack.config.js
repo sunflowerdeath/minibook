@@ -7,8 +7,8 @@ const PRODUCTION = process.env.NODE_ENV === 'production'
 const plugins = [
 	new HtmlWebpackPlugin({ template: './node_modules/minibook/webpack/template.html' }),
 	new HtmlWebpackPlugin({
-		template: './src/frame.html',
-		filename: 'frame.html',
+		template: './src/page.html',
+		filename: 'page.html',
 		inject: false
 	}),
 	new webpack.DefinePlugin({

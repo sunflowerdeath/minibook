@@ -22,6 +22,6 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "build-example": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack"
   }
 }

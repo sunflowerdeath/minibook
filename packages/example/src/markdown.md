@@ -1,11 +1,11 @@
 ---
-name: Markdown
+name: 'Markdown'
 description: 'Description'
 imports:
   'Button': './Button.js'
 ---
 
-## Markdown with examples
+## Header
 
 Default state
 
