@@ -1,3 +1,6 @@
 module.exports = {
-	extends: ['gnoll']
+	extends: ['gnoll'],
+	rules: {
+		'react/jsx-filename-extension': 'off'
+	}	
 }

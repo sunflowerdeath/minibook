@@ -28,7 +28,7 @@ const sections = {
 			iframe: {
 				name: 'Iframe',
 				description: 'Story can be another page displayed in the iframe',
-				src: '/some/page.html'
+				src: '/frame.html'
 			},
 			'markdown-with-example': {
 				name: MarkdownStory.attributes.name,

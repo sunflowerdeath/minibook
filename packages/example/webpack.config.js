@@ -6,6 +6,11 @@ const PRODUCTION = process.env.NODE_ENV === 'production'
 
 const plugins = [
 	new HtmlWebpackPlugin({ template: './node_modules/minibook/webpack/template.html' }),
+	new HtmlWebpackPlugin({
+		template: './src/frame.html',
+		filename: 'frame.html',
+		inject: false
+	}),
 	new webpack.DefinePlugin({
 		'process.env': {
 			NODE_ENV: JSON.stringify(process.env.NODE_ENV)
@@ -49,10 +54,7 @@ module.exports = {
 	},
 	devtool: PRODUCTION ? undefined : 'cheap-module-source-map',
 	resolve: {
-		modules: [
-		  'node_modules',
-		  path.resolve(__dirname, 'node_modules')
-		]
+		modules: ['node_modules', path.resolve(__dirname, 'node_modules')]
 	},
 	devServer: {
 		port: 1337,
