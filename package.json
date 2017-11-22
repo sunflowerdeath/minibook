@@ -1,0 +1,10 @@
+{
+  "name": "minibook-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^2.5.1"
+  },
+  "author": "sunflowerdeath",
+  "license": "Unlicense"
+}

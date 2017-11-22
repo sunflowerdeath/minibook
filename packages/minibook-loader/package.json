@@ -1,0 +1,13 @@
+{
+  "name": "minibook-loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "sunflowerdeath",
+  "license": "Unlicense",
+  "dependencies": {
+    "front-matter": "^2.3.0",
+    "js-string-escape": "^1.0.1",
+    "markdown-it": "^8.4.0"
+  }
+}
