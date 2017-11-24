@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import floral from 'floral'
 
 import Section from './Section'
+import { SectionPropType } from '../propTypes'
 
 @floral
-class Sidebar extends Component {
+class Nav extends Component {
+	static propTypes = {
+		title: PropTypes.string,
+		sections: PropTypes.objectOf(SectionPropType).isRequired,
+		currentSection: PropTypes.string.isRequired,
+		smallScreen: PropTypes.bool.isRequired
+	}
+
 	static styles = {
 		root: {
-			width: 200,
-			borderRight: '1px solid #eee',
-			boxSizing: 'border-box',
 			padding: '20px 0',
-			flexShrink: 0,
 			overflow: 'auto'
 		},
 		title: {
@@ -23,13 +28,14 @@ class Sidebar extends Component {
 	}
 
 	render() {
-		const { title, sections, currentSection } = this.props
+		const { title, sections, currentSection, smallScreen } = this.props
 		const sectionsElems = Object.entries(sections).map(([key, section]) => (
 			<Section
 				key={key}
 				sectionKey={key}
 				section={section}
 				initialIsOpened={currentSection === key}
+				smallScreen={smallScreen}
 			/>
 		))
 		return (
@@ -41,4 +47,4 @@ class Sidebar extends Component {
 	}
 }
 
-export default Sidebar
+export default Nav

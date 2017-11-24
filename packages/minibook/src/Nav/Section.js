@@ -4,38 +4,56 @@ import { NavLink } from 'react-router-dom'
 import floral from 'floral'
 
 import Tappable from '../Tappable'
-
 import { SectionPropType } from '../propTypes'
+import arrowIconSvg from '!raw-loader!./arrow.svg'
 
 @floral
-class SidebarSection extends Component {
-	static styles = {
+class NavSection extends Component {
+	static propTypes = {
+		initialIsOpen: PropTypes.bool,
+		section: SectionPropType.isRequired,
+		sectionKey: PropTypes.string.isRequired
+	}
+
+	static styles = ({ smallScreen }, { isOpened }) => ({
 		title: {
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'space-between',
 			paddingTop: 5,
 			paddingBottom: 5,
 			paddingRight: 10,
 			paddingLeft: 15,
 			fontWeight: 'bold',
-			cursor: 'pointer'
+			cursor: 'pointer',
+			textTransform: 'uppercase',
+			userSelect: 'none',
+			WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)'
+		},
+		arrow: {
+			width: 24,
+			height: 24,
+			transform: isOpened ? 'rotate(180deg)' : 'none'
 		},
 		link: {
 			display: 'block',
 			textDecoration: 'none',
-			paddingTop: 4,
-			paddingBottom: 4,
-			paddingLeft: 25,
+			paddingTop: smallScreen ? 8 : 4,
+			paddingBottom: smallScreen ? 8 : 4,
+			paddingLeft: 15,
 			paddingRight: 10,
 			fontSize: 14,
-			color: '#888'
+			color: '#999',
+			userSelect: 'none',
+			WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)'
 		},
 		isHovered: {
 			background: '#f2f2f2'
 		},
 		isActive: {
-			color: 'black',
-			fontWeight: 'bold'
+			color: '#0366d6'
 		}
-	}
+	})
 
 	constructor(props) {
 		super()
@@ -59,6 +77,10 @@ class SidebarSection extends Component {
 				{tapState => (
 					<div style={this.addHovered(this.styles.title, tapState)}>
 						{section.name}
+						<div
+							style={this.styles.arrow}
+							dangerouslySetInnerHTML={{ __html: arrowIconSvg }}
+						/>
 					</div>
 				)}
 			</Tappable>
@@ -100,10 +122,4 @@ class SidebarSection extends Component {
 	}
 }
 
-SidebarSection.propTypes = {
-	initialIsOpen: PropTypes.bool,
-	section: SectionPropType.isRequired,
-	sectionKey: PropTypes.string.isRequired
-}
-
-export default SidebarSection
+export default NavSection
