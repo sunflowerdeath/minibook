@@ -12,6 +12,12 @@ import favicon from '!raw-loader!./favicon.base64'
 @withRouter
 @floral
 class MiniBook extends Component {
+	static propTypes = {
+		title: PropTypes.string,
+		sections: PropTypes.objectOf(SectionPropType).isRequired,
+		match: PropTypes.object.isRequired
+	}
+
 	static styles = {
 		root: {
 			width: '100%',
@@ -60,12 +66,6 @@ class MiniBook extends Component {
 			</div>
 		)
 	}
-}
-
-MiniBook.propTypes = {
-	title: PropTypes.string,
-	sections: PropTypes.objectOf(SectionPropType).isRequired,
-	match: PropTypes.object.isRequired
 }
 
 export default MiniBook

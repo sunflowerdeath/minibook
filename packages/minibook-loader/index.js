@@ -3,6 +3,22 @@ const { unescapeAll } = require('markdown-it/lib/common/utils')
 const frontMatter = require('front-matter')
 const jsStringEscape = require('js-string-escape')
 
+const fence = (tokens, idx) => {
+	const token = tokens[idx]
+	const info = token.info ? unescapeAll(token.info).trim() : ''
+	const tags = info ? info.split(/\s+/g) : []
+	const example =
+		tags[0] === 'example'
+			? `<div className="example">${token.content}</div>`
+			: ''
+	return `
+		<div className="fence">
+			${example}
+			<pre><code>{"${jsStringEscape(token.content)}"}</code></pre>
+		</div>
+	`
+}
+
 const parse = (markdown, resourcePath) => {
 	const md = new MarkdownIt({ xhtmlOut: true, html: true })
 	const { body, attributes } = frontMatter(markdown)
@@ -23,23 +39,10 @@ const parse = (markdown, resourcePath) => {
 	}
 
 	md.renderer.rules.code_inline = (tokens, idx) =>
-		`<code>{"${jsStringEscape(tokens[idx].content)}"}</code>`
+		`<code>${jsStringEscape(tokens[idx].content)}</code>`
 
-	md.renderer.rules.fence = (tokens, idx) => {
-		const token = tokens[idx]
-		const info = token.info ? unescapeAll(token.info).trim() : ''
-		const names = info ? info.split(/\s+/g) : []
-		const render =
-			names[0] === 'example' ? `<div className="render">${token.content}</div>` : ''
-		return `
-			<div className="example">
-				${render}
-				<div className="source">
-					<pre><code>{"${jsStringEscape(token.content)}"}</code></pre>
-				</div>
-			</div>
-		`
-	}
+	md.renderer.rules.code_block = fence
+	md.renderer.rules.fence = fence
 
 	const html = md.render(body)
 	return { html, attributes }

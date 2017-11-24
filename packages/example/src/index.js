@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import MiniBook from 'minibook'
+import 'minibook/lib/styles.css'
 
 import Button from './Button'
 import MarkdownStory from './markdown.md'

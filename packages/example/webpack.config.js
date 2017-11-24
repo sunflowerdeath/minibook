@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const PRODUCTION = process.env.NODE_ENV === 'production'
 
 const plugins = [
-	new HtmlWebpackPlugin({ template: './node_modules/minibook/webpack/template.html' }),
+	new HtmlWebpackPlugin({ template: './src/index.html' }),
 	new HtmlWebpackPlugin({
 		template: './src/page.html',
 		filename: 'page.html',
@@ -30,6 +30,10 @@ module.exports = {
 	plugins,
 	module: {
 		rules: [
+			{
+				test: /\.css/,
+				use: ['style-loader', 'css-loader']
+			},
 			{
 				test: /\.js$/,
 				exclude: [/node_modules/],

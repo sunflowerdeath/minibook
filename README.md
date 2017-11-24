@@ -14,6 +14,7 @@ npm install minibook minibook-loader
 
 ```js
 import MiniBook from 'minibook'
+import 'minibook/lib/styles.css'
 
 import MarkdownStory from './markdown.md'
 
@@ -37,7 +38,7 @@ const sections = {
 
             'iframe-story': {
                 name: 'Iframe',
-                description: 'Another page displayed in the iframe',
+                description: 'Page displayed in the iframe',
                 src: '/page.html'
             },
 
@@ -79,13 +80,7 @@ Example block:
 
 ## Setup
 
-To setup minibook with webpack you need to add HTML page to your bundle:
-
-```js
-new HtmlWebpackPlugin({ template: './node_modules/minibook/webpack/template.html' })
-```
-
-To be able to load markdown stories, you need to use `minibook-loader`
+To be able to load markdown stories with webpack, you need to use `minibook-loader`
 in combination with `babel-loader` for `*.md` files:
 
 ```js
