@@ -101,8 +101,18 @@ class Tappable extends Component {
 	onMouseUp(event) {
 		document.removeEventListener('mouseup', this.onMouseUp)
 		if (this.unmounted) return
-		const isOnButton = event.target === ReactDOM.findDOMNode(this)
-		// $(event.target).closest(ReactDOM.findDOMNode(this)).length
+
+		const rootElem = ReactDOM.findDOMNode(this)
+		let isOnButton
+		let elem = event.target
+		while (elem) {
+			if (elem === rootElem) {
+				isOnButton = true
+				break
+			}
+			elem = elem.parentElement
+		}
+
 		this.setTapState({ isPressed: false, isHovered: isOnButton })
 		if (this.props.onTapEnd) this.props.onTapEnd(event)
 	}
