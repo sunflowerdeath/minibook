@@ -1,17 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
 import MiniBook from './MiniBook'
 
-class App extends Component {
-	render() {
-		const render = () => <MiniBook {...this.props} />
-		return (
-			<BrowserRouter>
-				<Route path="/:section?/:story?" exact render={render} />
-			</BrowserRouter>
-		)
-	}
-}
+const App = props => (
+	<BrowserRouter>
+		<Route path="/:section?/:story?" exact render={() => <MiniBook {...props} />} />
+	</BrowserRouter>
+)
 
 export default App

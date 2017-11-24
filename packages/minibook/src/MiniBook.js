@@ -9,17 +9,17 @@ import matchMedia from './matchMedia'
 import Nav from './Nav'
 import Story from './Story'
 import { SectionPropType } from './propTypes'
-import favicon from '!raw-loader!./favicon.base64'
-import menuIconSvg from '!raw-loader!./menu.svg'
+import favicon from '!raw-loader!./favicon.base64' // eslint-disable-line import/first
+import menuIconSvg from '!raw-loader!./menu.svg' // eslint-disable-line import/first
 
 @withRouter
-@matchMedia({ smallScreen: '(max-width: 1024px)' })
+@matchMedia({ smallScreen: '(max-width: 1023px)' })
 @floral
 class MiniBook extends Component {
 	static propTypes = {
 		title: PropTypes.string,
 		sections: PropTypes.objectOf(SectionPropType).isRequired,
-		match: PropTypes.object.isRequired,
+		match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 		matchedMedia: PropTypes.objectOf(PropTypes.bool).isRequired
 	}
 
@@ -123,6 +123,8 @@ class MiniBook extends Component {
 				{smallScreen ? (
 					<div style={this.styles.header}>
 						<div
+							tabIndex="0"
+							role="button"
 							style={this.styles.menu}
 							dangerouslySetInnerHTML={{ __html: menuIconSvg }}
 							onClick={() => this.setState({ sidebarIsOpen: true })}

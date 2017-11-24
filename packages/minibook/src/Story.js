@@ -57,12 +57,14 @@ class Story extends Component {
 					</div>
 				</div>
 				{src ? (
-					<iframe style={this.styles.frame} src={src} />
+					<iframe style={this.styles.frame} src={src} title="story" />
 				) : (
 					<div style={this.styles.content}>
-						<div style={this.styles.container}>{render
-			? render(component, props)
-			: React.createElement(component, props)}</div>
+						<div style={this.styles.container}>
+							{render
+								? render(component, props)
+								: React.createElement(component, props)}
+						</div>
 					</div>
 				)}
 			</div>

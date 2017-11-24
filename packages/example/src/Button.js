@@ -20,7 +20,7 @@ const Button = ({ primary, onClick, disabled, children }) => {
 	}
 
 	return (
-		<div style={style} onClick={onClick}>
+		<div style={style} onClick={onClick} role="button" tabIndex="0">
 			{children}
 		</div>
 	)
@@ -29,7 +29,8 @@ const Button = ({ primary, onClick, disabled, children }) => {
 Button.propTypes = {
 	primary: PropTypes.bool,
 	onClick: PropTypes.func,
-	disabled: PropTypes.bool
+	disabled: PropTypes.bool,
+	children: PropTypes.node
 }
 
 export default Button

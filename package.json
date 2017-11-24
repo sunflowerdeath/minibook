@@ -6,7 +6,7 @@
     "lint": "eslint packages/*/src"
   },
   "devDependencies": {
-    "eslint-config-gnoll": "0.0.2",
+    "eslint-config-gnoll": "0.0.3",
     "lerna": "^2.5.1"
   },
   "author": "sunflowerdeath",

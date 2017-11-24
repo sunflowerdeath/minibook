@@ -5,12 +5,12 @@ import floral from 'floral'
 
 import Tappable from '../Tappable'
 import { SectionPropType } from '../propTypes'
-import arrowIconSvg from '!raw-loader!./arrow.svg'
+import arrowIconSvg from '!raw-loader!./arrow.svg' // eslint-disable-line import/first
 
 @floral
 class NavSection extends Component {
 	static propTypes = {
-		initialIsOpen: PropTypes.bool,
+		initialIsOpened: PropTypes.bool,
 		section: SectionPropType.isRequired,
 		sectionKey: PropTypes.string.isRequired
 	}

@@ -54,7 +54,7 @@ class Tappable extends Component {
 		display: PropTypes.string,
 
 		/** Style passed down to the child element. */
-		style: PropTypes.object
+		style: PropTypes.object // eslint-disable-line react/forbid-prop-types
 	}
 
 	static defaultProps = {

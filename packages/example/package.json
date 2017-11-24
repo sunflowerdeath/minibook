@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "minibook": "^0.3.0",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },
