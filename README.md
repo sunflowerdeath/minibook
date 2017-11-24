@@ -121,3 +121,7 @@ Story – object with the following properties:
 - props `object` – Props for the section's component
 - render `(Component, props) => node` – Custom render function
 - src `string` – URL of the page to be displayed in the iframe
+
+## License
+
+This software is released into the public domain. See the LICENSE file.
