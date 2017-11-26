@@ -1,10 +1,10 @@
 {
   "name": "minibook",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Minimalistic interface for documentation and examples of components",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/sunflowerdeath/minibook"
+    "type": "git",
+    "url": "https://github.com/sunflowerdeath/minibook"
   },
   "main": "lib/index.js",
   "scripts": {
