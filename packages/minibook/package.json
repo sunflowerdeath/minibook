@@ -1,7 +1,11 @@
 {
   "name": "minibook",
   "version": "0.3.1",
-  "description": "",
+  "description": "Minimalistic interface for documentation and examples of components",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/sunflowerdeath/minibook"
+  },
   "main": "lib/index.js",
   "scripts": {
     "build": "gnoll lib --source-maps",

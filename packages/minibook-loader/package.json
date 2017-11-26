@@ -1,7 +1,11 @@
 {
   "name": "minibook-loader",
   "version": "0.2.0",
-  "description": "",
+  "description": "Webpack loader for markdown documents with embedded components examples",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/sunflowerdeath/minibook"
+  },
   "main": "index.js",
   "author": "sunflowerdeath",
   "license": "Unlicense",
