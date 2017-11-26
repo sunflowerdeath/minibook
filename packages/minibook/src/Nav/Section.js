@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
+import Taply from 'taply'
 import floral from 'floral'
 
-import Tappable from '../Tappable'
 import { SectionPropType } from '../propTypes'
 import arrowIconSvg from '!raw-loader!./arrow.svg' // eslint-disable-line import/first
 
@@ -28,7 +28,8 @@ class NavSection extends Component {
 			cursor: 'pointer',
 			textTransform: 'uppercase',
 			userSelect: 'none',
-			WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)'
+			WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+			outline: 'none'
 		},
 		arrow: {
 			width: 24,
@@ -45,7 +46,8 @@ class NavSection extends Component {
 			fontSize: 14,
 			color: '#999',
 			userSelect: 'none',
-			WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)'
+			WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+			outline: 'none'
 		},
 		isHovered: {
 			background: '#f2f2f2'
@@ -63,17 +65,14 @@ class NavSection extends Component {
 		}
 	}
 
-	addHovered(style, tapState) {
-		return {
-			...style,
-			...(tapState.isHovered && this.styles.isHovered)
-		}
+	addHovered(style, { isHovered, isFocused }) {
+		return isHovered || isFocused ? { ...style, ...this.styles.isHovered } : style
 	}
 
 	renderTitle() {
 		const { section } = this.props
 		return (
-			<Tappable onTap={() => this.setState({ isOpened: !this.state.isOpened })}>
+			<Taply onTap={() => this.setState({ isOpened: !this.state.isOpened })}>
 				{tapState => (
 					<div style={this.addHovered(this.styles.title, tapState)}>
 						{section.name}
@@ -83,14 +82,14 @@ class NavSection extends Component {
 						/>
 					</div>
 				)}
-			</Tappable>
+			</Taply>
 		)
 	}
 
 	renderLink(storyKey, story) {
 		const { sectionKey } = this.props
 		return (
-			<Tappable key={storyKey}>
+			<Taply key={storyKey}>
 				{tapState => (
 					<NavLink
 						to={`/${sectionKey}/${storyKey}`}
@@ -100,7 +99,7 @@ class NavSection extends Component {
 						{story.name}
 					</NavLink>
 				)}
-			</Tappable>
+			</Taply>
 		)
 	}
 
