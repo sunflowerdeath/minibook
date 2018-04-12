@@ -1,7 +1,7 @@
 {
   "name": "minibook-example",
   "private": true,
-  "version": "0.3.3",
+  "version": "0.3.4",
   "author": "sunflowerdeath",
   "license": "Unlicense",
   "devDependencies": {
@@ -12,13 +12,13 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
     "html-webpack-plugin": "^2.30.1",
-    "minibook-loader": "^0.3.3",
+    "minibook-loader": "^0.3.4",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
-    "minibook": "^0.3.3",
+    "minibook": "^0.3.4",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
