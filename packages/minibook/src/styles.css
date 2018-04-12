@@ -1,25 +1,45 @@
 body {
+	font-family: sans-serif;
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-	-webkit-font-smoothing: antialiased
 }
 
-body, html {
+body,
+html {
 	height: 100%;
 	overflow: hidden;
 }
 
-.container {
-	height: 100%
+.minibook__story {
+	line-height: 1.5em;
 }
 
-h1:first-child,
-h2:first-child,
-h3:first-child {
-	margin-top: 0
+.minibook__story p {
+	margin-top: 0;
+	margin-bottom: 16px;
 }
 
-hr {
+.minibook__story h1:first-child,
+.minibook__story h2:first-child,
+.minibook__story h3:first-child {
+	margin-top: 0;
+}
+
+.minibook__story h1,
+.minibook__story h2,
+.minibook__story h3 {
+	margin-top: 24px;
+	margin-bottom: 16px;
+}
+
+.minibook__story h1,
+.minibook__story h2,
+.minibook__story h3,
+.minibook__story h4,
+.minibook__story h5 {
+	line-height: 1.25em;
+}
+
+.minibook__story hr {
 	height: 1px;
 	border: none;
 	padding: 0;
@@ -27,44 +47,45 @@ hr {
 	background-color: #eee;
 }
 
-blockquote {
+.minibook__story blockquote {
 	padding: 0 1em;
 	color: #666;
 	border-left: 0.25em solid #eee;
 	margin: 0;
 }
 
-a {
+.minibook__story a {
 	color: #0366d6;
-	text-decoration: none
+	text-decoration: none;
 }
 
-a:hover, a:active {
-	text-decoration: underline
+.minibook__story a:hover,
+.minibook__story a:active {
+	text-decoration: underline;
 }
 
-img {
-	max-width: 100%
+.minibook__story img {
+	max-width: 100%;
 }
 
-.fence {
-	margin-bottom: 20px
+.minibook__story .minibook__fence {
+	margin-bottom: 20px;
 }
 
-.example {
+.minibook__story .minibook__example {
 	padding: 10px;
 	border: 1px solid #eee;
 	border-bottom: none;
 }
 
-pre {
+.minibook__story pre {
 	padding: 10px;
 	margin: 0;
 	background: #f2f2f2;
 	white-space: pre-wrap;
 }
 
-code {
+.minibook__story code {
 	font-family: Menlo, monospace;
 	font-size: 14px;
 	background: #f2f2f2;

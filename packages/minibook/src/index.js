@@ -5,7 +5,11 @@ import MiniBook from './MiniBook'
 
 const App = props => (
 	<BrowserRouter>
-		<Route path="/:section?/:story?" exact render={() => <MiniBook {...props} />} />
+		<Route
+			path="/:section?/:story?"
+			exact
+			render={() => <MiniBook {...props} />}
+		/>
 	</BrowserRouter>
 )
 

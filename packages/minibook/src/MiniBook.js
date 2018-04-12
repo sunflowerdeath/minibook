@@ -9,8 +9,10 @@ import matchMedia from './matchMedia'
 import Nav from './Nav'
 import Story from './Story'
 import { SectionPropType } from './propTypes'
-import favicon from '!raw-loader!./favicon.base64' // eslint-disable-line import/first
-import menuIconSvg from '!raw-loader!./menu.svg' // eslint-disable-line import/first
+// eslint-disable-next-line import/first
+import favicon from '!raw-loader!./favicon.base64'
+// eslint-disable-next-line import/first
+import menuIconSvg from '!raw-loader!./menu.svg'
 
 @withRouter
 @matchMedia({ smallScreen: '(max-width: 1023px)' })
@@ -19,7 +21,8 @@ class MiniBook extends Component {
 	static propTypes = {
 		title: PropTypes.string,
 		sections: PropTypes.objectOf(SectionPropType).isRequired,
-		match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+		// eslint-disable-next-line react/forbid-prop-types
+		match: PropTypes.object.isRequired,
 		matchedMedia: PropTypes.objectOf(PropTypes.bool).isRequired
 	}
 
@@ -77,7 +80,10 @@ class MiniBook extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		const { section, story } = this.props.match.params
-		const { section: nextSection, story: nextStory } = nextProps.match.params
+		const {
+			section: nextSection,
+			story: nextStory
+		} = nextProps.match.params
 		if (section !== nextSection || story !== nextStory) {
 			this.setState({ sidebarIsOpen: false })
 		}
@@ -118,7 +124,9 @@ class MiniBook extends Component {
 						{currentSection.name}/{currentStory.name}
 					</title>
 					<link rel="shortcut icon" href={favicon} />
-					{smallScreen && <style>{'html, body { overflow: visible }'}</style>}
+					{smallScreen && (
+						<style>{'html, body { overflow: visible }'}</style>
+					)}
 				</Helmet>
 				{smallScreen ? (
 					<div style={this.styles.header}>
@@ -127,9 +135,13 @@ class MiniBook extends Component {
 							role="button"
 							style={this.styles.menu}
 							dangerouslySetInnerHTML={{ __html: menuIconSvg }}
-							onClick={() => this.setState({ sidebarIsOpen: true })}
+							onClick={() =>
+								this.setState({ sidebarIsOpen: true })
+							}
 						/>
-						<div style={this.styles.title}>{title || 'Minibook'}</div>
+						<div style={this.styles.title}>
+							{title || 'Minibook'}
+						</div>
 					</div>
 				) : (
 					nav

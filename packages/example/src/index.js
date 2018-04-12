@@ -20,7 +20,8 @@ const sections = {
 			},
 			render: {
 				name: 'Render function',
-				description: 'You can provide custom render function for a story',
+				description:
+					'You can provide custom render function for a story',
 				props: {
 					children: 'Click me!'
 				},
@@ -31,7 +32,8 @@ const sections = {
 			},
 			iframe: {
 				name: 'Iframe',
-				description: 'Story can be another page displayed in the iframe',
+				description:
+					'Story can be another page displayed in the iframe',
 				src: '/page.html'
 			},
 			markdown: MarkdownStory
@@ -41,5 +43,5 @@ const sections = {
 
 ReactDOM.render(
 	<MiniBook title="Minibook" sections={sections} />,
-	document.querySelector('.container')
+	document.querySelector('#root')
 )

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
 export default queries => WrappedComponent => {
-	const wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name
+	const wrappedComponentName =
+		WrappedComponent.displayName || WrappedComponent.name
 
 	class MatchMedia extends Component {
 		static displayName = wrappedComponentName
@@ -38,7 +39,12 @@ export default queries => WrappedComponent => {
 		}
 
 		render() {
-			return <WrappedComponent {...this.props} matchedMedia={this.state.matches} />
+			return (
+				<WrappedComponent
+					{...this.props}
+					matchedMedia={this.state.matches}
+				/>
+			)
 		}
 	}
 

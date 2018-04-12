@@ -31,8 +31,7 @@ class Story extends Component {
 		},
 		content: {
 			overflow: 'auto',
-			flexGrow: 1,
-			lineHeight: '1.25em'
+			flexGrow: 1
 		},
 		frame: {
 			width: '100%',
@@ -59,7 +58,10 @@ class Story extends Component {
 				{src ? (
 					<iframe style={this.styles.frame} src={src} title="story" />
 				) : (
-					<div style={this.styles.content}>
+					<div
+						style={this.styles.content}
+						className="minibook__story"
+					>
 						<div style={this.styles.container}>
 							{render
 								? render(component, props)

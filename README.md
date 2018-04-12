@@ -50,16 +50,18 @@ const sections = {
 
 ReactDOM.render(
     <MiniBook title="Minibook" sections={sections} />,
-    document.querySelector('.container')
+	// You should set 'height: 100%' to the container element
+    document.querySelector('#root')
 )
 ```
 
 ## Markdown Stories
 
 `minibook-loader` compiles markdown to React JSX.
-At the top of the file you can add YAML section with name and description attributes
-of the story and list of imports used in examples.
-Code blocks with `example` tag will output the rendered component followed by the source code.
+At the top of the file you can add YAML section with name and description
+attributes of the story and list of imports used in examples.
+Code blocks with `example` tag will output the rendered component followed
+by the source code.
 
 ````md
 ---
@@ -80,8 +82,8 @@ Example block:
 
 ## Setup
 
-To be able to load markdown stories with webpack, you need to use `minibook-loader`
-in combination with `babel-loader` for `*.md` files:
+To be able to load markdown stories with webpack, you need to use
+`minibook-loader` in combination with `babel-loader` for `*.md` files:
 
 ```js
 {

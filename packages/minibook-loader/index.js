@@ -9,10 +9,10 @@ const fence = (tokens, idx) => {
 	const tags = info ? info.split(/\s+/g) : []
 	const example =
 		tags[0] === 'example'
-			? `<div className="example">${token.content}</div>`
+			? `<div className="minibook__example">${token.content}</div>`
 			: ''
 	return `
-		<div className="fence">
+		<div className="minibook__fence">
 			${example}
 			<pre><code>{"${jsStringEscape(token.content)}"}</code></pre>
 		</div>

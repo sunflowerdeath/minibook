@@ -5,7 +5,8 @@ import Taply from 'taply'
 import floral from 'floral'
 
 import { SectionPropType } from '../propTypes'
-import arrowIconSvg from '!raw-loader!./arrow.svg' // eslint-disable-line import/first
+// eslint-disable-next-line import/first
+import arrowIconSvg from '!raw-loader!./arrow.svg'
 
 @floral
 class NavSection extends Component {
@@ -66,13 +67,17 @@ class NavSection extends Component {
 	}
 
 	addHovered(style, { isHovered, isFocused }) {
-		return isHovered || isFocused ? { ...style, ...this.styles.isHovered } : style
+		return isHovered || isFocused
+			? { ...style, ...this.styles.isHovered }
+			: style
 	}
 
 	renderTitle() {
 		const { section } = this.props
 		return (
-			<Taply onTap={() => this.setState({ isOpened: !this.state.isOpened })}>
+			<Taply
+				onTap={() => this.setState({ isOpened: !this.state.isOpened })}
+			>
 				{tapState => (
 					<div style={this.addHovered(this.styles.title, tapState)}>
 						{section.name}
