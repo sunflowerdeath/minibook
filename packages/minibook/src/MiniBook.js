@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter, Redirect } from 'react-router-dom'
 import Helmet from 'react-helmet'
-import Sidebar from 'react-sidebar'
+import Drawer from 'react-motion-drawer'
 import floral from 'floral'
 
 import matchMedia from './matchMedia'
@@ -34,9 +34,11 @@ class MiniBook extends Component {
 					width: 256,
 					background: 'white',
 					height: '100%',
+					boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px',
 					boxSizing: 'border-box'
 				}
 			: {
+					position: 'fixed',
 					height: '100%',
 					width: 200,
 					borderRight: '1px solid #eee'
@@ -44,12 +46,11 @@ class MiniBook extends Component {
 
 		return {
 			root: {
-				width: '100%',
-				height: '100%',
-				display: smallScreen ? 'block' : 'flex'
+				height: '100%'
 			},
 			header: {
 				position: 'fixed',
+				zIndex: 1,
 				width: '100%',
 				height: 50,
 				display: 'flex',
@@ -71,8 +72,9 @@ class MiniBook extends Component {
 				fill: 'white'
 			},
 			story: {
+				paddingLeft: smallScreen ? 0 : 200,
 				paddingTop: smallScreen ? 50 : 0,
-				flexGrow: 1
+				boxSizing: 'border-box'
 			},
 			nav
 		}
@@ -146,8 +148,14 @@ class MiniBook extends Component {
 				) : (
 					nav
 				)}
-				<div style={this.styles.story}>
+				<div
+					style={{
+						...this.styles.story,
+						height: currentStory.src ? '100%' : 'auto'
+					}}
+				>
 					<Story
+						key={`${sectionKey}-${storyKey}`}
 						sectionKey={sectionKey}
 						section={currentSection}
 						storyKey={storyKey}
@@ -159,15 +167,21 @@ class MiniBook extends Component {
 
 		if (smallScreen) {
 			return (
-				<Sidebar
-					open={this.state.sidebarIsOpen}
-					sidebar={nav}
-					onSetOpen={open => this.setState({ sidebarIsOpen: open })}
-					touch={false}
-					shadow={false}
-				>
+				<div style={this.styles.root}>
 					{root}
-				</Sidebar>
+					<Drawer
+						open={this.state.sidebarIsOpen}
+						onChange={open => {
+							document.body.style.overflow = open
+								? 'hidden'
+								: 'auto'
+							this.setState({ sidebarIsOpen: open })
+						}}
+						width={256}
+					>
+						{nav}
+					</Drawer>
+				</div>
 			)
 		}
 

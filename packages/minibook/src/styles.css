@@ -3,12 +3,6 @@ body {
 	margin: 0;
 }
 
-body,
-html {
-	height: 100%;
-	overflow: hidden;
-}
-
 .minibook__story {
 	line-height: 1.5em;
 }
@@ -37,6 +31,7 @@ html {
 .minibook__story h4,
 .minibook__story h5 {
 	line-height: 1.25em;
+	position: relative;
 }
 
 .minibook__story hr {
@@ -68,14 +63,19 @@ html {
 	max-width: 100%;
 }
 
+.minibook__story code {
+	font-family: monospace;
+	font-size: 14px;
+	background: #f2f2f2;
+}
+
 .minibook__story .minibook__fence {
 	margin-bottom: 20px;
 }
 
-.minibook__story .minibook__example {
+.minibook__story .minibook__render {
 	padding: 10px;
 	border: 1px solid #eee;
-	border-bottom: none;
 }
 
 .minibook__story pre {
@@ -83,10 +83,38 @@ html {
 	margin: 0;
 	background: #f2f2f2;
 	white-space: pre-wrap;
+	line-height: 20px;
 }
 
-.minibook__story code {
-	font-family: Menlo, monospace;
-	font-size: 14px;
-	background: #f2f2f2;
+.minibook__story .minibook__render+pre {
+	border-bottom: none;
+}
+
+.minibook__story .minibook__title {
+	padding: 3px 10px;
+    background: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+}
+
+.minibook__story .minibook__anchor {
+	display: none;
+	color: #ccc;
+    font-weight: normal;
+    position: absolute;
+    left: -20px;
+    width: 20px;
+    text-align: center;
+}
+
+.minibook__story .minibook__anchor:hover {
+    text-decoration: none;
+	color: #0366d6;
+}
+
+.minibook__story h1:hover .minibook__anchor,
+.minibook__story h2:hover .minibook__anchor,
+.minibook__story h3:hover .minibook__anchor,
+.minibook__story h4:hover .minibook__anchor,
+.minibook__story h5:hover .minibook__anchor {
+	display: block;
 }

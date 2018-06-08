@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "lint": "eslint packages/*/src"
+    "lint": "eslint packages/*/src",
+	"build": "lerna run build"
   },
   "devDependencies": {
     "eslint-config-gnoll": "0.0.3",

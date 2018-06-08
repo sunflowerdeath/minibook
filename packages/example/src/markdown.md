@@ -1,11 +1,26 @@
 ---
 name: 'Markdown'
-description: 'Description'
+description: 'Story can be written in markdown'
 imports:
   'Button': './Button.js'
 ---
 
 ## Header
+
+Inline code `<div>1</div>`
+
+Code block:
+```
+<div>1</div>
+```
+
+## JSX
+
+```render
+<Button>Button</Button>
+```
+
+## Examples
 
 Default state
 
@@ -24,3 +39,21 @@ Disabled button
 ```example
 <Button disabled>Disabled</Button>
 ```
+
+## File source
+
+```source
+file: ./Button.js
+tabs: 4
+from: 4
+to: 27
+```
+
+## Anchors
+
+[External link](http://google.com)
+
+[Relative link](/example/props)
+
+[Anchor link](#examples)
+

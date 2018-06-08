@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
+import PropTypes from 'prop-types'
 import floral from 'floral'
 
 import { StoryPropType, SectionPropType } from './propTypes'
 
+@withRouter
 @floral
 class Story extends Component {
 	static propTypes = {
 		section: SectionPropType.isRequired,
-		story: StoryPropType.isRequired
+		story: StoryPropType.isRequired,
+		history: PropTypes.object.isRequired
 	}
 
-	static styles = {
+	static styles = props => ({
 		root: {
-			display: 'flex',
+			display: props.story.src ? 'flex' : 'block',
 			flexDirection: 'column',
 			height: '100%'
 		},
@@ -24,20 +28,35 @@ class Story extends Component {
 		header: {
 			borderBottom: '1px solid #eee'
 		},
-		name: {
+		title: {
 			fontSize: '24px',
 			fontWeight: 'bold',
 			marginBottom: 10
-		},
-		content: {
-			overflow: 'auto',
-			flexGrow: 1
 		},
 		frame: {
 			width: '100%',
 			border: 'none',
 			flexGrow: 1
 		}
+	})
+
+	componentDidMount() {
+		if (!this.containerRef) return
+
+		// make relative links use HistoryApi
+		this.containerRef.addEventListener('click', event => {
+			const target = event.target
+			if (
+				target.tagName === 'A' &&
+				target.dataset.useHistoryApi === '1'
+			) {
+				const href = target.getAttribute('href')
+				if (href[0] === '/') {
+					event.preventDefault()
+					this.props.history.push(href)
+				}
+			}
+		})
 	}
 
 	render() {
@@ -49,7 +68,7 @@ class Story extends Component {
 			<div style={this.styles.root}>
 				<div style={this.styles.header}>
 					<div style={this.styles.container}>
-						<div style={this.styles.name}>
+						<div style={this.styles.title}>
 							{section.name} / {story.name}
 						</div>
 						<div style={this.styles.description}>{description}</div>
@@ -62,7 +81,12 @@ class Story extends Component {
 						style={this.styles.content}
 						className="minibook__story"
 					>
-						<div style={this.styles.container}>
+						<div
+							style={this.styles.container}
+							ref={ref => {
+								this.containerRef = ref
+							}}
+						>
 							{render
 								? render(component, props)
 								: React.createElement(component, props)}
