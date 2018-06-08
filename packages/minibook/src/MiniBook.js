@@ -81,6 +81,7 @@ class MiniBook extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		// Close sidebar when story changed
 		const { section, story } = this.props.match.params
 		const {
 			section: nextSection,
@@ -89,12 +90,19 @@ class MiniBook extends Component {
 		if (section !== nextSection || story !== nextStory) {
 			this.setState({ sidebarIsOpen: false })
 		}
+
+		// Close sidebar when rotating ipad while sidebar is open
+		if (!nextProps.matchedMedia.smallScreen && this.state.sidebarIsOpen) {
+			this.setState({ sidebarIsOpen: false })
+		}
+		return null
 	}
 
 	render() {
 		const { sections, title, match, matchedMedia } = this.props
 		const { section: sectionKey, story: storyKey } = match.params
 		const { smallScreen } = matchedMedia
+		const { sidebarIsOpen } = this.state
 
 		const currentSection = sectionKey && sections[sectionKey]
 		if (!currentSection) {
@@ -126,8 +134,8 @@ class MiniBook extends Component {
 						{currentSection.name}/{currentStory.name}
 					</title>
 					<link rel="shortcut icon" href={favicon} />
-					{smallScreen && (
-						<style>{'html, body { overflow: visible }'}</style>
+					{sidebarIsOpen && (
+						<style>{'html, body { overflow: hidden }'}</style>
 					)}
 				</Helmet>
 				{smallScreen ? (
@@ -171,12 +179,9 @@ class MiniBook extends Component {
 					{root}
 					<Drawer
 						open={this.state.sidebarIsOpen}
-						onChange={open => {
-							document.body.style.overflow = open
-								? 'hidden'
-								: 'auto'
+						onChange={open =>
 							this.setState({ sidebarIsOpen: open })
-						}}
+						}
 						width={256}
 					>
 						{nav}

@@ -48,9 +48,9 @@ const sections = {
     }
 }
 
+// You should set 'height: 100%' to html, body, and container element
 ReactDOM.render(
     <MiniBook title="Minibook" sections={sections} />,
-	// You should set 'height: 100%' to the container element
     document.querySelector('#root')
 )
 ```
@@ -60,8 +60,13 @@ ReactDOM.render(
 `minibook-loader` compiles markdown to React JSX.
 At the top of the file you can add YAML section with name and description
 attributes of the story and list of imports used in examples.
-Code blocks with `example` tag will output the rendered component followed
+
+You can use following blocks in markdown documents:
+- Code blocks with `render` tag allows to render React components.
+- Block with `example` tag outputs the rendered component followed
 by the source code.
+- Block with `source` tag allows to include source code of the file.
+You can set tab width and lines range using YAML. 
 
 ````md
 ---
@@ -73,11 +78,27 @@ imports:
 
 # Header
 
+Render JSX:
+
+```render
+<Button onClick={() => alert('click')}>Button</Button>
+```
+
 Example block:
 
 ```example
 <Button onClick={() => alert('click')}>Button</Button>
 ```
+
+Include file source:
+
+```source
+file: ./Button.js
+tabs: 4
+from: 4
+to: 27
+```
+
 ````
 
 ## Setup

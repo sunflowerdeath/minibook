@@ -133,10 +133,7 @@ const parse = (markdown, resourcePath) => {
 
 const build = ({ html, attributes }) => {
 	const { imports, name, description } = attributes
-	const defaultImports = [
-		"import React from 'react'",
-		"import { Link } from 'react-router'"
-	]
+	const defaultImports = ["import React from 'react'"]
 	const markdownImports = imports
 		? Object.entries(imports).map(
 				([key, value]) => `import ${key} from '${value}'\n`
