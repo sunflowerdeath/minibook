@@ -7,11 +7,14 @@ imports:
 
 ## Header
 
-Inline code `<div>1</div>`
+Inline code `<div>1</div>'asd'`
 
 Code block:
 ```
 <div>1</div>
+`qwe`
+'asd'
+"zxc"
 ```
 
 ## JSX

@@ -108,7 +108,7 @@ const parse = (markdown, resourcePath) => {
 	}
 
 	md.renderer.rules.code_inline = (tokens, idx) =>
-		`<code>${jsStringEscape(escapeHtml(tokens[idx].content))}</code>`
+		`<code>${escapeHtml(tokens[idx].content)}</code>`
 
 	md.renderer.rules.link_open = (tokens, idx) => {
 		const token = tokens[idx]
