@@ -1,6 +1,6 @@
 {
   "name": "minibook-loader",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Webpack loader for markdown documents with embedded components examples",
   "repository": {
     "type": "git",
