@@ -29,9 +29,11 @@ class Story extends Component {
 			borderBottom: '1px solid #eee'
 		},
 		title: {
-			fontSize: '24px',
-			fontWeight: 'bold',
-			marginBottom: 10
+			fontSize: '32px',
+			fontWeight: 'bold'
+		},
+		description: {
+			marginTop: 10
 		},
 		frame: {
 			width: '100%',
@@ -71,7 +73,11 @@ class Story extends Component {
 						<div style={this.styles.title}>
 							{section.name} / {story.name}
 						</div>
-						<div style={this.styles.description}>{description}</div>
+						{description && (
+							<div style={this.styles.description}>
+								{description}
+							</div>
+						)}
 					</div>
 				</div>
 				{src ? (

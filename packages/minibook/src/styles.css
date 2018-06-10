@@ -85,12 +85,6 @@
 	border-bottom: none;
 }
 
-.minibook__story .minibook__title {
-	padding: 3px 10px;
-    background: #f2f2f2;
-    border-bottom: 1px solid #ddd;
-}
-
 .minibook__story .minibook__anchor {
 	display: none;
 	color: #ccc;

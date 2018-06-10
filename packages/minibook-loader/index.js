@@ -4,9 +4,10 @@ const fs = require('fs')
 const markdownIt = require('markdown-it')
 const { unescapeAll, escapeHtml } = require('markdown-it/lib/common/utils')
 const frontMatter = require('front-matter')
-const anchor = require('markdown-it-anchor')
 const jsStringEscape = require('js-string-escape')
 const yaml = require('js-yaml')
+const anchor = require('markdown-it-anchor')
+const toc = require('markdown-it-table-of-contents')
 
 const renderPermalink = (slug, opts, state, idx) => {
 	const tokens = [
@@ -41,17 +42,9 @@ const source = (options, resourcePath) => {
 	if (tabs !== undefined) {
 		content = content.replace(/\t/g, ' '.repeat(tabs))
 	}
-	const title = path.basename(filepath)
-	const titleElem = `
-		<div className="minibook__title">
-			<code>{'${jsStringEscape(title)}'}</code>
-		</div>
-	`
-	const codeElem = `<pre><code>{'${jsStringEscape(content)}'}</code></pre>`
 	return `
 		<div className="minibook__fence">
-			${titleElem}
-			${codeElem}
+			<pre><code>{'${jsStringEscape(content)}'}</code></pre>
 		</div>
 	`
 }
@@ -82,7 +75,7 @@ const fence = (tokens, idx, resourcePath) => {
 	`
 }
 
-const parse = (markdown, resourcePath) => {
+const parse = (markdown, resourcePath, query) => {
 	const { body, attributes } = frontMatter(markdown)
 	if (!attributes.name) {
 		const nameFromPath = resourcePath.match(/([^/]+)\.md$/)[1]
@@ -90,10 +83,9 @@ const parse = (markdown, resourcePath) => {
 	}
 
 	const options = { xhtmlOut: true, html: true }
-	const md = markdownIt(options).use(anchor, {
-		permalink: true,
-		renderPermalink
-	})
+	const md = markdownIt(options)
+		.use(anchor, { permalink: true, renderPermalink })
+		.use(toc, { includeLevel: [1, 2, 3] })
 
 	// disable jsx in top level blocks by wrapping them into span
 	const originalRenderInline = md.renderer.renderInline.bind(md.renderer)
@@ -127,6 +119,8 @@ const parse = (markdown, resourcePath) => {
 		fence(tokens, idx, resourcePath)
 	md.renderer.rules.fence = (tokens, idx) => fence(tokens, idx, resourcePath)
 
+	if (query.configure) query.configure(md)
+
 	const html = md.render(body)
 	return { html, attributes }
 }
@@ -152,5 +146,5 @@ const build = ({ html, attributes }) => {
 }
 
 module.exports = function loader(content) {
-	return build(parse(content, this.resourcePath))
+	return build(parse(content, this.resourcePath, this.query))
 }

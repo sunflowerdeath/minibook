@@ -76,6 +76,9 @@ class MiniBook extends Component {
 				paddingTop: smallScreen ? 50 : 0,
 				boxSizing: 'border-box'
 			},
+			drawer: {
+				boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px'
+			},
 			nav
 		}
 	}
@@ -179,6 +182,7 @@ class MiniBook extends Component {
 					{root}
 					<Drawer
 						open={this.state.sidebarIsOpen}
+						drawerStyle={this.styles.drawer}
 						onChange={open =>
 							this.setState({ sidebarIsOpen: open })
 						}

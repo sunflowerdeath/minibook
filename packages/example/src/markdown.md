@@ -5,6 +5,10 @@ imports:
   'Button': './Button.js'
 ---
 
+Table of contents
+
+[[toc]]
+
 ## Header
 
 Inline code `<div>1</div>'asd'`
