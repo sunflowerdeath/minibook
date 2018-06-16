@@ -1,0 +1,13 @@
+{
+  "name": "minimark-renderer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "gnoll lib --source-maps",
+    "watch": "gnoll lib --watch --source-maps",
+    "lint": "gnoll lint"
+  },
+  "author": "sunflowerdeath",
+  "license": "Unlicense"
+}

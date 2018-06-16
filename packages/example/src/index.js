@@ -4,7 +4,9 @@ import MiniBook from 'minibook'
 import 'minibook/lib/styles.css'
 
 import Button from './Button'
-import MarkdownStory from './markdown.md'
+import Markdown, { attributes } from './markdown.md'
+
+import { MinimarkContext } from 'minimark-renderer'
 
 const sections = {
 	example: {
@@ -36,7 +38,15 @@ const sections = {
 					'Story can be another page displayed in the iframe',
 				src: '/page.html'
 			},
-			markdown: MarkdownStory
+			markdown: {
+				name: attributes.name,
+				description: attributes.description,
+				render: () => (
+					<MinimarkContext.Provider value="1">
+						<Markdown />
+					</MinimarkContext.Provider>
+				)
+			}
 		}
 	}
 }

@@ -1,0 +1,20 @@
+{
+  "name": "minimark-loader",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {},
+  "author": "sunflowerdeath",
+  "license": "Unlicense",
+  "dependencies": {
+    "detab": "^2.0.1",
+    "front-matter": "^2.3.0",
+    "frontmatter": "0.0.3",
+    "hast-util-to-html": "^3.1.0",
+    "mdast-util-definitions": "^1.2.2",
+    "mdast-util-to-hast": "^3.0.1",
+    "remark-parse": "^5.0.0",
+    "unified": "^7.0.0"
+  }
+}

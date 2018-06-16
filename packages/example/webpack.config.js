@@ -36,7 +36,7 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
-				exclude: [/node_modules/],
+				exclude: [/node_modules/, /minimark-renderer/],
 				loader: 'babel-loader',
 				options: {
 					presets: ['env', 'stage-0', 'react']
@@ -51,14 +51,16 @@ module.exports = {
 							presets: ['env', 'stage-0', 'react']
 						}
 					},
-					{ loader: 'minibook-loader' }
+					{ loader: 'minimark-loader' }
+					// { loader: 'minibook-loader' }
 				]
 			}
 		]
 	},
 	devtool: PRODUCTION ? undefined : 'cheap-module-source-map',
 	resolve: {
-		modules: ['node_modules', path.resolve(__dirname, 'node_modules')]
+		modules: ['node_modules', path.resolve(__dirname, 'node_modules')],
+		symlinks: false
 	},
 	devServer: {
 		port: 1337,
