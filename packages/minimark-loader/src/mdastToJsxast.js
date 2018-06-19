@@ -112,7 +112,7 @@ const mdastToJsxast = options => tree => {
 			return {
 				type: 'jsx',
 				component: 'Code',
-				children: [{ type: 'raw', value: code }]
+				props: { code, lang: node.lang }
 			}
 		},
 		html(h, node) {

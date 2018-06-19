@@ -12,5 +12,9 @@
     "lerna": "^2.5.1"
   },
   "author": "sunflowerdeath",
-  "license": "Unlicense"
+  "license": "Unlicense",
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
 }

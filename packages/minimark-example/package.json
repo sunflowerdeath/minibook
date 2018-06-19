@@ -1,0 +1,16 @@
+{
+  "name": "minimark-example",
+  "version": "0.0.1",
+  "description": "Example usage of minimark",
+  "scripts": {
+    "start": "gnoll start"
+  },
+  "dependencies": {
+	  "minimark-renderer": "*"
+  },
+  "devDependencies": {
+	  "minimark-loader": "*"
+  },
+  "author": "sunflowerdeath",
+  "license": "Unlicense"
+}

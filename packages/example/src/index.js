@@ -38,6 +38,7 @@ const sections = {
 					'Story can be another page displayed in the iframe',
 				src: '/page.html'
 			},
+			// markdown: Markdown,
 			markdown: {
 				name: attributes.name,
 				description: attributes.description,
