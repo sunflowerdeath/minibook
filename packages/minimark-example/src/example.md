@@ -45,10 +45,8 @@ Horizontal line:
 
 ## List
 
-- ### Unordered
+- Unordered
 - List
-  - Second
-  - Level
 
 1. Ordered
 2. List
@@ -56,6 +54,27 @@ Horizontal line:
 - [ ] List
 - [x] With
 - [ ] Checkboxes
+
+### Nested list
+
+- List
+- With
+  - Second
+  - Level
+
+### Loose list
+
+- Loose lists
+
+- Can contain multiple
+  
+  block elements
+
+- 123
+  <br>
+  456
+
+- 789
 
 ## Links
 

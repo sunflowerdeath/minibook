@@ -64,18 +64,27 @@ const mdastToJsxast = options => tree => {
 		},
 		list(h, node) {
 			// list -> listItem -> ...mdast
+
+			// set property on list items if list is loose
+			if (node.loose) {
+				node.children.forEach(child => {
+					child.looseList = true
+				})
+			}
+
 			return {
 				type: 'jsx',
 				component: 'List',
-				props: { ordered: node.ordered },
+				props: { ordered: node.ordered, loose: node.loose },
 				children: transformChildren(node, false)
 			}
 		},
-		listItem(h, node, parent) {
-			// strip paragraph when it is only children of the item
+		listItem(h, node) {
+			// strip paragraphs in tight lists
 			const container =
-				// items of loose lists can contain multiple block elements
-				(!parent || !parent.loose) &&
+				// list is loose when all of its items are loose
+				// loose list items can contain multiple block elements
+				!node.looseList &&
 				node.children.length === 1 &&
 				node.children[0].type === 'paragraph'
 					? node.children[0]
