@@ -1,0 +1,23 @@
+{
+  "name": "minimark-plugin-table-of-contents",
+  "version": "0.0.1",
+  "description": "Table of contents plugin for minimark",
+  "main": "index.js",
+  "scripts": {
+    "build": "gnoll lib --source-maps",
+	"watch": "gnoll lib --source-maps --watch"
+  },
+  "keywords": [
+    "markdown",
+    "minimark"
+  ],
+  "dependencies": {
+    "github-slugger": "^1.2.0",
+    "mdast-util-to-string": "^1.0.4",
+    "unist-util-filter": "^1.0.0",
+    "unist-util-map": "^1.0.4",
+	"minimark-renderer": "*"
+  },
+  "author": "sunflowerdeath",
+  "license": "Unlicense"
+}

@@ -6,12 +6,20 @@ const jsxastToJsx = require('./jsxastToJsx')
 
 // markdown -> MDAST -> JSXAST -> jsx
 const process = (markdown, options) => {
-	const { gfm, commonmark, allowDangerousHTML, renderer } = options
-	return unified()
-		.use(remarkParse, { gfm, commonmark, allowDangerousHTML })
+	const { gfm, commonmark, allowDangerousHTML, renderer, filePath } = options
+	const processor = unified()
+
+	processor.use(remarkParse, { gfm, commonmark, allowDangerousHTML })
+
+	if (options.mdPlugins) {
+		options.mdPlugins.forEach(plugin => processor.use(plugin, { filePath }))
+	}
+
+	processor
 		.use(mdastToJsxast, { allowDangerousHTML })
 		.use(jsxastToJsx, { renderer })
-		.processSync(markdown).contents
+
+	return processor.processSync(markdown).contents
 }
 
 module.exports = process

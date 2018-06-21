@@ -11,9 +11,11 @@ const DEFAULT_OPTIONS = {
 }
 
 function loader(content) {
-	console.log('OPTIONS', this.query)
-	// this.resourcePath
-	const options = { ...DEFAULT_OPTIONS, ...this.query }
+	const options = {
+		...DEFAULT_OPTIONS,
+		...this.query,
+		filePath: this.resourcePath
+	}
 	const { body, attributes } = frontMatter(content)
 	const jsx = mdToJsx(body, options)
 	const { imports, ...restAttributes } = attributes

@@ -2,14 +2,17 @@
   "name": "minimark-example",
   "version": "0.0.1",
   "description": "Example usage of minimark",
+  "private": true,
   "scripts": {
     "start": "gnoll start"
   },
   "dependencies": {
-	  "minimark-renderer": "*"
+    "minimark-renderer": "*",
+    "minimark-plugin-table-of-contents": "*",
+    "minimark-plugin-fence": "*"
   },
   "devDependencies": {
-	  "minimark-loader": "*"
+    "minimark-loader": "*"
   },
   "author": "sunflowerdeath",
   "license": "Unlicense"

@@ -1,5 +1,32 @@
 # Header <span style="color: red">html</span> *italic*
 
+## Plugins
+
+```!toc
+levels: 1,2,3
+```
+
+### Source fence
+
+```@source
+file: ./index.js
+from: 8
+to: 18
+tabs: 4
+```
+
+### Example
+
+```@example
+<div>1</div>
+```
+
+### Render
+
+```@render
+<div>1</div>
+```
+
 ## Blocks
 
 Paragraph <b>html</b> *italic*
@@ -18,7 +45,7 @@ Horizontal line:
 
 ## List
 
-- Unordered
+- ### Unordered
 - List
   - Second
   - Level

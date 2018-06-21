@@ -1,14 +1,14 @@
 import React from 'react'
 
-import components from './components'
+import styledComponents from './styledComponents'
 
-const MinimarkContext = React.createContext(components)
+const MinimarkContext = React.createContext()
 
 const MinimarkRenderer = ({ component, ...restProps }) => (
 	<MinimarkContext.Consumer>
 		{providedComponents =>
 			React.createElement(
-				providedComponents[component] || components[component],
+				providedComponents[component] || styledComponents[component],
 				restProps
 			)
 		}

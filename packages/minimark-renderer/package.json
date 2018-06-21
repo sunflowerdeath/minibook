@@ -9,5 +9,8 @@
     "lint": "gnoll lint"
   },
   "author": "sunflowerdeath",
-  "license": "Unlicense"
+  "license": "Unlicense",
+  "dependencies": {
+    "floral": "^0.2.2"
+  }
 }

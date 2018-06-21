@@ -3,6 +3,9 @@ const babelConfig = require('gnoll/config/babel')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const minimarkTocPlugin = require('minimark-plugin-table-of-contents')
+const minimarkFencePlugin = require('minimark-plugin-fence')
+
 module.exports = merge(baseConfig, {
 	entry: './src/index.js',
 	plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
@@ -17,7 +20,8 @@ module.exports = merge(baseConfig, {
 						options: {
 							allowDangerousHTML: true,
 							gfm: true,
-							commonmark: true
+							commonmark: true,
+							mdPlugins: [minimarkTocPlugin, minimarkFencePlugin]
 						}
 					}
 				]

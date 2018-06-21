@@ -40,6 +40,13 @@ const mdastToJsxast = options => tree => {
 	}
 
 	const jsxHandlers = {
+		root(h, node) {
+			return {
+				type: 'jsx',
+				component: 'Root',
+				children: transformChildren(node, false)
+			}
+		},
 		heading(h, node) {
 			return {
 				type: 'jsx',
@@ -61,15 +68,23 @@ const mdastToJsxast = options => tree => {
 				type: 'jsx',
 				component: 'List',
 				props: { ordered: node.ordered },
-				children: transformChildren(node)
+				children: transformChildren(node, false)
 			}
 		},
-		listItem(h, node) {
+		listItem(h, node, parent) {
+			// strip paragraph when it is only children of the item
+			const container =
+				// items of loose lists can contain multiple block elements
+				(!parent || !parent.loose) &&
+				node.children.length === 1 &&
+				node.children[0].type === 'paragraph'
+					? node.children[0]
+					: node
 			return {
 				type: 'jsx',
 				component: 'ListItem',
 				props: { checked: node.checked },
-				children: transformChildren(node)
+				children: transformChildren(container, false)
 			}
 		},
 		blockquote(h, node) {
@@ -77,7 +92,7 @@ const mdastToJsxast = options => tree => {
 			return {
 				type: 'jsx',
 				component: 'Blockquote',
-				children: transformChildren(node)
+				children: transformChildren(node, false)
 			}
 		},
 		table(h, node) {
@@ -86,14 +101,14 @@ const mdastToJsxast = options => tree => {
 				type: 'jsx',
 				component: 'Table',
 				props: { align: node.align },
-				children: transformChildren(node)
+				children: transformChildren(node, false)
 			}
 		},
 		tableRow(h, node) {
 			return {
 				type: 'jsx',
 				component: 'TableRow',
-				children: transformChildren(node)
+				children: transformChildren(node, false)
 			}
 		},
 		tableCell(h, node) {
@@ -117,6 +132,9 @@ const mdastToJsxast = options => tree => {
 		},
 		html(h, node) {
 			return { type: 'dangerouslySetInnerHTML', children: [node] }
+		},
+		jsx(h, node) {
+			return node
 		}
 	}
 

@@ -13,10 +13,10 @@ const jsxTag = ({ renderer, component, props, children }) => {
 
 function jsxastToJsx(options) {
 	const toJsx = node => {
-		if (node.type === 'jsx' || node.type === 'root') {
+		if (node.type === 'jsx') {
 			return jsxTag({
 				renderer: options.renderer,
-				component: node.type === 'root' ? 'Root' : node.component,
+				component: node.component,
 				props: node.props,
 				children: node.children && node.children.map(toJsx).join('')
 			})
