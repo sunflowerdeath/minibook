@@ -14,6 +14,8 @@ Block level nodes are transformed to jsx nodes:
 Inline nodes are transformed to HAST nodes and wrapped in node
 	{ type: 'dangerouslySetInnerHtml', children: [] }
 
+MDAST node can have properties `jsxComponent` and `jsxProps`
+
 Block nodes:
 	heading, paragraph, blockquote, list, listItem,
 	thematicBreak, table, tableRow, tableCell
@@ -39,28 +41,34 @@ const mdastToJsxast = options => tree => {
 			: transformed
 	}
 
+	const extractJsxParams = (mdastNode, jsxNode) => ({
+		...jsxNode,
+		component: mdastNode.jsxComponent || jsxNode.component,
+		props: { ...jsxNode.props, ...mdastNode.jsxProps }
+	})
+
 	const jsxHandlers = {
 		root(h, node) {
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'Root',
 				children: transformChildren(node, false)
-			}
+			})
 		},
 		heading(h, node) {
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'Heading',
-				props: { depth: node.depth },
+				props: { level: node.depth },
 				children: transformChildren(node, true)
-			}
+			})
 		},
 		paragraph(h, node) {
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'Paragraph',
 				children: transformChildren(node, true)
-			}
+			})
 		},
 		list(h, node) {
 			// list -> listItem -> ...mdast
@@ -72,12 +80,12 @@ const mdastToJsxast = options => tree => {
 				})
 			}
 
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'List',
 				props: { ordered: node.ordered, loose: node.loose },
 				children: transformChildren(node, false)
-			}
+			})
 		},
 		listItem(h, node) {
 			// strip paragraphs in tight lists
@@ -89,55 +97,56 @@ const mdastToJsxast = options => tree => {
 				node.children[0].type === 'paragraph'
 					? node.children[0]
 					: node
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'ListItem',
 				props: { checked: node.checked },
 				children: transformChildren(container, false)
-			}
+			})
 		},
 		blockquote(h, node) {
 			// blockquote -> paragraph -> ...mdast
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'Blockquote',
 				children: transformChildren(node, false)
-			}
+			})
 		},
 		table(h, node) {
 			// table -> tableRow -> tableCell -> ...mdast
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'Table',
 				props: { align: node.align },
 				children: transformChildren(node, false)
-			}
+			})
 		},
 		tableRow(h, node) {
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'TableRow',
+				props: node.props,
 				children: transformChildren(node, false)
-			}
+			})
 		},
 		tableCell(h, node) {
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'TableCell',
 				children: transformChildren(node, true)
-			}
+			})
 		},
-		thematicBreak() {
-			return { type: 'jsx', component: 'Break' }
+		thematicBreak(node) {
+			return extractJsxParams(node, { type: 'jsx', component: 'Break' })
 		},
 		code(h, node) {
 			const code = node.value ? detab(node.value + '\n') : ''
 			// const lang = node.lang && node.lang.match(/^[^ \t]+(?=[ \t]|$)/)
-			return {
+			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'Code',
 				props: { code, lang: node.lang }
-			}
+			})
 		},
 		html(h, node) {
 			return { type: 'dangerouslySetInnerHTML', children: [node] }

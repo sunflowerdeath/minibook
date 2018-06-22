@@ -9,8 +9,8 @@ const Paragraph = ({ children, computedStyles }) => (
 	<p style={computedStyles.root}>{children}</p>
 )
 
-const Heading = ({ children, depth, computedStyles }) =>
-	React.createElement(`h${depth}`, { style: computedStyles.root }, children)
+const Heading = ({ children, level, computedStyles }) =>
+	React.createElement(`h${level}`, { style: computedStyles.root }, children)
 
 const Blockquote = ({ children, computedStyles }) => (
 	<blockquote style={computedStyles.root}>{children}</blockquote>

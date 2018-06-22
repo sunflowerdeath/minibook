@@ -12,7 +12,12 @@ const tocPlugin = (/* options */) => tree => {
 		const text = toString(filter(node, child => child.type !== 'html'))
 		const slug = slugger.slug(text)
 		headings.push({ id: slug, level: node.depth, text })
-		return { ...node, id: slug }
+		return {
+			...node,
+			id: slug,
+			jsxComponent: 'AnchorHeading',
+			jsxProps: { id: slug }
+		}
 	})
 	return map(treeWithIds, node => {
 		if (node.type !== 'code' || node.lang !== '@toc') return node
