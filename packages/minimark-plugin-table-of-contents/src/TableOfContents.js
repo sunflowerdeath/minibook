@@ -1,11 +1,74 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const TableOfContents = ({ headers, levels }) => {
+import MinimarkRenderer from 'minimark-renderer'
+
+const generateTree = headings => {
+	const tree = { level: 0, children: [] }
+	let last = tree
+	headings.forEach(heading => {
+		const node = {
+			level: heading.level,
+			heading,
+			children: []
+		}
+		if (heading.level > last.level) {
+			node.parent = last
+		} else {
+			let parent = last.parent
+			while (parent.level >= heading.level) parent = parent.parent
+			node.parent = parent
+		}
+		node.parent.children.push(node)
+		last = node
+	})
+	return tree
+}
+
+const renderTree = (node, loose) => {
+	const { heading, children } = node
+	let content = <a href={`#${heading.id}`}>{heading.text}</a>
+	if (loose) {
+		content = (
+			<MinimarkRenderer component="Paragraph">{content}</MinimarkRenderer>
+		)
+	}
 	return (
-		<div>
-			TOC
-		</div>
+		<MinimarkRenderer key={heading.id} component="ListItem">
+			{content}
+			{children.length > 0 && (
+				<MinimarkRenderer component="List">
+					{children.map(child => renderTree(child, loose))}
+				</MinimarkRenderer>
+			)}
+		</MinimarkRenderer>
 	)
+}
+
+const TableOfContents = ({ headings, levels, loose }) => {
+	const filtered = headings.filter(heading => levels.includes(heading.level))
+	const tree = generateTree(filtered)
+	return (
+		<MinimarkRenderer component="List">
+			{tree.children.map(child => renderTree(child, loose))}
+		</MinimarkRenderer>
+	)
+}
+
+TableOfContents.propTypes = {
+	headings: PropTypes.arrayOf(
+		PropTypes.shape({
+			text: PropTypes.string,
+			id: PropTypes.string,
+			level: PropTypes.number
+		})
+	).isRequired,
+	levels: PropTypes.arrayOf(PropTypes.number).isRequired,
+	loose: PropTypes.bool
+}
+
+TableOfContents.defaultProps = {
+	levels: [2, 3, 4]
 }
 
 export default TableOfContents

@@ -2,8 +2,16 @@
 
 ## Plugins
 
-```!toc
-levels: 1,2,3
+### Table Of Contents
+
+```@toc
+```
+
+Use 1 and 2 level headers, loose list
+
+```@toc
+levels: [1, 2]
+loose: true
 ```
 
 ### Source fence
@@ -43,7 +51,7 @@ Horizontal line:
 
 ---
 
-## List
+## Lists
 
 - Unordered
 - List

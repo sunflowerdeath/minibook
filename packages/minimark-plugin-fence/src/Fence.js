@@ -1,12 +1,23 @@
 import React from 'react'
+import floral from 'floral'
 
 import MinimarkRenderer from 'minimark-renderer'
 
-const Fence = ({ code, lang, children }) => (
-	<div>
-		{children && <div style={{ border: '1px solid red' }}>{children}</div>}
+const styles = {
+	root: {
+		marginBottom: '16px'
+	},
+	example: {
+		padding: 10,
+		border: '1px solid #eee'
+	}
+}
+
+const Fence = floral(styles)(({ code, lang, children, computedStyles }) => (
+	<div style={computedStyles.root}>
+		{children && <div style={computedStyles.example}>{children}</div>}
 		{code && <MinimarkRenderer component="Code" lang={lang} code={code} />}
 	</div>
-)
+))
 
 export default Fence

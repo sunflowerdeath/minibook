@@ -45,6 +45,8 @@ const ListItem = ({ children, checked, computedStyles }) => {
 	)
 }
 
+ListItem.defaultProps = { checked: null }
+
 const Break = ({ computedStyles }) => <hr style={computedStyles.root} />
 
 const Table = ({ children, computedStyles }) => (
