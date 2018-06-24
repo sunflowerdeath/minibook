@@ -5,9 +5,16 @@ imports:
   'Button': './Button.js'
 ---
 
+PropsDoc
+
+```@propsdoc
+file: ./PropsDocTest.js
+```
+
 Table of contents
 
-[[toc]]
+```@toc
+```
 
 ## Header
 
@@ -23,7 +30,7 @@ Code block:
 
 ## JSX
 
-```render
+```@render
 <Button>Button</Button>
 ```
 
@@ -31,25 +38,25 @@ Code block:
 
 Default state
 
-```example
+```@example
 <Button onClick={() => alert('click')}>Button</Button>
 ```
 
 Primary button
 
-```example
+```@example
 <Button primary>Primary</Button>
 ```
 
 Disabled button
 
-```example
+```@example
 <Button disabled>Disabled</Button>
 ```
 
 ## File source
 
-```source
+```@source
 file: ./Button.js
 tabs: 4
 from: 4

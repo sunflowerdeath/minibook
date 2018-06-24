@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const minimarkTocPlugin = require('minimark-plugin-table-of-contents')
 const minimarkFencePlugin = require('minimark-plugin-fence')
+const minimarkPropsdocPlugin = require('minimark-plugin-propsdoc')
 
 module.exports = merge(baseConfig, {
 	entry: './src/index.js',
@@ -21,7 +22,11 @@ module.exports = merge(baseConfig, {
 							allowDangerousHTML: true,
 							gfm: true,
 							commonmark: true,
-							mdPlugins: [minimarkTocPlugin, minimarkFencePlugin]
+							mdPlugins: [
+								minimarkTocPlugin,
+								minimarkFencePlugin,
+								minimarkPropsdocPlugin
+							]
 						}
 					}
 				]

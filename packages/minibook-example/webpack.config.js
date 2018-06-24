@@ -51,8 +51,19 @@ module.exports = {
 							presets: ['env', 'stage-0', 'react']
 						}
 					},
-					{ loader: 'minimark-loader' }
-					// { loader: 'minibook-loader' }
+					{
+						loader: 'minimark-loader',
+						options: {
+							gfm: true,
+							commonmark: true,
+							allowDangerousHTML: true,
+							mdPlugins: [
+								require('minimark-plugin-table-of-contents'),
+								require('minimark-plugin-propsdoc'),
+								require('minimark-plugin-fence')
+							]
+						}
+					}
 				]
 			}
 		]

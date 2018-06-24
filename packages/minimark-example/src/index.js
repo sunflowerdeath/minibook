@@ -5,13 +5,14 @@ import { MinimarkContext } from 'minimark-renderer'
 import Fence from 'minimark-plugin-fence/lib/Fence'
 import TableOfContents from 'minimark-plugin-table-of-contents/lib/TableOfContents'
 import AnchorHeading from 'minimark-plugin-table-of-contents/lib/AnchorHeading'
+import Propsdoc from 'minimark-plugin-propsdoc/lib/Propsdoc'
 
 import MarkdownDocument, { attributes } from './example.md'
 
 const Example = () => {
 	return (
 		<MinimarkContext.Provider
-			value={{ TableOfContents, AnchorHeading, Fence }}
+			value={{ TableOfContents, AnchorHeading, Fence, Propsdoc }}
 		>
 			<div style={{ width: 800, margin: 'auto' }}>
 				<MarkdownDocument />

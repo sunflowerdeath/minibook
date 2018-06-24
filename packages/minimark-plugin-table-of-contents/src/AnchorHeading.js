@@ -28,7 +28,10 @@ class AnchorHeading extends Component {
 		const { computedStyles } = this.state
 		return (
 			<div id={id} style={computedStyles.root}>
-				<Taply onChangeTapState={tapState => this.setState(tapState)}>
+				<Taply
+					onChangeTapState={tapState => this.setState(tapState)}
+					isFocusable={false}
+				>
 					<MinimarkRenderer component="Heading" level={level}>
 						<a href={`#${id}`} style={computedStyles.link}>
 							#

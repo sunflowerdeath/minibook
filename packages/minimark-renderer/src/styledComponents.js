@@ -11,21 +11,21 @@ const styles = {
 	Paragraph: {
 		root: {
 			marginTop: 0,
-			marginBottom: '16px'
+			marginBottom: 16
 		}
 	},
 	Heading: ({ depth }) => ({
 		root: {
 			fontSize: ['32px', '24px', '20px', '16px', '16px'][depth - 1],
-			marginBottom: '16px',
-			marginTop: '24px',
+			marginBottom: 16,
+			marginTop: 24,
 			fontWeight: 'bold',
 			lineHeight: '1.25'
 		}
 	}),
 	Blockquote: {
 		root: {
-			paddingLeft: '16px',
+			paddingLeft: 16,
 			color: '#666',
 			borderLeft: '4px solid #eee',
 			marginLeft: 0
@@ -34,13 +34,19 @@ const styles = {
 	Code: {
 		root: {
 			marginTop: 0,
-			marginBottom: '16px',
+			marginBottom: 16,
 			padding: 10,
 			fontSize: '14px',
 			background: '#f2f2f2'
 		}
 	},
-	List: {},
+	List: {
+		root: {
+			paddingLeft: 32,
+			marginTop: 0,
+			marginBottom: 16
+		}
+	},
 	ListItem: {},
 	Break: {
 		root: {

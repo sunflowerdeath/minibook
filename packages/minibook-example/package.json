@@ -23,7 +23,10 @@
     "prop-types": "^15.6.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-	"minimark-renderer": "*"
+	"minimark-renderer": "*",
+	"minimark-plugin-table-of-contents": "*",
+	"minimark-plugin-fence": "*",
+	"minimark-plugin-propsdoc": "*"
   },
   "scripts": {
     "start": "webpack-dev-server",

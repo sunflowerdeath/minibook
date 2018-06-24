@@ -1,0 +1,26 @@
+{
+  "name": "minimark-plugin-propsdoc",
+  "version": "0.0.1",
+  "description": "Minimark plugin for adding documentation of react components props",
+  "main": "index.js",
+  "scripts": {
+	  "build": "gnoll lib --source-maps",
+	  "watch": "gnoll lib --source-maps --watch"
+  },
+  "keywords": [
+    "minimark",
+    "markdown",
+    "react",
+    "react-docgen"
+  ],
+  "author": "sunflowerdeath",
+  "license": "Unlicense",
+  "dependencies": {
+    "floral": "^0.2.2",
+    "js-yaml": "^3.12.0",
+    "prop-types": "^15.6.2",
+    "react-docgen": "^2.20.1",
+    "unist-util-map": "^1.0.4",
+	"minimark-renderer": "*"
+  }
+}

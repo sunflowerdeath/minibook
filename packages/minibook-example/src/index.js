@@ -7,6 +7,10 @@ import Button from './Button'
 import Markdown, { attributes } from './markdown.md'
 
 import { MinimarkContext } from 'minimark-renderer'
+import Fence from 'minimark-plugin-fence/lib/Fence'
+import TableOfContents from 'minimark-plugin-table-of-contents/lib/TableOfContents'
+import AnchorHeading from 'minimark-plugin-table-of-contents/lib/AnchorHeading'
+import PropsDoc from 'minimark-plugin-propsdoc/lib/PropsDoc'
 
 const sections = {
 	example: {
@@ -43,7 +47,9 @@ const sections = {
 				name: attributes.name,
 				description: attributes.description,
 				render: () => (
-					<MinimarkContext.Provider value="1">
+					<MinimarkContext.Provider
+						value={{ AnchorHeading, TableOfContents, Fence, PropsDoc }}
+					>
 						<Markdown />
 					</MinimarkContext.Provider>
 				)

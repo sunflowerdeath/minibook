@@ -2,6 +2,17 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import floral from 'floral'
+import { MinimarkContext } from 'minimark-renderer'
+import Fence from 'minimark-plugin-fence/lib/Fence'
+import TableOfContents from 'minimark-plugin-table-of-contents/lib/TableOfContents'
+import AnchorHeading from 'minimark-plugin-table-of-contents/lib/AnchorHeading'
+
+/*
+<MinimarkContext.Provider
+    value={{ AnchorHeading, TableOfContents, Fence }}
+>
+</MinimarkContext.Provider>
+*/
 
 import { StoryPropType, SectionPropType } from './propTypes'
 

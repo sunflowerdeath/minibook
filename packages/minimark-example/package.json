@@ -9,7 +9,8 @@
   "dependencies": {
     "minimark-renderer": "*",
     "minimark-plugin-table-of-contents": "*",
-    "minimark-plugin-fence": "*"
+    "minimark-plugin-fence": "*",
+	"minimark-plugin-propsdoc": "*"
   },
   "devDependencies": {
     "minimark-loader": "*"

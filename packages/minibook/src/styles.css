@@ -1,49 +1,3 @@
-.minibook__story {
-	line-height: 1.5em;
-}
-
-.minibook__story p {
-	margin-top: 0;
-	margin-bottom: 16px;
-}
-
-.minibook__story h1:first-child,
-.minibook__story h2:first-child,
-.minibook__story h3:first-child {
-	margin-top: 0;
-}
-
-.minibook__story h1,
-.minibook__story h2,
-.minibook__story h3 {
-	margin-top: 24px;
-	margin-bottom: 16px;
-}
-
-.minibook__story h1,
-.minibook__story h2,
-.minibook__story h3,
-.minibook__story h4,
-.minibook__story h5 {
-	line-height: 1.25em;
-	position: relative;
-}
-
-.minibook__story hr {
-	height: 1px;
-	border: none;
-	padding: 0;
-	margin: 1.5em 0;
-	background-color: #eee;
-}
-
-.minibook__story blockquote {
-	padding: 0 1em;
-	color: #666;
-	border-left: 0.25em solid #eee;
-	margin: 0;
-}
-
 .minibook__story a {
 	color: #0366d6;
 	text-decoration: none;
@@ -59,51 +13,24 @@
 }
 
 .minibook__story code {
-	font-family: monospace;
 	font-size: 14px;
 	background: #f2f2f2;
 }
 
-.minibook__story .minibook__fence {
-	margin-bottom: 20px;
-}
-
-.minibook__story .minibook__render {
-	padding: 10px;
-	border: 1px solid #eee;
-}
-
-.minibook__story pre {
-	padding: 10px;
-	margin: 0;
-	background: #f2f2f2;
-	white-space: pre-wrap;
-	line-height: 20px;
-}
-
-.minibook__story .minibook__render+pre {
-	border-bottom: none;
-}
-
-.minibook__story .minibook__anchor {
-	display: none;
+.minibook__story h1 a[href^="#"]:first-child,
+.minibook__story h2 a[href^="#"]:first-child,
+.minibook__story h3 a[href^="#"]:first-child,
+.minibook__story h4 a[href^="#"]:first-child,
+.minibook__story h5 a[href^="#"]:first-child {
+	text-decoration: none;
 	color: #ccc;
-    font-weight: normal;
-    position: absolute;
-    left: -20px;
-    width: 20px;
-    text-align: center;
 }
 
-.minibook__story .minibook__anchor:hover {
+.minibook__story h1 a[href^="#"]:first-child:hover,
+.minibook__story h2 a[href^="#"]:first-child:hover,
+.minibook__story h3 a[href^="#"]:first-child:hover,
+.minibook__story h4 a[href^="#"]:first-child:hover,
+.minibook__story h5 a[href^="#"]:first-child:hover {
     text-decoration: none;
 	color: #0366d6;
-}
-
-.minibook__story h1:hover .minibook__anchor,
-.minibook__story h2:hover .minibook__anchor,
-.minibook__story h3:hover .minibook__anchor,
-.minibook__story h4:hover .minibook__anchor,
-.minibook__story h5:hover .minibook__anchor {
-	display: block;
 }

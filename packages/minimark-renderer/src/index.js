@@ -8,7 +8,8 @@ const MinimarkRenderer = ({ component, ...restProps }) => (
 	<MinimarkContext.Consumer>
 		{providedComponents =>
 			React.createElement(
-				providedComponents[component] || styledComponents[component],
+				(providedComponents && providedComponents[component]) ||
+					styledComponents[component],
 				restProps
 			)
 		}
