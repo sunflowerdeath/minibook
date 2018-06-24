@@ -38,13 +38,13 @@ Test.propTypes = {
 		required: PropTypes.number.isRequired
 	}),
 
-	/** Object with shape */
-	shapeInShape: PropTypes.shape({
-		/** Description */
+	/** Nested shape */
+	nestedShape: PropTypes.shape({
+		/** Field description */
 		optional: PropTypes.string,
 		required: PropTypes.number.isRequired,
 		shape: PropTypes.shape({
-			/** Description */
+			/** Field description */
 			optional: PropTypes.string,
 			required: PropTypes.number.isRequired
 		})

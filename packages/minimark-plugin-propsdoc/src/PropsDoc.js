@@ -8,7 +8,7 @@ import propTypeToString from './propTypeToString'
 const NDASH = '–'
 
 const Shape = ({ type }) => (
-	<MinimarkRenderer component="List" style={{ marginBottom: 0, fontSize: '14px' }}>
+	<MinimarkRenderer component="List" style={{ marginBottom: 0 }}>
 		{Object.entries(type.value).map(([name, fieldType]) => (
 			<MinimarkRenderer component="ListItem" key={name}>
 				<b>{name}</b> <code>{propTypeToString(fieldType)}</code>

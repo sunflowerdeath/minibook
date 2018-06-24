@@ -1,3 +1,4 @@
+const fs = require('fs')
 const frontMatter = require('front-matter')
 
 const mdToJsx = require('./mdToJsx')
@@ -11,10 +12,15 @@ const DEFAULT_OPTIONS = {
 }
 
 function loader(content) {
+	const readFile = (filePath, ...args) => {
+		this.addDependency(filePath)
+		return fs.readFileSync(filePath, ...args)
+	}
 	const options = {
 		...DEFAULT_OPTIONS,
 		...this.query,
-		filePath: this.resourcePath
+		documentPath: this.resourcePath,
+		readFile
 	}
 	const { body, attributes } = frontMatter(content)
 	const jsx = mdToJsx(body, options)

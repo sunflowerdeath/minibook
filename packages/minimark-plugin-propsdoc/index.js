@@ -1,18 +1,16 @@
-const fs = require('fs')
 const path = require('path')
 
 const map = require('unist-util-map')
 const yaml = require('js-yaml')
 const reactDocgen = require('react-docgen')
 
-const propsDocPlugin = ({ filePath }) => tree =>
+const propsDocPlugin = ({ documentPath, readFile }) => tree =>
 	map(tree, node => {
 		if (node.type !== 'code' || node.lang !== '@propsdoc') return node
 
 		const { file } = yaml.safeLoad(node.value)
-		const source = fs.readFileSync(
-			path.resolve(path.dirname(filePath), file)
-		)
+		const filePath = path.resolve(path.dirname(documentPath), file)
+		const source = readFile(filePath, 'utf-8')
 		const componentInfo = reactDocgen.parse(source)
 
 		return {

@@ -6,13 +6,22 @@ const jsxastToJsx = require('./jsxastToJsx')
 
 // markdown -> MDAST -> JSXAST -> jsx
 const process = (markdown, options) => {
-	const { gfm, commonmark, allowDangerousHTML, renderer, filePath } = options
+	const {
+		gfm,
+		commonmark,
+		allowDangerousHTML,
+		renderer,
+		documentPath,
+		readFile
+	} = options
 	const processor = unified()
 
 	processor.use(remarkParse, { gfm, commonmark, allowDangerousHTML })
 
 	if (options.mdPlugins) {
-		options.mdPlugins.forEach(plugin => processor.use(plugin, { filePath }))
+		options.mdPlugins.forEach(plugin =>
+			processor.use(plugin, { documentPath, readFile })
+		)
 	}
 
 	processor
