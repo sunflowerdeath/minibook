@@ -9,6 +9,7 @@ PropsDoc
 
 ```@propsdoc
 file: ./PropsDocTest.js
+allowMarkdown: true
 ```
 
 Table of contents

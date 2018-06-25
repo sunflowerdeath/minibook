@@ -10,10 +10,21 @@ Test.propTypes = {
 	/** Function */
 	func: PropTypes.func.isRequired,
 
-	/** Bool */
+	/** Markdown *in* **description** `WOW`! */
 	bool: PropTypes.bool,
 
-	/** Enum */
+	/**
+	 * ### Header
+	 *
+	 * Paragraph
+	 *
+	 * ```
+	 * code block
+	 * ```
+	 *
+	 * - list
+	 * - list
+	 */
 	enum: PropTypes.oneOf(['first', 'second']),
 
 	// Union

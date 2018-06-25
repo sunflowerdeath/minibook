@@ -4,8 +4,8 @@
   "description": "Minimark plugin for adding documentation of react components props",
   "main": "index.js",
   "scripts": {
-	  "build": "gnoll lib --source-maps",
-	  "watch": "gnoll lib --source-maps --watch"
+    "build": "gnoll lib --source-maps",
+    "watch": "gnoll lib --source-maps --watch"
   },
   "keywords": [
     "minimark",
@@ -18,9 +18,11 @@
   "dependencies": {
     "floral": "^0.2.2",
     "js-yaml": "^3.12.0",
+    "minimark-loader": "*",
+    "minimark-renderer": "*",
+    "nanoid": "^1.0.4",
     "prop-types": "^15.6.2",
     "react-docgen": "^2.20.1",
-    "unist-util-map": "^1.0.4",
-	"minimark-renderer": "*"
+    "unist-util-map": "^1.0.4"
   }
 }
