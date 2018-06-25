@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "eslint-config-gnoll": "0.0.3",
-    "gnoll": "^0.5.0-2",
+    "gnoll": "^0.5.0-3",
     "lerna": "^2.5.1"
   },
   "author": "sunflowerdeath",

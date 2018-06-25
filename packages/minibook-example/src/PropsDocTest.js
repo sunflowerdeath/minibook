@@ -4,27 +4,20 @@ import PropTypes from 'prop-types'
 const Test = () => <div>Button</div>
 
 Test.propTypes = {
-	// Number
-	number: PropTypes.number.isRequired,
+	/** This prop has default value. */
+	number: PropTypes.number,
 
-	/** Function */
+	/** This prop is required. */
 	func: PropTypes.func.isRequired,
 
-	/** Markdown *in* **description** `WOW`! */
-	bool: PropTypes.bool,
-
 	/**
-	 * ### Header
-	 *
-	 * Paragraph
-	 *
-	 * ```
-	 * code block
-	 * ```
+	 * You can use markdown *in* the **description** `OMG`!
 	 *
 	 * - list
 	 * - list
 	 */
+	bool: PropTypes.bool,
+
 	enum: PropTypes.oneOf(['first', 'second']),
 
 	// Union

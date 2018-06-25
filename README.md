@@ -58,48 +58,92 @@ ReactDOM.render(
 ## Markdown Stories
 
 `minibook-loader` compiles markdown to React JSX.
-At the top of the file you can add YAML section with name and description
-attributes of the story and list of imports used in examples.
 
-You can use following blocks in markdown documents:
-- Code blocks with `render` tag allows to render React components.
-- Block with `example` tag outputs the rendered component followed
-by the source code.
-- Block with `source` tag allows to include source code of the file.
-You can set tab width and lines range using YAML. 
+At the top of the markdown document you can add YAML section 
+with name and description attributes of the story and 
+list of imported modules for examples.
 
-````md
+```
 ---
 name: 'Markdown'
 description: 'Description'
 imports:
   'Button': './Button.js'
 ---
+```
 
-# Header
+You can use following blocks in markdown documents:
 
-Render JSX:
+### Table of contents
 
-```render
+Auto-generated table of contents from headers in the document.
+
+````md
+```@toc
+```
+````
+
+You can change headers level, and list type:
+
+````md
+```@toc
+levels: 1, 2, 3
+loose: true
+ordered: true
+```
+````
+
+### Render and example
+
+- Blocks with `@render` tag allows to render React components.
+- Block with `@example` tag outputs the rendered component followed
+by the source code.
+
+
+````md
+```@render
 <Button onClick={() => alert('click')}>Button</Button>
 ```
 
-Example block:
-
-```example
+```@example
 <Button onClick={() => alert('click')}>Button</Button>
 ```
+````
 
-Include file source:
+### File source
 
-```source
+Include source code of the file.
+You can set tab width and lines range. 
+
+````md
+```@source
 file: ./Button.js
 tabs: 4
 from: 4
 to: 27
 ```
-
 ````
+
+### Props docs
+
+Documentation for component's props generated with
+[react-docgen](https://github.com/reactjs/react-docgen).
+You can even use markdown in props description.
+
+````md
+```@propsdoc
+file: ./Button.js
+allowMarkdown: true
+```
+````
+
+```js
+// Button.js
+Button.propTypes = {
+    /** Some description. */
+    number: PropTypes.number
+}
+```
 
 ## Setup
 

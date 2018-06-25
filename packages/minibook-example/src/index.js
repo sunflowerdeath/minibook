@@ -5,6 +5,7 @@ import 'minibook/lib/styles.css'
 
 import Button from './Button'
 import Markdown, { attributes } from './markdown.md'
+import MarkdownPlugins from './markdown-plugins.md'
 
 import { MinimarkContext } from 'minimark-renderer'
 import Fence from 'minimark-plugin-fence/lib/Fence'
@@ -51,6 +52,16 @@ const sections = {
 						value={{ AnchorHeading, TableOfContents, Fence, PropsDoc }}
 					>
 						<Markdown />
+					</MinimarkContext.Provider>
+				)
+			},
+			'markdown-plugins': {
+				name: 'Markdown plugins',
+				render: () => (
+					<MinimarkContext.Provider
+						value={{ AnchorHeading, TableOfContents, Fence, PropsDoc }}
+					>
+						<MarkdownPlugins />
 					</MinimarkContext.Provider>
 				)
 			}

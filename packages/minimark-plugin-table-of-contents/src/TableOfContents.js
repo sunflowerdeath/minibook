@@ -25,7 +25,7 @@ const generateTree = headings => {
 	return tree
 }
 
-const renderTree = (node, loose) => {
+const renderTree = (node, { loose, ordered }) => {
 	const { heading, children } = node
 	let content = <a href={`#${heading.id}`}>{heading.text}</a>
 	if (loose) {
@@ -37,20 +37,22 @@ const renderTree = (node, loose) => {
 		<MinimarkRenderer key={heading.id} component="ListItem">
 			{content}
 			{children.length > 0 && (
-				<MinimarkRenderer component="List">
-					{children.map(child => renderTree(child, loose))}
+				<MinimarkRenderer component="List" ordered={ordered}>
+					{children.map(child =>
+						renderTree(child, { loose, ordered })
+					)}
 				</MinimarkRenderer>
 			)}
 		</MinimarkRenderer>
 	)
 }
 
-const TableOfContents = ({ headings, levels, loose }) => {
+const TableOfContents = ({ headings, levels, loose, ordered }) => {
 	const filtered = headings.filter(heading => levels.includes(heading.level))
 	const tree = generateTree(filtered)
 	return (
-		<MinimarkRenderer component="List">
-			{tree.children.map(child => renderTree(child, loose))}
+		<MinimarkRenderer component="List" ordered={ordered}>
+			{tree.children.map(child => renderTree(child, { loose, ordered }))}
 		</MinimarkRenderer>
 	)
 }
@@ -64,7 +66,8 @@ TableOfContents.propTypes = {
 		})
 	).isRequired,
 	levels: PropTypes.arrayOf(PropTypes.number).isRequired,
-	loose: PropTypes.bool
+	loose: PropTypes.bool,
+	ordered: PropTypes.bool
 }
 
 TableOfContents.defaultProps = {

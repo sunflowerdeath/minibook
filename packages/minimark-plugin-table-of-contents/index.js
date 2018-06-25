@@ -21,11 +21,11 @@ const tocPlugin = (/* options */) => tree => {
 	})
 	return map(treeWithIds, node => {
 		if (node.type !== 'code' || node.lang !== '@toc') return node
-		const { levels, loose } = yaml.safeLoad(node.value) || {}
+		const { levels, loose, ordered } = yaml.safeLoad(node.value) || {}
 		return {
 			type: 'jsx',
 			component: 'TableOfContents',
-			props: { headings, levels, loose }
+			props: { headings, levels, loose, ordered }
 		}
 	})
 }

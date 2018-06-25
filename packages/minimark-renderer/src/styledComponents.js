@@ -37,7 +37,8 @@ const styles = {
 			marginBottom: 16,
 			padding: 10,
 			fontSize: '14px',
-			background: '#f2f2f2'
+			background: '#f2f2f2',
+			whiteSpace: 'pre-wrap'
 		}
 	},
 	List: {
