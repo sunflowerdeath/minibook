@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import floral from 'floral'
 
 const Root = ({ children, computedStyles }) => (

@@ -32,6 +32,7 @@ const mdastToJsxast = options => tree => {
 
 	const transformChildren = (node, html) => {
 		if (!node.children) return null
+		// eslint-disable-next-line no-use-before-define
 		const handlers = html ? htmlHandlers : jsxHandlers
 		const transformed = node.children
 			.map(child => mdastToHast(child, { ...options, handlers }))
@@ -76,6 +77,7 @@ const mdastToJsxast = options => tree => {
 			// set property on list items if list is loose
 			if (node.loose) {
 				node.children.forEach(child => {
+					// eslint-disable-next-line no-param-reassign
 					child.looseList = true
 				})
 			}
@@ -140,8 +142,7 @@ const mdastToJsxast = options => tree => {
 			return extractJsxParams(node, { type: 'jsx', component: 'Break' })
 		},
 		code(h, node) {
-			const code = node.value ? detab(node.value + '\n') : ''
-			// const lang = node.lang && node.lang.match(/^[^ \t]+(?=[ \t]|$)/)
+			const code = node.value ? detab(`${node.value}\n`) : ''
 			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'Code',
@@ -159,10 +160,12 @@ const mdastToJsxast = options => tree => {
 	const htmlHandlers = {
 		// patch handlers to use definitions of the whole document
 		imageReference(h, node) {
+			// eslint-disable-next-line no-param-reassign
 			h.definition = definition
 			return originalHandlers.imageReference(h, node)
 		},
 		linkReference(h, node) {
+			// eslint-disable-next-line no-param-reassign
 			h.definition = definition
 			return originalHandlers.linkReference(h, node)
 		}

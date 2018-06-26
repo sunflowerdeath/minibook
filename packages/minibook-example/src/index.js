@@ -4,14 +4,8 @@ import MiniBook from 'minibook'
 import 'minibook/lib/styles.css'
 
 import Button from './Button'
-import Markdown, { attributes } from './markdown.md'
-import MarkdownPlugins from './markdown-plugins.md'
-
-import { MinimarkContext } from 'minimark-renderer'
-import Fence from 'minimark-plugin-fence/lib/Fence'
-import TableOfContents from 'minimark-plugin-table-of-contents/lib/TableOfContents'
-import AnchorHeading from 'minimark-plugin-table-of-contents/lib/AnchorHeading'
-import PropsDoc from 'minimark-plugin-propsdoc/lib/PropsDoc'
+import MarkdownStory from './markdown.md'
+import MarkdownPluginsStory from './markdown-plugins.md'
 
 const sections = {
 	example: {
@@ -43,27 +37,13 @@ const sections = {
 					'Story can be another page displayed in the iframe',
 				src: '/page.html'
 			},
-			// markdown: Markdown,
 			markdown: {
-				name: attributes.name,
-				description: attributes.description,
-				render: () => (
-					<MinimarkContext.Provider
-						value={{ AnchorHeading, TableOfContents, Fence, PropsDoc }}
-					>
-						<Markdown />
-					</MinimarkContext.Provider>
-				)
+				name: 'Markdown',
+				markdown: MarkdownStory
 			},
 			'markdown-plugins': {
 				name: 'Markdown plugins',
-				render: () => (
-					<MinimarkContext.Provider
-						value={{ AnchorHeading, TableOfContents, Fence, PropsDoc }}
-					>
-						<MarkdownPlugins />
-					</MinimarkContext.Provider>
-				)
+				markdown: MarkdownPluginsStory
 			}
 		}
 	}

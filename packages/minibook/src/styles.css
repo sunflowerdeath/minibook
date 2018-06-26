@@ -1,36 +1,36 @@
-.minibook__story a {
+.minibook__markdown a {
 	color: #0366d6;
 	text-decoration: none;
 }
 
-.minibook__story a:hover,
-.minibook__story a:active {
+.minibook__markdown a:hover,
+.minibook__markdown a:active {
 	text-decoration: underline;
 }
 
-.minibook__story img {
+.minibook__markdown img {
 	max-width: 100%;
 }
 
-.minibook__story code {
+.minibook__markdown code {
 	font-size: 14px;
 	background: #f2f2f2;
 }
 
-.minibook__story h1 a[href^="#"]:first-child,
-.minibook__story h2 a[href^="#"]:first-child,
-.minibook__story h3 a[href^="#"]:first-child,
-.minibook__story h4 a[href^="#"]:first-child,
-.minibook__story h5 a[href^="#"]:first-child {
+.minibook__markdown h1 a[href^="#"]:first-child,
+.minibook__markdown h2 a[href^="#"]:first-child,
+.minibook__markdown h3 a[href^="#"]:first-child,
+.minibook__markdown h4 a[href^="#"]:first-child,
+.minibook__markdown h5 a[href^="#"]:first-child {
 	text-decoration: none;
 	color: #ccc;
 }
 
-.minibook__story h1 a[href^="#"]:first-child:hover,
-.minibook__story h2 a[href^="#"]:first-child:hover,
-.minibook__story h3 a[href^="#"]:first-child:hover,
-.minibook__story h4 a[href^="#"]:first-child:hover,
-.minibook__story h5 a[href^="#"]:first-child:hover {
+.minibook__markdown h1 a[href^="#"]:first-child:hover,
+.minibook__markdown h2 a[href^="#"]:first-child:hover,
+.minibook__markdown h3 a[href^="#"]:first-child:hover,
+.minibook__markdown h4 a[href^="#"]:first-child:hover,
+.minibook__markdown h5 a[href^="#"]:first-child:hover {
     text-decoration: none;
 	color: #0366d6;
 }

@@ -22,6 +22,10 @@
     "unist-util-filter": "^1.0.0",
     "unist-util-map": "^1.0.4"
   },
+  "peerDependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
   "author": "sunflowerdeath",
   "license": "Unlicense"
 }

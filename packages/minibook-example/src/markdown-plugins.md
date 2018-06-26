@@ -15,7 +15,7 @@ imports:
 ---
 
 ```@toc
-levels: 1, 2, 3
+levels: [1, 2, 3]
 loose: true
 ordered: true
 ```

@@ -56,5 +56,4 @@ const propTypeToString = type => {
 	return type.name
 }
 
-
 module.exports = propTypeToString

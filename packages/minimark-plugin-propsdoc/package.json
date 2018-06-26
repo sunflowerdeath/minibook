@@ -24,5 +24,9 @@
     "prop-types": "^15.6.2",
     "react-docgen": "^2.20.1",
     "unist-util-map": "^1.0.4"
+  },
+  "peerDependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   }
 }

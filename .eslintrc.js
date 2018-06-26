@@ -5,8 +5,11 @@ module.exports = {
 		'react/require-default-props': 'off',
 		'react/no-find-dom-node': 'off',
 		'react/forbid-prop-types': 'off',
+		'react/prop-types': 'off',
 		'import/no-webpack-loader-syntax': 'off',
 		'import/no-unresolved': ['error', { ignore: ['react', 'react-dom'] }],
-		'import/extensions': 'off'
+		'import/extensions': 'off',
+		'no-restricted-syntax': 'off',
+
 	}
 }

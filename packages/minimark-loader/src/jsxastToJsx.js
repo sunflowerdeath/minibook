@@ -6,6 +6,7 @@ const jsxTag = ({ renderer, component, props, children }) => {
 			? ` {...${JSON.stringify(props)}}`
 			: ''
 	return (
+		// eslint-disable-next-line prefer-template
 		`<${renderer} component="${component}"${propsString}` +
 		(children ? `>${children}</${renderer}>` : `/>`)
 	)
@@ -38,6 +39,7 @@ function jsxastToJsx(options) {
 		) {
 			return node.value
 		}
+		return undefined
 	}
 	this.Compiler = toJsx
 }

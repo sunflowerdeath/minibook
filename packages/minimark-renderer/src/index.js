@@ -6,13 +6,19 @@ const MinimarkContext = React.createContext()
 
 const MinimarkRenderer = ({ component, ...restProps }) => (
 	<MinimarkContext.Consumer>
-		{providedComponents =>
-			React.createElement(
+		{providedComponents => {
+			const Component =
 				(providedComponents && providedComponents[component]) ||
-					styledComponents[component],
-				restProps
-			)
-		}
+				styledComponents[component]
+			if (!Component) {
+				throw new Error(
+					`MinimarkRenderer: Component "${
+						component
+					}" is not provided!`
+				)
+			}
+			return React.createElement(Component, restProps)
+		}}
 	</MinimarkContext.Consumer>
 )
 

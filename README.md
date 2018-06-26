@@ -87,7 +87,7 @@ You can change headers level, and list type:
 
 ````md
 ```@toc
-levels: 1, 2, 3
+levels: [1, 2, 3]
 loose: true
 ordered: true
 ```
@@ -148,7 +148,7 @@ Button.propTypes = {
 ## Setup
 
 To be able to load markdown stories with webpack, you need to use
-`minibook-loader` in combination with `babel-loader` for `*.md` files:
+`minimark-loader` in combination with `babel-loader` for `*.md` files:
 
 ```js
 {
@@ -158,13 +158,16 @@ To be able to load markdown stories with webpack, you need to use
             loader: 'babel-loader',
             options: { /* options for babel-loader */ }
         },
-        { loader: 'minibook-loader' }
+        {
+            loader: 'minimark-loader',
+            options: require('minibook/minimark-preset')
+        }
     ]
 }
 ```
 
 You can view full config example at
-[packages/example/webpack.config.js](https://github.com/sunflowerdeath/minibook/blob/master/packages/example/webpack.config.js)
+[packages/example/webpack.config.js](https://github.com/sunflowerdeath/minibook/blob/master/packages/minibook-example/webpack.config.js)
 
 ## Props
 

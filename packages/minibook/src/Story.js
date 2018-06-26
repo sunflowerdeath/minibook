@@ -1,28 +1,14 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import PropTypes from 'prop-types'
 import floral from 'floral'
-import { MinimarkContext } from 'minimark-renderer'
-import Fence from 'minimark-plugin-fence/lib/Fence'
-import TableOfContents from 'minimark-plugin-table-of-contents/lib/TableOfContents'
-import AnchorHeading from 'minimark-plugin-table-of-contents/lib/AnchorHeading'
-
-/*
-<MinimarkContext.Provider
-    value={{ AnchorHeading, TableOfContents, Fence }}
->
-</MinimarkContext.Provider>
-*/
 
 import { StoryPropType, SectionPropType } from './propTypes'
+import MarkdownContainer from './MarkdownContainer'
 
-@withRouter
 @floral
 class Story extends Component {
 	static propTypes = {
 		section: SectionPropType.isRequired,
-		story: StoryPropType.isRequired,
-		history: PropTypes.object.isRequired
+		story: StoryPropType.isRequired
 	}
 
 	static styles = props => ({
@@ -53,63 +39,50 @@ class Story extends Component {
 		}
 	})
 
-	componentDidMount() {
-		if (!this.containerRef) return
+	renderHeader() {
+		const { section, story } = this.props
+		const { description } = story
 
-		// make relative links use HistoryApi
-		this.containerRef.addEventListener('click', event => {
-			const target = event.target
-			if (
-				target.tagName === 'A' &&
-				target.dataset.useHistoryApi === '1'
-			) {
-				const href = target.getAttribute('href')
-				if (href[0] === '/') {
-					event.preventDefault()
-					this.props.history.push(href)
-				}
-			}
-		})
+		return (
+			<div style={this.styles.header}>
+				<div style={this.styles.container}>
+					<div style={this.styles.title}>
+						{section.name} / {story.name}
+					</div>
+					{description && (
+						<div style={this.styles.description}>{description}</div>
+					)}
+				</div>
+			</div>
+		)
+	}
+
+	renderContent() {
+		const { section, story } = this.props
+		const { component } = section
+		const { props, render, src, markdown } = story
+
+		if (src) {
+			return <iframe style={this.styles.frame} src={src} title="story" />
+		}
+
+		const content = do {
+			// eslint-disable-next-line no-unused-expressions
+			if (markdown) <MarkdownContainer markdown={markdown} />
+			else if (render) render(component, props)
+			else React.createElement(component, props)
+		}
+
+		return <div style={this.styles.container}>{content}</div>
 	}
 
 	render() {
-		const { section, story } = this.props
-		const { component } = section
-		const { description, props, render, src } = story
+		const { story } = this.props
 
 		return (
 			<div style={this.styles.root}>
-				<div style={this.styles.header}>
-					<div style={this.styles.container}>
-						<div style={this.styles.title}>
-							{section.name} / {story.name}
-						</div>
-						{description && (
-							<div style={this.styles.description}>
-								{description}
-							</div>
-						)}
-					</div>
-				</div>
-				{src ? (
-					<iframe style={this.styles.frame} src={src} title="story" />
-				) : (
-					<div
-						style={this.styles.content}
-						className="minibook__story"
-					>
-						<div
-							style={this.styles.container}
-							ref={ref => {
-								this.containerRef = ref
-							}}
-						>
-							{render
-								? render(component, props)
-								: React.createElement(component, props)}
-						</div>
-					</div>
-				)}
+				{!story.markdown && this.renderHeader()}
+				{this.renderContent()}
 			</div>
 		)
 	}

@@ -1,6 +1,5 @@
 import React from 'react'
 import floral from 'floral'
-import MinimarkRenderer from 'minimark-renderer'
 
 import propTypeToString from './propTypeToString'
 import Shape from './Shape'

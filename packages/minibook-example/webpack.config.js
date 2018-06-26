@@ -36,7 +36,7 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
-				exclude: [/node_modules/],
+				include: [path.resolve(__dirname, 'src')],
 				loader: 'babel-loader',
 				options: {
 					presets: ['env', 'stage-0', 'react']
@@ -53,26 +53,13 @@ module.exports = {
 					},
 					{
 						loader: 'minimark-loader',
-						options: {
-							gfm: true,
-							commonmark: true,
-							allowDangerousHTML: true,
-							mdPlugins: [
-								require('minimark-plugin-table-of-contents'),
-								require('minimark-plugin-propsdoc'),
-								require('minimark-plugin-fence')
-							]
-						}
+						options: require('minibook/minimark-preset')
 					}
 				]
 			}
 		]
 	},
 	devtool: PRODUCTION ? undefined : 'cheap-module-source-map',
-	resolve: {
-		modules: ['node_modules', path.resolve(__dirname, 'node_modules')],
-		symlinks: false
-	},
 	devServer: {
 		port: 1337,
 		historyApiFallback: true,
