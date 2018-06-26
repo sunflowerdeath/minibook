@@ -14,13 +14,17 @@ const styles = {
 			marginBottom: 16
 		}
 	},
-	Heading: ({ depth }) => ({
+	Heading: ({ level }) => ({
 		root: {
-			fontSize: ['32px', '24px', '20px', '16px', '16px'][depth - 1],
+			fontSize: ['32px', '24px', '20px', '16px', '16px'][level - 1],
 			marginBottom: 16,
 			marginTop: 24,
 			fontWeight: 'bold',
-			lineHeight: '1.25'
+			lineHeight: '1.25',
+			...(level === 1 && {
+				paddingBottom: 8,
+				borderBottom: '1px solid #eee'
+			})
 		}
 	}),
 	Blockquote: {
@@ -59,9 +63,19 @@ const styles = {
 			background: '#eee'
 		}
 	},
-	Table: {},
+	Table: {
+		root: {
+			borderCollapse: 'collapse'
+		}
+	},
 	TableRow: {},
-	TableCell: {}
+	TableCell: ({ header }) => ({
+		root: {
+			border: '1px solid #eee',
+			padding: '5px 10px',
+			fontWeight: header ? 'bold' : 'normal'
+		}
+	})
 }
 
 const styledComponents = {}

@@ -4,8 +4,9 @@ import MiniBook from 'minibook'
 import 'minibook/lib/styles.css'
 
 import Button from './Button'
-import MarkdownStory from './markdown.md'
-import MarkdownPluginsStory from './markdown-plugins.md'
+import Markdown from './markdown.md'
+import MarkdownElementsTest from './markdown-elements-test.md'
+import MarkdownPluginsTest from './markdown-plugins-test.md'
 
 const sections = {
 	example: {
@@ -39,11 +40,15 @@ const sections = {
 			},
 			markdown: {
 				name: 'Markdown',
-				markdown: MarkdownStory
+				markdown: Markdown
 			},
-			'markdown-plugins': {
-				name: 'Markdown plugins',
-				markdown: MarkdownPluginsStory
+			'elements-test': {
+				name: 'Elements test',
+				markdown: MarkdownElementsTest
+			},
+			'plugins test': {
+				name: 'Plugins test',
+				markdown: MarkdownPluginsTest
 			}
 		}
 	}

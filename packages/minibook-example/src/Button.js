@@ -27,9 +27,17 @@ const Button = ({ primary, onClick, disabled, children }) => {
 }
 
 Button.propTypes = {
+	/** Some description */
 	primary: PropTypes.bool,
-	onClick: PropTypes.func,
+
+	/**
+	 * Description *with* **markdown**!
+	 *
+	 * - A
+	 * - B
+	 */
 	disabled: PropTypes.bool,
+	onClick: PropTypes.func,
 	children: PropTypes.node
 }
 

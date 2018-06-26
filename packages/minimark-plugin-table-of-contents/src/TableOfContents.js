@@ -37,7 +37,11 @@ const renderTree = (node, { loose, ordered }) => {
 		<MinimarkRenderer key={heading.id} component="ListItem">
 			{content}
 			{children.length > 0 && (
-				<MinimarkRenderer component="List" ordered={ordered}>
+				<MinimarkRenderer
+					component="List"
+					ordered={ordered}
+					style={{ marginBottom: 0 }}
+				>
 					{children.map(child =>
 						renderTree(child, { loose, ordered })
 					)}

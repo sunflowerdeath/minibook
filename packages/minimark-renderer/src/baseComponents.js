@@ -49,14 +49,26 @@ ListItem.defaultProps = { checked: null }
 
 const Break = ({ computedStyles }) => <hr style={computedStyles.root} />
 
-const Table = ({ children, computedStyles }) => (
-	<table style={computedStyles.root}>
-		<tbody>{children}</tbody>
-	</table>
-)
+const Table = ({ children, computedStyles }) => {
+	const [firstRow, ...restRows] = children
+	return (
+		<table style={computedStyles.root}>
+			<thead>
+				{React.cloneElement(firstRow, { header: true })}
+			</thead>
+			<tbody>{restRows}</tbody>
+		</table>
+	)
+}
 
-const TableRow = ({ children, computedStyles }) => (
-	<tr style={computedStyles.root}>{children}</tr>
+const TableRow = ({ children, header, computedStyles }) => (
+	<tr style={computedStyles.root}>
+		{header
+			? React.Children.map(children, child =>
+					React.cloneElement(child, { header: true })
+				)
+			: children}
+	</tr>
 )
 
 const TableCell = ({ children, computedStyles }) => (

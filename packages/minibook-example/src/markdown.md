@@ -1,97 +1,38 @@
 ---
-name: 'Markdown'
-description: 'Story can be written in markdown'
 imports:
   'Button': './Button.js'
 ---
 
-# Header <span style="color: red">inline html</span> *italic*
+# Button
 
-Paragraph <span style="color: red">inline html</span> *italic*
+Table of contents
 
-> Blockquote <span style="color: red">inline html</span> *italic*
-
-Horizontal line:
-
----
-
-Html block:
-
-<div style="background: #666; padding: 10px; color: white">
-	<b>Bold</b>
-</div>
-
-## Lists
-
-- Unordered
-- List
-
-1. Ordered
-2. List
-
-- [ ] List
-- [x] With
-- [ ] Checkboxes
-
-### Nested list
-
-- List
-- With
-  - Second
-  - Level
-
-### Loose list
-
-- Loose lists
-
-- Can contain multiple
-  
-  block elements
-
-- 123
-  <br>
-  456
-
-- 789
-
-## Links
-
-Link: [example/props](/example/props)
-
-External link: [Google](http://google.com "Title")
-
-Reference link: [Reference link][link]
-
-Empty reference link: [link]
-
-## Images
-
-Inline image: 
-![alt text](http://via.placeholder.com/100x100 "Title")
-
-Reference image: 
-![alt text][image]
-
-## Code
-
-Code block:
-
-```js
-<div>1</div>
-`qwe`
-'asd'
-"zxc"
+```@toc
 ```
 
-Inline code: `code<div>1</div>"qwe"'asd'`
+## Examples
 
-## Tables
+### Default
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| `code`        | *i* <b>b</b>  |    $1 |
- 
-[image]: http://via.placeholder.com/100x100 "Title"
-[link]: http://www.reddit.com
+```@example
+<Button>Button</Button>
+```
+
+### Primary
+
+```@example
+<Button primary>Button</Button>
+```
+
+### Disabled
+
+```@example
+<Button disabled>Button</Button>
+```
+
+## Props
+
+```@propsdoc
+file: ./Button.js
+allowMarkdown: true
+```
