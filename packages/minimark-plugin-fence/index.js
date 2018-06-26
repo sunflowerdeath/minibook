@@ -3,11 +3,12 @@ const path = require('path')
 const map = require('unist-util-map')
 const yaml = require('js-yaml')
 
-const fencePlugin = ({ documentPath, readFile }) => tree =>
+const fencePlugin = ({ minimarkOptions }) => tree =>
 	map(tree, node => {
 		if (node.type !== 'code') return node
 
 		if (node.lang === '@source') {
+			const { documentPath, readFile } = minimarkOptions
 			const { file, tabs, from, to } = yaml.safeLoad(node.value)
 			const filePath = path.resolve(path.dirname(documentPath), file)
 			let code = readFile(filePath, 'utf-8')

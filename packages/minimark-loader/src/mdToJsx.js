@@ -12,7 +12,20 @@ const process = (markdown, options) => {
 	processor.use(remarkParse, { gfm, commonmark, allowDangerousHTML })
 
 	if (options.mdPlugins) {
-		options.mdPlugins.forEach(plugin => processor.use(plugin, options))
+		/*
+		plugins: [
+			somePlugin,
+			{ plugin: somePlugin, options: { ... } }
+		]
+		*/
+		options.mdPlugins.forEach(item => {
+			const plugin = typeof item === 'object' ? item.plugin : item
+			const pluginOptions = typeof plugin === 'object' && item.options
+			processor.use(plugin, {
+				...pluginOptions,
+				minimarkOptions: options
+			})
+		})
 	}
 
 	processor

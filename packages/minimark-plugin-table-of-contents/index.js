@@ -4,7 +4,7 @@ const filter = require('unist-util-filter')
 const toString = require('mdast-util-to-string')
 const Slugger = require('github-slugger')
 
-const tocPlugin = (/* options */) => tree => {
+const tocPlugin = () => tree => {
 	const slugger = new Slugger()
 	const headings = []
 	const treeWithIds = map(tree, node => {

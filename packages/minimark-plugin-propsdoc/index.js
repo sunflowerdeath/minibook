@@ -8,11 +8,11 @@ const mdToJsx = require('minimark-loader/src/mdToJsx')
 
 const rawStringify = require('./rawStringify')
 
-const propsDocPlugin = options => tree =>
+const propsDocPlugin = ({ minimarkOptions }) => tree =>
 	map(tree, node => {
 		if (node.type !== 'code' || node.lang !== '@propsdoc') return node
 
-		const { documentPath, readFile, renderer } = options
+		const { documentPath, readFile, renderer } = minimarkOptions
 		const { file, allowMarkdown } = yaml.safeLoad(node.value)
 		const filePath = path.resolve(path.dirname(documentPath), file)
 		const source = readFile(filePath, 'utf-8')
@@ -23,7 +23,7 @@ const propsDocPlugin = options => tree =>
 				if (propInfo.description) {
 					propInfo.description = new rawStringify.RawValue(
 						mdToJsx(propInfo.description, {
-							...options,
+							...minimarkOptions,
 							mdPlugins: undefined
 						})
 					)
