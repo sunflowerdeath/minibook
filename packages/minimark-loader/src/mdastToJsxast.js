@@ -50,6 +50,10 @@ const mdastToJsxast = options => tree => {
 
 	const jsxHandlers = {
 		root(h, node) {
+			const firstChild = node.children[0]
+			if (firstChild && firstChild.type === 'heading') {
+				firstChild.first = true
+			}
 			return extractJsxParams(node, {
 				type: 'jsx',
 				component: 'Root',

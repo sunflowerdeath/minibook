@@ -14,11 +14,11 @@ const styles = {
 			marginBottom: 16
 		}
 	},
-	Heading: ({ level }) => ({
+	Heading: ({ level, first }) => ({
 		root: {
 			fontSize: ['32px', '24px', '20px', '16px', '16px'][level - 1],
 			marginBottom: 16,
-			marginTop: 24,
+			marginTop: first ? 24 : 0,
 			fontWeight: 'bold',
 			lineHeight: '1.25',
 			...(level === 1 && {

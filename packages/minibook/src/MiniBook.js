@@ -14,9 +14,66 @@ import favicon from '!raw-loader!./favicon.base64'
 // eslint-disable-next-line import/first
 import menuIconSvg from '!raw-loader!./menu.svg'
 
+const styles = props => {
+	const { matchedMedia: { smallScreen } } = props
+
+	const nav = smallScreen
+		? {
+				width: 256,
+				background: 'white',
+				height: '100%',
+				boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px',
+				boxSizing: 'border-box'
+			}
+		: {
+				position: 'fixed',
+				height: '100%',
+				width: 200,
+				borderRight: '1px solid #eee'
+			}
+
+	return {
+		root: {
+			height: '100%'
+		},
+		header: {
+			position: 'fixed',
+			zIndex: 1,
+			width: '100%',
+			height: 50,
+			display: 'flex',
+			alignItems: 'center',
+			padding: '0 20px',
+			borderBottom: '1px solid #eee',
+			background: '#263238',
+			color: 'white',
+			fontWeight: 'bold'
+		},
+		title: {
+			fontSize: '18px',
+			position: 'relative',
+			top: -1
+		},
+		menu: {
+			padding: 12,
+			marginLeft: -12,
+			fill: 'white'
+		},
+		story: {
+			paddingLeft: smallScreen ? 0 : 200,
+			paddingTop: smallScreen ? 50 : 0,
+			boxSizing: 'border-box'
+		},
+		drawer: {
+			boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px'
+		},
+		nav
+	}
+}
+
 @withRouter
 @matchMedia({ smallScreen: '(max-width: 1023px)' })
-@floral
+@floral(styles)
 class MiniBook extends Component {
 	static propTypes = {
 		title: PropTypes.string,
@@ -26,86 +83,32 @@ class MiniBook extends Component {
 		matchedMedia: PropTypes.objectOf(PropTypes.bool).isRequired
 	}
 
-	static styles = props => {
-		const { matchedMedia: { smallScreen } } = props
-
-		const nav = smallScreen
-			? {
-					width: 256,
-					background: 'white',
-					height: '100%',
-					boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px',
-					boxSizing: 'border-box'
-				}
-			: {
-					position: 'fixed',
-					height: '100%',
-					width: 200,
-					borderRight: '1px solid #eee'
-				}
-
-		return {
-			root: {
-				height: '100%'
-			},
-			header: {
-				position: 'fixed',
-				zIndex: 1,
-				width: '100%',
-				height: 50,
-				display: 'flex',
-				alignItems: 'center',
-				padding: '0 20px',
-				borderBottom: '1px solid #eee',
-				background: '#263238',
-				color: 'white',
-				fontWeight: 'bold'
-			},
-			title: {
-				fontSize: '18px',
-				position: 'relative',
-				top: -1
-			},
-			menu: {
-				padding: 12,
-				marginLeft: -12,
-				fill: 'white'
-			},
-			story: {
-				paddingLeft: smallScreen ? 0 : 200,
-				paddingTop: smallScreen ? 50 : 0,
-				boxSizing: 'border-box'
-			},
-			drawer: {
-				boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px'
-			},
-			nav
-		}
-	}
-
-	componentWillReceiveProps(nextProps) {
+	static getDerivedStateFromProps(props, state) {
 		// Close sidebar when story changed
-		const { section, story } = this.props.match.params
-		const {
-			section: nextSection,
-			story: nextStory
-		} = nextProps.match.params
-		if (section !== nextSection || story !== nextStory) {
-			this.setState({ sidebarIsOpen: false })
+		const { section: prevSection, story: prevStory } = state.prevParams || {}
+		const { section, story } = props.match.params
+		if (section !== prevSection || story !== prevStory) {
+			return { sidebarIsOpen: false, prevParams: props.match.params }
 		}
+		
 
 		// Close sidebar when rotating ipad while sidebar is open
-		if (!nextProps.matchedMedia.smallScreen && this.state.sidebarIsOpen) {
-			this.setState({ sidebarIsOpen: false })
+		if (!props.matchedMedia.smallScreen && state.sidebarIsOpen) {
+			return { sidebarIsOpen: false }
 		}
+
 		return null
+	}
+
+	state = {
+		sidebarIsOpen: false
 	}
 
 	render() {
 		const { sections, title, match, matchedMedia } = this.props
 		const { section: sectionKey, story: storyKey } = match.params
 		const { smallScreen } = matchedMedia
-		const { sidebarIsOpen } = this.state
+		const { sidebarIsOpen, computedStyles } = this.state
 
 		const currentSection = sectionKey && sections[sectionKey]
 		if (!currentSection) {
@@ -126,12 +129,12 @@ class MiniBook extends Component {
 				sections={sections}
 				currentSection={sectionKey}
 				smallScreen={smallScreen}
-				style={this.styles.nav}
+				style={computedStyles.nav}
 			/>
 		)
 
 		const root = (
-			<div style={this.styles.root}>
+			<div style={computedStyles.root}>
 				<Helmet>
 					<title>
 						{currentSection.name}/{currentStory.name}
@@ -142,17 +145,17 @@ class MiniBook extends Component {
 					)}
 				</Helmet>
 				{smallScreen ? (
-					<div style={this.styles.header}>
+					<div style={computedStyles.header}>
 						<div
 							tabIndex="0"
 							role="button"
-							style={this.styles.menu}
+							style={computedStyles.menu}
 							dangerouslySetInnerHTML={{ __html: menuIconSvg }}
 							onClick={() =>
 								this.setState({ sidebarIsOpen: true })
 							}
 						/>
-						<div style={this.styles.title}>
+						<div style={computedStyles.title}>
 							{title || 'Minibook'}
 						</div>
 					</div>
@@ -161,7 +164,7 @@ class MiniBook extends Component {
 				)}
 				<div
 					style={{
-						...this.styles.story,
+						...computedStyles.story,
 						height: currentStory.src ? '100%' : 'auto'
 					}}
 				>
@@ -178,11 +181,11 @@ class MiniBook extends Component {
 
 		if (smallScreen) {
 			return (
-				<div style={this.styles.root}>
+				<div style={computedStyles.root}>
 					{root}
 					<Drawer
 						open={this.state.sidebarIsOpen}
-						drawerStyle={this.styles.drawer}
+						drawerStyle={computedStyles.drawer}
 						onChange={open =>
 							this.setState({ sidebarIsOpen: open })
 						}

@@ -17,10 +17,6 @@
 	background: #f2f2f2;
 }
 
-.minibook__markdown div:first-child > h1:first-child {
-	margin-top: 0 !important
-}
-
 .minibook__markdown h1 a[href^="#"]:first-child,
 .minibook__markdown h2 a[href^="#"]:first-child,
 .minibook__markdown h3 a[href^="#"]:first-child,

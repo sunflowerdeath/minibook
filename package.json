@@ -5,7 +5,8 @@
   "scripts": {
     "postinstall": "lerna bootstrap && gnoll link",
     "lint": "eslint packages/*/src",
-    "build": "lerna run build"
+    "build": "lerna run build",
+	"prepublishOnly": "lerna run build --ignore \"minibook-example\""
   },
   "devDependencies": {
     "eslint-config-gnoll": "0.0.3",

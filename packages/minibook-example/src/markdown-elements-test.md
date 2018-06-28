@@ -3,7 +3,9 @@ imports:
   'Button': './Button.js'
 ---
 
-# Header <span style="color: red">inline html</span> *italic*
+# Markdown elements
+
+## Header <span style="color: red">inline html</span> *italic*
 
 Paragraph <span style="color: red">inline html</span> *italic*
 

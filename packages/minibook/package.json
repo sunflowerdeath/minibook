@@ -9,13 +9,12 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "gnoll lib --source-maps",
-    "watch": "gnoll lib --watch --source-maps",
-    "lint": "gnoll lint"
+    "watch": "gnoll lib --watch --source-maps"
   },
   "author": "sunflowerdeath",
   "license": "Unlicense",
   "dependencies": {
-    "floral": "0.0.4",
+    "floral": "^0.2.2",
     "minimark-plugin-fence": "*",
     "minimark-plugin-propsdoc": "*",
     "minimark-plugin-table-of-contents": "*",

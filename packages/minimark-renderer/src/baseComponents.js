@@ -53,9 +53,7 @@ const Table = ({ children, computedStyles }) => {
 	const [firstRow, ...restRows] = children
 	return (
 		<table style={computedStyles.root}>
-			<thead>
-				{React.cloneElement(firstRow, { header: true })}
-			</thead>
+			<thead>{React.cloneElement(firstRow, { header: true })}</thead>
 			<tbody>{restRows}</tbody>
 		</table>
 	)
