@@ -35,6 +35,7 @@ const ListItem = ({ children, checked, computedStyles }) => {
 			type="checkbox"
 			defaultChecked={checked}
 			style={computedStyles.checkbox}
+			disabled
 		/>
 	)
 	return (
@@ -49,23 +50,27 @@ ListItem.defaultProps = { checked: null }
 
 const Break = ({ computedStyles }) => <hr style={computedStyles.root} />
 
-const Table = ({ children, computedStyles }) => {
+const Table = ({ children, align, computedStyles }) => {
 	const [firstRow, ...restRows] = children
 	return (
 		<table style={computedStyles.root}>
-			<thead>{React.cloneElement(firstRow, { header: true })}</thead>
-			<tbody>{restRows}</tbody>
+			<thead>
+				{React.cloneElement(firstRow, { header: true, align })}
+			</thead>
+			<tbody>
+				{React.Children.map(restRows, row =>
+					React.cloneElement(row, { align })
+				)}
+			</tbody>
 		</table>
 	)
 }
 
-const TableRow = ({ children, header, computedStyles }) => (
+const TableRow = ({ children, header, align, computedStyles }) => (
 	<tr style={computedStyles.root}>
-		{header
-			? React.Children.map(children, child =>
-					React.cloneElement(child, { header: true })
-				)
-			: children}
+		{React.Children.toArray(children).map((child, index) =>
+			React.cloneElement(child, { header, align: align[index] })
+		)}
 	</tr>
 )
 

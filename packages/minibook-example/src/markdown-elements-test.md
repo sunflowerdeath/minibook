@@ -32,6 +32,7 @@ Html block:
 - [ ] List
 - [x] With
 - [ ] Checkboxes
+- 123
 
 ### Nested list
 
@@ -92,6 +93,6 @@ Inline code: `code<div>1</div>"qwe"'asd'`
 | col 3 is      | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
 | `code`        | *i* <b>b</b>  |    $1 |
- 
+
 [image]: http://via.placeholder.com/100x100 "Title"
 [link]: http://www.reddit.com

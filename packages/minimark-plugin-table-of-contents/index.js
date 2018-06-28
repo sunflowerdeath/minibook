@@ -16,7 +16,7 @@ const tocPlugin = () => tree => {
 			...node,
 			id: slug,
 			jsxComponent: 'AnchorHeading',
-			jsxProps: { id: slug }
+			jsxProps: { ...node.jsxProps, id: slug }
 		}
 	})
 	return map(treeWithIds, node => {

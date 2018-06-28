@@ -18,7 +18,7 @@ const styles = {
 		root: {
 			fontSize: ['32px', '24px', '20px', '16px', '16px'][level - 1],
 			marginBottom: 16,
-			marginTop: first ? 24 : 0,
+			marginTop: first ? 0 : 24,
 			fontWeight: 'bold',
 			lineHeight: '1.25',
 			...(level === 1 && {
@@ -52,7 +52,20 @@ const styles = {
 			marginBottom: 16
 		}
 	},
-	ListItem: {},
+	ListItem: ({ checked }) =>
+		checked !== null
+			? {
+					root: {
+						listStyleType: 'none',
+						marginLeft: -20
+					},
+					checkbox: {
+						marginLeft: 0,
+						marginRight: 7,
+						verticalAlign: 'middle'
+					}
+				}
+			: null,
 	Break: {
 		root: {
 			height: 4,
@@ -69,11 +82,12 @@ const styles = {
 		}
 	},
 	TableRow: {},
-	TableCell: ({ header }) => ({
+	TableCell: ({ header, align }) => ({
 		root: {
 			border: '1px solid #eee',
 			padding: '5px 10px',
-			fontWeight: header ? 'bold' : 'normal'
+			fontWeight: header ? 'bold' : 'normal',
+			textAlign: align
 		}
 	})
 }

@@ -24,7 +24,7 @@ class AnchorHeading extends Component {
 	}
 
 	render() {
-		const { id, level, children } = this.props
+		const { id, level, first, children } = this.props
 		const { computedStyles } = this.state
 		return (
 			<div id={id} style={computedStyles.root}>
@@ -32,7 +32,11 @@ class AnchorHeading extends Component {
 					onChangeTapState={tapState => this.setState(tapState)}
 					isFocusable={false}
 				>
-					<MinimarkRenderer component="Heading" level={level}>
+					<MinimarkRenderer
+						component="Heading"
+						level={level}
+						first={first}
+					>
 						<a href={`#${id}`} style={computedStyles.link}>
 							#
 						</a>

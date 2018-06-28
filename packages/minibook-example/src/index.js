@@ -46,7 +46,7 @@ const sections = {
 				name: 'Elements test',
 				markdown: MarkdownElementsTest
 			},
-			'plugins test': {
+			'plugins-test': {
 				name: 'Plugins test',
 				markdown: MarkdownPluginsTest
 			}

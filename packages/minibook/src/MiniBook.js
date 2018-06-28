@@ -85,12 +85,12 @@ class MiniBook extends Component {
 
 	static getDerivedStateFromProps(props, state) {
 		// Close sidebar when story changed
-		const { section: prevSection, story: prevStory } = state.prevParams || {}
+		const { section: prevSection, story: prevStory } =
+			state.prevParams || {}
 		const { section, story } = props.match.params
 		if (section !== prevSection || story !== prevStory) {
 			return { sidebarIsOpen: false, prevParams: props.match.params }
 		}
-		
 
 		// Close sidebar when rotating ipad while sidebar is open
 		if (!props.matchedMedia.smallScreen && state.sidebarIsOpen) {

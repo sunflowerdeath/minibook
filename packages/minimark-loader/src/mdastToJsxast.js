@@ -52,7 +52,7 @@ const mdastToJsxast = options => tree => {
 		root(h, node) {
 			const firstChild = node.children[0]
 			if (firstChild && firstChild.type === 'heading') {
-				firstChild.first = true
+				firstChild.jsxProps = { first: true }
 			}
 			return extractJsxParams(node, {
 				type: 'jsx',
