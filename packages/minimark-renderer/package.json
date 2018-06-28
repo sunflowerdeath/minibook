@@ -1,6 +1,6 @@
 {
   "name": "minimark-renderer",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
