@@ -1,6 +1,6 @@
 {
   "name": "minimark-plugin-table-of-contents",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "description": "Table of contents plugin for minimark",
   "main": "index.js",
   "scripts": {
