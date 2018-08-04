@@ -34,7 +34,7 @@ const renderTree = (node, { loose, ordered }) => {
 		)
 	}
 	return (
-		<MinimarkRenderer key={heading.id} component="ListItem">
+		<MinimarkRenderer key={heading.id} component="ListItem" checked={null}>
 			{content}
 			{children.length > 0 && (
 				<MinimarkRenderer

@@ -141,7 +141,7 @@ class MiniBook extends Component {
 					</title>
 					<link rel="shortcut icon" href={favicon} />
 					{sidebarIsOpen && (
-						<style>{'html, body { overflow: hidden }'}</style>
+						<style>{'html { overflow: hidden }'}</style>
 					)}
 				</Helmet>
 				{smallScreen ? (
