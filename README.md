@@ -7,7 +7,7 @@ Minibook is a minimalistic interface for documentation and examples of component
 ## Install
 
 ```
-npm install minibook minibook-loader
+npm install minibook
 ```
 
 ## Example
@@ -43,7 +43,10 @@ const sections = {
             },
 
             // Markdown with embedded components examples
-            'markdown-story': MarkdownStory
+            'markdown-story': {
+                name: 'Markdown story',
+                markdown: MarkdownStory
+            }
         }
     }
 }
@@ -57,7 +60,7 @@ ReactDOM.render(
 
 ## Markdown Stories
 
-`minibook-loader` compiles markdown to React JSX.
+`minimark-loader` compiles markdown to React JSX.
 
 At the top of the markdown document you can add YAML section 
 with name and description attributes of the story and 
