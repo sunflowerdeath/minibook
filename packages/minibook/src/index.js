@@ -4,14 +4,14 @@ import ScrollMemory from 'react-router-scroll-memory'
 
 import MiniBook from './MiniBook'
 
-const App = props => (
-	<BrowserRouter>
+const App = ({ basename, ...restProps }) => (
+	<BrowserRouter basename={basename}>
 		<Fragment>
 			<ScrollMemory />
 			<Route
 				path="/:section?/:story?"
 				exact
-				render={() => <MiniBook {...props} />}
+				render={() => <MiniBook {...restProps} />}
 			/>
 		</Fragment>
 	</BrowserRouter>

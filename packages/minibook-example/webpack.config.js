@@ -16,7 +16,6 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.resolve('./build'),
-		filename: 'bundle.js',
 		publicPath: '/'
 	},
 	mode: PRODUCTION ? 'production' : 'development',
@@ -32,7 +31,7 @@ module.exports = {
 				include: [path.resolve(__dirname, 'src')],
 				loader: 'babel-loader',
 				options: {
-					presets: ['env', 'stage-0', 'react']
+					presets: ['@babel/preset-env', '@babel/preset-react']
 				}
 			},
 			{
@@ -41,7 +40,7 @@ module.exports = {
 					{
 						loader: 'babel-loader',
 						options: {
-							presets: ['env', 'stage-0', 'react']
+							presets: ['@babel/preset-env', '@babel/preset-react']
 						}
 					},
 					{

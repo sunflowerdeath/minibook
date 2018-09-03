@@ -6,11 +6,11 @@
     "postinstall": "lerna bootstrap && gnoll link",
     "lint": "eslint packages/*/src",
     "build": "lerna run build",
-	"prepublishOnly": "lerna run build --ignore \"minibook-example\""
+    "prepublishOnly": "lerna run build --ignore \"minibook-example\""
   },
   "devDependencies": {
-    "eslint-config-gnoll": "0.0.3",
-    "gnoll": "^0.5.0-3",
+    "eslint-config-gnoll": "^0.6.0-6",
+    "gnoll": "^0.6.0-6",
     "lerna": "^2.5.1"
   },
   "author": "sunflowerdeath",
