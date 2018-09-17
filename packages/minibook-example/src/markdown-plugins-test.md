@@ -43,7 +43,17 @@ to: 27
 
 ## PropsDoc
 
+### Default exported component
+
 ```@propsdoc
 file: ./PropsDocTest.js
 allowMarkdown: true
+```
+
+### Component by displayName
+
+```@propsdoc
+file: ./Components.js
+allowMarkdown: true
+component: ComponentA
 ```

@@ -13,10 +13,26 @@ const propsDocPlugin = ({ minimarkOptions }) => tree =>
 		if (node.type !== 'code' || node.lang !== '@propsdoc') return node
 
 		const { documentPath, readFile, renderer } = minimarkOptions
-		const { file, allowMarkdown } = yaml.safeLoad(node.value)
+		const { file, allowMarkdown, component } = yaml.safeLoad(node.value)
 		const filePath = path.resolve(path.dirname(documentPath), file)
 		const source = readFile(filePath, 'utf-8')
-		const propsInfo = reactDocgen.parse(source).props
+
+		let propsInfo
+		if (component) {
+			const resolver = reactDocgen.resolver.findAllComponentDefinitions
+			const componentInfo = reactDocgen
+				.parse(source, resolver)
+				.find(c => c.displayName === component)
+			if (!componentInfo) {
+				throw new Error(
+					`Can't find definition of the component "${component}" ` +
+						`in the file "${filePath}"`
+				)
+			}
+			propsInfo = componentInfo.props
+		} else {
+			propsInfo = reactDocgen.parse(source).props
+		}
 
 		if (allowMarkdown) {
 			for (const propInfo of Object.values(propsInfo)) {
