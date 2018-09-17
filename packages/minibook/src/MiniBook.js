@@ -15,7 +15,9 @@ import favicon from '!raw-loader!./favicon.base64'
 import menuIconSvg from '!raw-loader!./menu.svg'
 
 const styles = props => {
-	const { matchedMedia: { smallScreen } } = props
+	const {
+		matchedMedia: { smallScreen, wideScreen }
+	} = props
 
 	const nav = smallScreen
 		? {
@@ -24,17 +26,20 @@ const styles = props => {
 				height: '100%',
 				boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px',
 				boxSizing: 'border-box'
-			}
+		  }
 		: {
 				position: 'fixed',
 				height: '100%',
 				width: 200,
-				borderRight: '1px solid #eee'
-			}
+				borderRight: '1px solid #eee',
+				paddingRight: wideScreen ? 20 : 0
+		  }
 
 	return {
 		root: {
-			height: '100%'
+			height: '100%',
+			maxWidth: 1200,
+			margin: 'auto'
 		},
 		header: {
 			position: 'fixed',
@@ -60,7 +65,11 @@ const styles = props => {
 			fill: 'white'
 		},
 		story: {
-			paddingLeft: smallScreen ? 0 : 200,
+			paddingLeft: do {
+				if (smallScreen) 0
+				else if (wideScreen) 220
+				else 200
+			},
 			paddingTop: smallScreen ? 50 : 0,
 			boxSizing: 'border-box'
 		},
@@ -72,7 +81,10 @@ const styles = props => {
 }
 
 @withRouter
-@matchMedia({ smallScreen: '(max-width: 1023px)' })
+@matchMedia({
+	smallScreen: '(max-width: 1023px)',
+	wideScreen: '(min-width: 1200px)'
+})
 @floral(styles)
 class MiniBook extends Component {
 	static propTypes = {
@@ -174,6 +186,7 @@ class MiniBook extends Component {
 						section={currentSection}
 						storyKey={storyKey}
 						story={currentStory}
+						matchedMedia={matchedMedia}
 					/>
 				</div>
 			</div>

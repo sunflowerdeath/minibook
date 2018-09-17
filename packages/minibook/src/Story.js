@@ -4,16 +4,14 @@ import floral from 'floral'
 import { StoryPropType, SectionPropType } from './propTypes'
 import MarkdownContainer from './MarkdownContainer'
 
-const styles = props => ({
+const styles = ({ story, matchedMedia }) => ({
 	root: {
-		display: props.story.src ? 'flex' : 'block',
+		display: story.src ? 'flex' : 'block',
 		flexDirection: 'column',
 		height: '100%'
 	},
 	container: {
-		maxWidth: 800,
-		margin: '0 auto',
-		padding: 20
+		padding: matchedMedia.wideScreen ? '20px 40px' : 20
 	},
 	header: {
 		borderBottom: '1px solid #eee'

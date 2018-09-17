@@ -36,7 +36,7 @@ const styles = ({ smallScreen }, { isOpened }) => ({
 		paddingBottom: smallScreen ? 8 : 4,
 		paddingLeft: 15,
 		paddingRight: 10,
-		fontSize: 14,
+		fontSize: 15,
 		color: '#999',
 		userSelect: 'none',
 		WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
