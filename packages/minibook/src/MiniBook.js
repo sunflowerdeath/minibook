@@ -31,7 +31,7 @@ const styles = props => {
 				position: 'fixed',
 				height: '100%',
 				width: 200,
-				borderRight: '1px solid #eee',
+				borderRight: '1px solid #e4e4e4',
 				paddingRight: wideScreen ? 20 : 0
 		  }
 

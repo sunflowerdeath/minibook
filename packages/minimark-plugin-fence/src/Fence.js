@@ -9,7 +9,7 @@ const styles = {
 	},
 	example: {
 		padding: 10,
-		border: '1px solid #eee'
+		border: '1px solid #e4e4e4'
 	}
 }
 

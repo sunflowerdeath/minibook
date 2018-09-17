@@ -23,7 +23,7 @@ const styles = {
 			lineHeight: '1.25',
 			...(level === 1 && {
 				paddingBottom: 8,
-				borderBottom: '1px solid #eee'
+				borderBottom: '1px solid #e4e4e4'
 			})
 		}
 	}),
@@ -31,7 +31,7 @@ const styles = {
 		root: {
 			paddingLeft: 16,
 			color: '#666',
-			borderLeft: '4px solid #eee',
+			borderLeft: '4px solid #e4e4e4',
 			marginLeft: 0
 		}
 	},
@@ -64,7 +64,7 @@ const styles = {
 						marginRight: 7,
 						verticalAlign: 'middle'
 					}
-				}
+			  }
 			: null,
 	Break: {
 		root: {
@@ -73,7 +73,7 @@ const styles = {
 			padding: 0,
 			marginTop: 24,
 			marginBottom: 24,
-			background: '#eee'
+			background: '#e4e4e4'
 		}
 	},
 	Table: {
@@ -84,7 +84,7 @@ const styles = {
 	TableRow: {},
 	TableCell: ({ header, align }) => ({
 		root: {
-			border: '1px solid #eee',
+			border: '1px solid #e4e4e4',
 			padding: '5px 10px',
 			fontWeight: header ? 'bold' : 'normal',
 			textAlign: align

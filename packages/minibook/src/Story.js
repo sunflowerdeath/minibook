@@ -14,7 +14,7 @@ const styles = ({ story, matchedMedia }) => ({
 		padding: matchedMedia.wideScreen ? '20px 40px' : 20
 	},
 	header: {
-		borderBottom: '1px solid #eee'
+		borderBottom: '1px solid #e4e4e4'
 	},
 	title: {
 		fontSize: '32px',
