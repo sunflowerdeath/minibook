@@ -25,6 +25,7 @@ function jsxastToJsx(options) {
 		if (node.type === 'dangerouslySetInnerHTML') {
 			const html = node.children.map(toJsx).join('')
 			const escapedHtmlString = html
+				.replace(/\\/g, '\\\\')
 				.replace(/`/g, '\\`')
 				.replace(/\$/g, '\\$')
 			return `<span dangerouslySetInnerHTML={{ __html: \`${

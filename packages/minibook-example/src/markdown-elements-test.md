@@ -11,6 +11,8 @@ Paragraph <span style="color: red">inline html</span> *italic*
 
 > Blockquote <span style="color: red">inline html</span> *italic*
 
+Escaping test: \ \\ test \n ${hello} \`hello\`
+
 Horizontal line:
 
 ---
@@ -60,6 +62,10 @@ Html block:
 Link: [example/props](/example/props)
 
 External link: [Google](http://google.com "Title")
+
+Html links:
+<a href="/example/props">example/props</a>
+<a href="http://google.com">Google</a>
 
 Reference link: [Reference link][link]
 
