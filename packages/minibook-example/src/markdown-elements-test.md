@@ -81,9 +81,9 @@ Reference image:
 
 ## Code
 
-Code block:
+Code block
 
-```js
+```
 <div>1</div>
 `qwe`
 'asd'
@@ -91,6 +91,7 @@ Code block:
 ```
 
 Inline code: `code<div>1</div>"qwe"'asd'`
+
 
 ## Tables
 
