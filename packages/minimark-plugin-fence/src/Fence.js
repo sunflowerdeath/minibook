@@ -124,8 +124,7 @@ class Fence extends Component {
 }
 
 Fence.defaultProps = {
-	from: 1,
-	maxLines: 25
+	from: 1
 }
 
 export default floral(styles)(Fence)

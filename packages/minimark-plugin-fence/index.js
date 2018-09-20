@@ -91,7 +91,8 @@ const fencePlugin = ({ minimarkOptions }) => tree =>
 				props: {
 					code: highlightCode({ code, lang }),
 					from,
-					highlightLines: parseLinesRange(highlightLines),
+					highlightLines:
+						highlightLines && parseLinesRange(highlightLines),
 					maxLines
 				}
 			}
