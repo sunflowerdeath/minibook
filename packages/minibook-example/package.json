@@ -1,7 +1,7 @@
 {
   "name": "minibook-example",
   "private": true,
-  "version": "0.5.3",
+  "version": "0.6.0-alpha.0",
   "author": "sunflowerdeath",
   "license": "Unlicense",
   "devDependencies": {
@@ -11,15 +11,15 @@
     "babel-loader": "^8.0.2",
     "css-loader": "^0.28.7",
     "html-webpack-plugin": "^3.2.0",
-    "minimark-loader": "^0.5.2",
+    "minimark-loader": "^0.6.0-alpha.0",
     "style-loader": "^0.19.0",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "minibook": "^0.5.3",
-    "minimark-renderer": "^0.5.0",
+    "minibook": "^0.6.0-alpha.0",
+    "minimark-renderer": "^0.6.0-alpha.0",
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
