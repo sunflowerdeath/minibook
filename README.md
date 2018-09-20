@@ -96,6 +96,19 @@ ordered: true
 ```
 ````
 
+### Code fences
+
+You can specify language to enable syntax highlighting.
+Also you can highlight some lines of your code.
+
+````md
+```jsx{1,2-3}
+const a = 'name'
+
+console.log(`Hello, ${name}!`)
+```
+````
+
 ### Render and example
 
 - Blocks with `@render` tag allows to render React components.
@@ -116,7 +129,8 @@ by the source code.
 ### File source
 
 Include source code of the file.
-You can set tab width and lines range. 
+You can configure tab width, lines range, height of the block and
+highlighting of lines.
 
 ````md
 ```@source
@@ -124,6 +138,8 @@ file: ./Button.js
 tabs: 4
 from: 4
 to: 27
+maxLines: 25
+highlightLines: 1, 2-3, 6
 ```
 ````
 

@@ -56,7 +56,7 @@ class Fence extends Component {
 	}
 
 	componentDidMount() {
-		const { code, highlightLines, maxLines } = this.props
+		const { code, highlightLines, from, maxLines } = this.props
 		if (!code) return
 
 		const parseMethod = isLineHeightRounded ? parseInt : parseFloat
@@ -67,7 +67,8 @@ class Fence extends Component {
 		if (highlightLines) {
 			this.highlightLinesRefs.forEach((ref, index) => {
 				const { start, end } = highlightLines[index]
-				ref.style.top = `${(start - 1) * lineHeight + paddingTop}px`
+				ref.style.top = `${(start - from) * lineHeight +
+					paddingTop}px`
 				ref.style.height = `${(end - start + 1) * lineHeight}px`
 			})
 		}
@@ -123,8 +124,8 @@ class Fence extends Component {
 }
 
 Fence.defaultProps = {
+	from: 1,
 	maxLines: 25
 }
-
 
 export default floral(styles)(Fence)

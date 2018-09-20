@@ -66,6 +66,7 @@ const fencePlugin = ({ minimarkOptions }) => tree =>
 				file,
 				lang,
 				highlightLines,
+				maxLines,
 				tabs,
 				from,
 				to
@@ -89,7 +90,9 @@ const fencePlugin = ({ minimarkOptions }) => tree =>
 				component: 'Fence',
 				props: {
 					code: highlightCode({ code, lang }),
-					highlightLines
+					from,
+					highlightLines: parseLinesRange(highlightLines),
+					maxLines
 				}
 			}
 		}
