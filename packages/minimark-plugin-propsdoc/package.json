@@ -1,6 +1,6 @@
 {
   "name": "minimark-plugin-propsdoc",
-  "version": "0.6.1",
+  "version": "0.6.4",
   "description": "Minimark plugin for adding documentation of react components props",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,8 @@
   "dependencies": {
     "floral": "^0.2.2",
     "js-yaml": "^3.12.0",
-    "minimark-loader": "^0.6.1",
-    "minimark-renderer": "^0.6.0",
+    "minimark-loader": "^0.6.4",
+    "minimark-renderer": "^0.6.4",
     "nanoid": "^1.0.4",
     "prop-types": "^15.6.2",
     "react-docgen": "^2.20.1",

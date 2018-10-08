@@ -1,6 +1,6 @@
 {
   "name": "minimark-plugin-table-of-contents",
-  "version": "0.6.0",
+  "version": "0.6.4",
   "description": "Table of contents plugin for minimark",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "github-slugger": "^1.2.0",
     "js-yaml": "^3.12.0",
     "mdast-util-to-string": "^1.0.4",
-    "minimark-renderer": "^0.6.0",
+    "minimark-renderer": "^0.6.4",
     "prop-types": "^15.6.2",
     "taply": "0.0.7",
     "unist-util-filter": "^1.0.0",
