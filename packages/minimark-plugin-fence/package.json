@@ -1,6 +1,6 @@
 {
   "name": "minimark-plugin-fence",
-  "version": "0.6.0",
+  "version": "0.6.5",
   "description": "Extended code fences for minimark",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "floral": "^0.2.2",
     "js-yaml": "^3.12.0",
     "lodash": "^4.17.11",
-    "minimark-renderer": "^0.6.0",
+    "minimark-renderer": "^0.6.5",
     "prismjs": "^1.15.0",
     "unist-util-map": "^1.0.4"
   },
