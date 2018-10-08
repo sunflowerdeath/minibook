@@ -5,7 +5,7 @@ const mdToJsx = require('./mdToJsx')
 
 const DEFAULT_OPTIONS = {
 	renderer: 'MD',
-	rendererPath: 'minimark-renderer',
+	rendererPath: require.resolve('minimark-renderer'),
 	gfm: false,
 	commonmark: false,
 	allowDangerousHTML: false

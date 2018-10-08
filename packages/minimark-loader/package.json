@@ -13,6 +13,7 @@
     "mdast-util-definitions": "^1.2.2",
     "mdast-util-to-hast": "^3.0.1",
     "remark-parse": "^5.0.0",
-    "unified": "^7.0.0"
+    "unified": "^7.0.0",
+	"minimark-renderer": "^0.6.0"
   }
 }
