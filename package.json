@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap && gnoll link",
+	"postinstall": "gnoll link",
     "lint": "eslint packages/*/src",
     "build": "lerna run build",
     "prepublishOnly": "lerna run build --ignore \"minibook-example\""
@@ -19,14 +19,11 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
-    "gnoll": "^0.6.0-6",
+    "gnoll": "^0.7.0-alpha.2",
     "lerna": "^2.5.1",
     "prettier": "^1.14.2"
   },
   "author": "sunflowerdeath",
   "license": "Unlicense",
-  "dependencies": {
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
-  }
+  "workspaces": ["packages/*"]
 }

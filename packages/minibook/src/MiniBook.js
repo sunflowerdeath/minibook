@@ -1,8 +1,8 @@
+import ReactDOM from 'react-dom'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter, Redirect } from 'react-router-dom'
 import Helmet from 'react-helmet'
-import Drawer from 'react-motion-drawer'
 import floral from 'floral'
 
 import matchMedia from './matchMedia'
@@ -73,8 +73,16 @@ const styles = props => {
 			paddingTop: smallScreen ? 50 : 0,
 			boxSizing: 'border-box'
 		},
-		drawer: {
-			boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px'
+		overlay: {
+			position: 'fixed',
+			width: '100%',
+			height: '100%',
+			background: 'rgba(0,0,0,0.4)',
+			userSelect: 'none',
+			WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
+			top: 0,
+			left: 0,
+			zIndex: 1
 		},
 		nav
 	}
@@ -116,6 +124,19 @@ class MiniBook extends Component {
 		sidebarIsOpen: false
 	}
 
+	constructor() {
+		super()
+		this.onClickOverlay = this.onClickOverlay.bind(this)
+	}
+
+	onClickOverlay(event) {
+		const navElem = ReactDOM.findDOMNode(this.navRef)
+		if (event.target === navElem || navElem.contains(event.target)) {
+			return
+		}
+		this.setState({ sidebarIsOpen: false })
+	}
+
 	render() {
 		const { sections, title, match, matchedMedia } = this.props
 		const { section: sectionKey, story: storyKey } = match.params
@@ -142,6 +163,9 @@ class MiniBook extends Component {
 				currentSection={sectionKey}
 				smallScreen={smallScreen}
 				style={computedStyles.nav}
+				ref={ref => {
+					this.navRef = ref
+				}}
 			/>
 		)
 
@@ -196,16 +220,14 @@ class MiniBook extends Component {
 			return (
 				<div style={computedStyles.root}>
 					{root}
-					<Drawer
-						open={this.state.sidebarIsOpen}
-						drawerStyle={computedStyles.drawer}
-						onChange={open =>
-							this.setState({ sidebarIsOpen: open })
-						}
-						width={256}
-					>
-						{nav}
-					</Drawer>
+					{sidebarIsOpen && (
+						<div
+							style={computedStyles.overlay}
+							onClick={this.onClickOverlay}
+						>
+							{nav}
+						</div>
+					)}
 				</div>
 			)
 		}
