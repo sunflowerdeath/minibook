@@ -1,5 +1,3 @@
-import { extendComponentStyles } from 'floral'
-
 import baseComponents from './baseComponents'
 
 const styles = {
@@ -94,7 +92,7 @@ const styles = {
 
 const styledComponents = {}
 for (const [name, component] of Object.entries(baseComponents)) {
-	styledComponents[name] = extendComponentStyles(component, styles[name])
+	styledComponents[name] = component.extendStyles(styles[name])
 }
 
 export default styledComponents

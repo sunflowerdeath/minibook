@@ -12,13 +12,13 @@
     "minimark"
   ],
   "dependencies": {
-    "floral": "^0.2.2",
+    "floral": "^0.3.2",
     "github-slugger": "^1.2.0",
     "js-yaml": "^3.12.0",
     "mdast-util-to-string": "^1.0.4",
     "minimark-renderer": "^0.6.5",
     "prop-types": "^15.6.2",
-    "taply": "0.0.7",
+    "taply": "0.1.0",
     "unist-util-filter": "^1.0.0",
     "unist-util-map": "^1.0.4"
   },

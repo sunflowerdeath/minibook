@@ -19,7 +19,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
-    "gnoll": "^0.7.0-alpha.2",
+    "gnoll": "^0.7.0-alpha.4",
     "lerna": "^3.4.1",
     "prettier": "^1.14.2"
   },

@@ -4234,6 +4234,15 @@ find-cache-dir@^1.0.0:
     make-dir "^1.0.0"
     pkg-dir "^2.0.0"
 
+find-cache-dir@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/find-cache-dir/-/find-cache-dir-2.0.0.tgz#4c1faed59f45184530fb9d7fa123a4d04a98472d"
+  integrity sha512-LDUY6V1Xs5eFskUVYtIwatojt6+9xC9Chnlk/jYOOvn3FAFfSaWddxahDGyNHh0b2dMXa6YW2m0tk8TdVaXHlA==
+  dependencies:
+    commondir "^1.0.1"
+    make-dir "^1.0.0"
+    pkg-dir "^3.0.0"
+
 find-root@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/find-root/-/find-root-1.1.0.tgz#abcfc8ba76f708c42a97b3d685b7e9450bfb9ce4"
@@ -4281,10 +4290,10 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
   integrity sha1-2uRqnXj74lKSJYzB54CkHZXAN4I=
 
-floral@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/floral/-/floral-0.2.2.tgz#6b36bea6a175e4b440bf74bd9809475f95e4844c"
-  integrity sha512-ugb6PGYZfZ63ODnRaoeQB8Qi2a6Vs1ECoXCI9OROST/wjIf+KHUpPMD1N0n2rXVIuSVwAXu0gp4+gysbM5it6A==
+floral@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/floral/-/floral-0.3.2.tgz#13528e5342a056037f264b2f82542f3a80bce8be"
+  integrity sha512-DD3kt1SDVCWAHw1icdZ3oLegRVlXn08oM6/TSzs2sQIGzkVjU90W7Le2cXEwh0+Eu8AQYb0XlOTOxb1YCfWxyQ==
   dependencies:
     inline-style-prefixer "^3.0.7"
     lodash.flatten "^4.4.0"
@@ -4635,10 +4644,10 @@ globby@^8.0.1:
     pify "^3.0.0"
     slash "^1.0.0"
 
-gnoll@^0.7.0-alpha.2:
-  version "0.7.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/gnoll/-/gnoll-0.7.0-alpha.2.tgz#8c94d1b790b2991a32ab77e87611aeede98cb3b0"
-  integrity sha512-so+lD3mK5YlMBjinvoCY/8CnmZL5sAMuFXxKL/nQoL7ARS8mH2u2NyyehLe6I34w1KSDtI0WhfDHYUmmDIhs9Q==
+gnoll@^0.7.0-alpha.4:
+  version "0.7.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/gnoll/-/gnoll-0.7.0-alpha.4.tgz#a50d6e7682971691a0d6791a291a8f211db64629"
+  integrity sha512-pLJEpzFJwVu8YWbzH/VX6e7JSL3lcHnDsvDCGuvE4WxJvL8FDAeZR2pH0faZr58Zk8XFa+HJom0CJcAcO0kdfQ==
   dependencies:
     "@babel/core" "^7.0.0"
     "@babel/plugin-proposal-class-properties" "^7.0.0"
@@ -4676,6 +4685,7 @@ gnoll@^0.7.0-alpha.2:
     readline "^1.3.0"
     rimraf "^2.6.1"
     source-map-loader "^0.2.2"
+    terser-webpack-plugin "^1.1.0"
     webpack "^4.17.1"
     webpack-assets-manifest "^2.0.0"
     webpack-dev-server "^3.1.9"
@@ -8673,6 +8683,14 @@ source-map-resolve@^0.5.0:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
+source-map-support@~0.5.6:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.9.tgz#41bc953b2534267ea2d605bccfa7bfa3111ced5f"
+  integrity sha512-gR6Rw4MvUlYy83vP0vxoVNzM6t8MUXqNuRsuBmBHQDu1Fh6X015FrLdgoDKcNdkwGubozq0P4N0Q37UyFVr1EA==
+  dependencies:
+    buffer-from "^1.0.0"
+    source-map "^0.6.0"
+
 source-map-url@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/source-map-url/-/source-map-url-0.4.0.tgz#3e935d7ddd73631b97659956d55128e87b5084a3"
@@ -8683,7 +8701,7 @@ source-map@^0.5.0, source-map@^0.5.3, source-map@^0.5.6:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
-source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
+source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
@@ -9021,17 +9039,10 @@ tapable@^1.0.0, tapable@^1.1.0:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.0.tgz#0d076a172e3d9ba088fd2272b2668fb8d194b78c"
   integrity sha512-IlqtmLVaZA2qab8epUXbVWRn3aB1imbDMJtjB3nu4X0NqPkcY/JH9ZtCBWKHWPxs8Svi9tyo8w2dBoi07qZbBA==
 
-taply@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/taply/-/taply-0.0.3.tgz#c170388dc7feb399248e26770c22fca6309029f9"
-  integrity sha512-hcxWhfcRENO0xO3LiplPcXQKFnNtmzTlaS95LGSp5XziqCSNbiVZMzz+HIX3cf1tICO84CAHzAMcPHQdSZWMgQ==
-  dependencies:
-    prop-types "^15.6.0"
-
-taply@0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/taply/-/taply-0.0.7.tgz#bf1a40140908d60f3f3f66e10410f2c19a0694e9"
-  integrity sha512-R1/DngP1UBuUA3i9fG+ApQGONEcgddAgYzoJ05np8ESMi6ubBYBwXZmO7I0KgnQwA5GEt3Z/S0Wjn99FZ2eQhg==
+taply@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/taply/-/taply-0.1.0.tgz#baded62f35cde3c7cd3206db9d56088eae6d6332"
+  integrity sha512-TmS45DOF7h7q1ccgkZ8TpEMCw7L5lx/ljKjk0vx0BNe0FAquBb6mRoncgU6drQP30A27vOcc/KqpBLWWpQ+u1Q==
   dependencies:
     prop-types "^15.6.0"
 
@@ -9073,6 +9084,29 @@ temp-write@^3.4.0:
     pify "^3.0.0"
     temp-dir "^1.0.0"
     uuid "^3.0.1"
+
+terser-webpack-plugin@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-1.1.0.tgz#cf7c25a1eee25bf121f4a587bb9e004e3f80e528"
+  integrity sha512-61lV0DSxMAZ8AyZG7/A4a3UPlrbOBo8NIQ4tJzLPAdGOQ+yoNC7l5ijEow27lBAL2humer01KLS6bGIMYQxKoA==
+  dependencies:
+    cacache "^11.0.2"
+    find-cache-dir "^2.0.0"
+    schema-utils "^1.0.0"
+    serialize-javascript "^1.4.0"
+    source-map "^0.6.1"
+    terser "^3.8.1"
+    webpack-sources "^1.1.0"
+    worker-farm "^1.5.2"
+
+terser@^3.8.1:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-3.10.0.tgz#6ae15dafecbd02c9788d5f36d27fca32196b533a"
+  integrity sha512-hNh2WR3YxtKoY7BNSb3+CJ9Xv9bbUuOU9uriIf2F1tiAYNA4rNy2wWuSDV8iKcag27q65KPJ/sPpMWEh6qttgw==
+  dependencies:
+    commander "~2.17.1"
+    source-map "~0.6.1"
+    source-map-support "~0.5.6"
 
 text-extensions@^1.0.0:
   version "1.8.0"
