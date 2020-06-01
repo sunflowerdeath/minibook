@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
 
 import styledComponents from './styledComponents'
-
-const MinimarkComponentsContext = React.createContext()
-const MinimarkThemeContext = React.createContext()
+import { MinimarkComponentsContext } from './context'
 
 const MinimarkRenderer = ({ component, ...restProps }) => {
 	const contextComponents = useContext(MinimarkComponentsContext)
@@ -19,4 +17,3 @@ const MinimarkRenderer = ({ component, ...restProps }) => {
 }
 
 export default MinimarkRenderer
-export { MinimarkComponentsContext, MinimarkThemeContext }

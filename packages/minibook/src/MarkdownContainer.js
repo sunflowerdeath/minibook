@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {
 	MinimarkComponentsContext,
 	MinimarkThemeContext
-} from 'minimark-renderer'
+} from 'minimark-renderer/lib/context'
 import Fence from 'minimark-plugin-fence/lib/Fence'
 import TableOfContents from 'minimark-plugin-table-of-contents/lib/TableOfContents'
 import AnchorHeading from 'minimark-plugin-table-of-contents/lib/AnchorHeading'

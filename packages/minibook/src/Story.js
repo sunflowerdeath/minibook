@@ -1,10 +1,11 @@
 import React from 'react'
-import floral from 'floral'
+import { useStyles } from 'floral'
 
+import { useTheme } from './ThemeContext'
 import { StoryPropType, SectionPropType } from './propTypes'
 import MarkdownContainer from './MarkdownContainer'
 
-const styles = ({ story, matchedMedia }) => ({
+const styles = ({ story, matchedMedia }, theme) => ({
 	root: {
 		display: story.src ? 'flex' : 'block',
 		flexDirection: 'column',
@@ -14,7 +15,7 @@ const styles = ({ story, matchedMedia }) => ({
 		padding: matchedMedia.wideScreen ? '20px 40px' : 20
 	},
 	header: {
-		borderBottom: '1px solid #e4e4e4'
+		borderBottom: `1px solid ${theme.border}`
 	},
 	title: {
 		fontSize: '32px',
@@ -30,8 +31,8 @@ const styles = ({ story, matchedMedia }) => ({
 	}
 })
 
-const renderHeader = props => {
-	const { section, story, computedStyles } = props
+const renderHeader = (props, computedStyles) => {
+	const { section, story } = props
 	const { description } = story
 
 	return (
@@ -48,8 +49,8 @@ const renderHeader = props => {
 	)
 }
 
-const renderContent = props => {
-	const { section, story, computedStyles } = props
+const renderContent = (props, computedStyles) => {
+	const { section, story } = props
 	const { component } = section
 	const { props: storyProps, render, src, markdown } = story
 
@@ -67,16 +68,18 @@ const renderContent = props => {
 	return <div style={computedStyles.container}>{content}</div>
 }
 
-const Story = floral(styles)(props => {
-	const { story, computedStyles } = props
+const Story = props => {
+	const { story } = props
+    const theme = useTheme()
+	const computedStyles = useStyles(styles, [props, theme])
 
 	return (
 		<div style={computedStyles.root}>
-			{!story.markdown && renderHeader(props)}
-			{renderContent(props)}
+			{!story.markdown && renderHeader(props, computedStyles)}
+			{renderContent(props, computedStyles)}
 		</div>
 	)
-})
+}
 
 Story.propTypes = {
 	section: SectionPropType.isRequired,

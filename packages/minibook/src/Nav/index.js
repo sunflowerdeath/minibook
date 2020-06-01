@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
+import { useStyles } from 'floral'
 
 import Section from './Section'
-import { useStyles } from '../useStyles'
 import { SectionPropType } from '../propTypes'
 
 const styles = {

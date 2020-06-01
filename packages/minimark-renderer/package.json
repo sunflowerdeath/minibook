@@ -11,7 +11,7 @@
   "author": "sunflowerdeath",
   "license": "Unlicense",
   "dependencies": {
-    "floral": "^0.3.2"
+    "floral": "^0.4.0"
   },
   "peerDependencies": {
     "react": "^16.4.0",

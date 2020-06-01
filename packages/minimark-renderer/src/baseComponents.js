@@ -1,40 +1,45 @@
 import React, { useContext } from 'react'
+import { useStyles } from 'floral'
 
-import floral from 'floral'
-// import useStyles from '@minibook/src/useStyles'
-// import { useTheme } from '@minibook/src/ThemeProvider'
-import { useStyles } from './useStyles'
-import { MinimarkThemeContext } from './index'
+import { MinimarkThemeContext } from './context'
 
-const Root = ({ children, computedStyles }) => (
+const makeComponent = render => props => {
+	const theme = useContext(MinimarkThemeContext)
+	const computedStyles = useStyles({}, [props, theme])
+	return render({ ...props, computedStyles })
+}
+
+const Root = makeComponent(({ children, computedStyles }) => (
 	<div style={computedStyles.root}>{children}</div>
-)
+))
 
-const Paragraph = ({ children, computedStyles }) => (
+const Paragraph = makeComponent(({ children, computedStyles }) => (
 	<p style={computedStyles.root}>{children}</p>
-)
+))
 
-const Heading = ({ children, level, computedStyles }) =>
+const Heading = makeComponent(({ children, level, computedStyles }) =>
 	React.createElement(`h${level}`, { style: computedStyles.root }, children)
-
-const Blockquote = ({ children, computedStyles }) => (
-	<blockquote style={computedStyles.root}>{children}</blockquote>
 )
 
-const Code = ({ code, lang, computedStyles }) => (
+const Blockquote = makeComponent(({ children, computedStyles }) => (
+	<blockquote style={computedStyles.root}>{children}</blockquote>
+))
+
+const Code = makeComponent(({ code, lang, computedStyles }) => (
 	<pre data-lang={lang} style={computedStyles.root}>
 		<code style={computedStyles.code}>{code}</code>
 	</pre>
-)
+))
 
-const List = ({ children, ordered, computedStyles }) =>
+const List = makeComponent(({ children, ordered, computedStyles }) =>
 	React.createElement(
 		ordered ? 'ol' : 'ul',
 		{ style: computedStyles.root },
 		children
 	)
+)
 
-const ListItem = ({ children, checked, computedStyles }) => {
+const ListItem = makeComponent(({ children, checked, computedStyles }) => {
 	const checkbox = checked !== null && (
 		<input
 			type="checkbox"
@@ -49,13 +54,15 @@ const ListItem = ({ children, checked, computedStyles }) => {
 			{children}
 		</li>
 	)
-}
+})
 
 ListItem.defaultProps = { checked: null }
 
-const Break = ({ computedStyles }) => <hr style={computedStyles.root} />
+const Break = makeComponent(({ computedStyles }) => (
+	<hr style={computedStyles.root} />
+))
 
-const Table = ({ children, align, computedStyles }) => {
+const Table = makeComponent(({ children, align, computedStyles }) => {
 	const [firstRow, ...restRows] = children
 	return (
 		<table style={computedStyles.root}>
@@ -69,38 +76,34 @@ const Table = ({ children, align, computedStyles }) => {
 			</tbody>
 		</table>
 	)
-}
+})
 
-const TableRow = ({ children, header, align, computedStyles }) => (
-	<tr style={computedStyles.root}>
-		{React.Children.toArray(children).map((child, index) =>
-			React.cloneElement(child, { header, align: align[index] })
-		)}
-	</tr>
+const TableRow = makeComponent(
+	({ children, header, align, computedStyles }) => (
+		<tr style={computedStyles.root}>
+			{React.Children.toArray(children).map((child, index) =>
+				React.cloneElement(child, { header, align: align[index] })
+			)}
+		</tr>
+	)
 )
 
-const TableCell = ({ children, computedStyles }) => (
+const TableCell = makeComponent(({ children, computedStyles }) => (
 	<td style={computedStyles.root}>{children}</td>
-)
-
-const makeComponent = render => props => {
-	const theme = useContext(MinimarkThemeContext)
-	const computedStyles = useStyles({}, [props, theme])
-	return render({ ...props, computedStyles })
-}
+))
 
 const components = {
-	Root: makeComponent(Root),
-	Paragraph: makeComponent(Paragraph),
-	Heading: makeComponent(Heading),
-	Blockquote: makeComponent(Blockquote),
-	Code: makeComponent(Code),
-	List: makeComponent(List),
-	ListItem: makeComponent(ListItem),
-	Break: makeComponent(Break),
-	Table: makeComponent(Table),
-	TableRow: makeComponent(TableRow),
-	TableCell: makeComponent(TableCell)
+	Root,
+	Paragraph,
+	Heading,
+	Blockquote,
+	Code,
+	List,
+	ListItem,
+	Break,
+	Table,
+	TableRow,
+	TableCell
 }
 
 export default components

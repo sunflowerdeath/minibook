@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import Taply from 'taply'
+import { useStyles } from 'floral'
 
 import { SectionPropType } from '../propTypes'
-import { useStyles } from '../useStyles'
 import { useTheme } from '../ThemeContext'
 // eslint-disable-next-line import/first
 import arrowIconSvg from '!raw-loader!./arrow.svg'

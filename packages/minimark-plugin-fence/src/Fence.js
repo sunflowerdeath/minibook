@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useEffect } from 'react'
-import { useStyles } from 'minimark-renderer/lib/useStyles'
-import { MinimarkThemeContext } from 'minimark-renderer/lib'
+import { useStyles } from 'floral'
+import { MinimarkThemeContext } from 'minimark-renderer/lib/context'
 
 // Some browsers round the line-height, others don't.
 // We need to test for it to position the elements properly.

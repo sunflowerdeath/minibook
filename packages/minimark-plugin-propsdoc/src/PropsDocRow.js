@@ -1,12 +1,13 @@
-import React from 'react'
-import floral from 'floral'
+import React, { useContext } from 'react'
+import { useStyles } from 'floral'
+import { MinimarkThemeContext } from 'minimark-renderer/lib/context'
 
 import propTypeToString from './propTypeToString'
 import Shape from './Shape'
 
-const rowStyles = ({ odd }) => ({
+const styles = ({ odd }, theme) => ({
 	root: {
-		background: odd ? '#f2f2f2' : '#f8f8f8',
+		background: odd ? theme.border : theme.highlight,
 		padding: '16px 16px 1px'
 	},
 	head: {
@@ -14,9 +15,11 @@ const rowStyles = ({ odd }) => ({
 	}
 })
 
-const PropsDocRow = floral(rowStyles)(props => {
-	const { name, propInfo, computedStyles } = props
+const PropsDocRow = props => {
+	const { name, propInfo } = props
 	const { type, defaultValue, required } = propInfo
+	const theme = useContext(MinimarkThemeContext)
+	const computedStyles = useStyles(styles, [props, theme])
 
 	let typeElem
 	if (type) {
@@ -54,6 +57,6 @@ const PropsDocRow = floral(rowStyles)(props => {
 			{propInfo.description}
 		</div>
 	)
-})
+}
 
 export default PropsDocRow

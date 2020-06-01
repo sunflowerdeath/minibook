@@ -1,5 +1,6 @@
+import { extendComponentStyles } from 'floral'
+
 import baseComponents from './baseComponents'
-import { extendComponentStyles } from './useStyles'
 
 const styles = {
 	Root: {

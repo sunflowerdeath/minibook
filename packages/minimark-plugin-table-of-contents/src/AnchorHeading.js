@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import floral from 'floral'
+import React, { useState } from 'react'
+import { useStyles } from 'floral'
 import Taply from 'taply'
 import MinimarkRenderer from 'minimark-renderer'
 
@@ -17,35 +17,29 @@ const styles = (props, { isHovered }) => ({
 	}
 })
 
-@floral(styles)
-class AnchorHeading extends Component {
-	state = {
-		isHovered: false
-	}
-
-	render() {
-		const { id, level, first, children } = this.props
-		const { computedStyles } = this.state
-		return (
-			<div id={id} style={computedStyles.root}>
-				<Taply
-					onChangeTapState={tapState => this.setState(tapState)}
-					isFocusable={false}
+const AnchorHeading = props => {
+	const { id, level, first, children } = props
+	const [tapState, setTapState] = useState({})
+	const computedStyles = useStyles(styles, [props, tapState])
+	return (
+		<div id={id} style={computedStyles.root}>
+			<Taply
+				onChangeTapState={setTapState}
+				isFocusable={false}
+			>
+				<MinimarkRenderer
+					component="Heading"
+					level={level}
+					first={first}
 				>
-					<MinimarkRenderer
-						component="Heading"
-						level={level}
-						first={first}
-					>
-						<a href={`#${id}`} style={computedStyles.link}>
-							#
-						</a>
-						{children}
-					</MinimarkRenderer>
-				</Taply>
-			</div>
-		)
-	}
+					<a href={`#${id}`} style={computedStyles.link}>
+						#
+					</a>
+					{children}
+				</MinimarkRenderer>
+			</Taply>
+		</div>
+	)
 }
 
 export default AnchorHeading
