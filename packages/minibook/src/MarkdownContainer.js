@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-// import { withRouter } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
 	MinimarkComponentsContext,
@@ -16,8 +16,7 @@ const MarkdownContainer = props => {
 	const { markdown } = props
 	const theme = useTheme()
 	const containerRef = useRef()
-
-	// const history = useHistory()
+	const history = useHistory()
 	useEffect(() => {
 		// make relative links use HistoryApi
 		containerRef.current.addEventListener('click', event => {
@@ -26,7 +25,7 @@ const MarkdownContainer = props => {
 				const href = target.getAttribute('href')
 				if (href[0] === '/') {
 					event.preventDefault()
-					// history.push(href)
+					history.push(href)
 				}
 			}
 		})
