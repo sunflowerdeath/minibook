@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
-import floral from 'floral'
 
 import Section from './Section'
+import { useStyles } from '../useStyles'
 import { SectionPropType } from '../propTypes'
 
 const styles = {
@@ -18,38 +18,35 @@ const styles = {
 	}
 }
 
-@floral(styles)
-class Nav extends Component {
-	static propTypes = {
-		title: PropTypes.string,
-		sections: PropTypes.objectOf(SectionPropType).isRequired,
-		currentSection: PropTypes.string.isRequired,
-		smallScreen: PropTypes.bool.isRequired
-	}
+const Nav = forwardRef((props, ref) => {
+	const { title, sections, currentSection, smallScreen } = props
+	const computedStyles = useStyles(styles, [props])
 
-	state = {}
+	const sectionsElems = Object.entries(sections).map(([key, section]) => (
+		<Section
+			key={key}
+			sectionKey={key}
+			section={section}
+			initialIsOpened={currentSection === key}
+			smallScreen={smallScreen}
+		/>
+	))
 
-	render() {
-		const { title, sections, currentSection, smallScreen } = this.props
-		const { computedStyles } = this.state
+	return (
+		<div style={computedStyles.root} ref={ref}>
+			{title && <div style={computedStyles.title}>{title}</div>}
+			{sectionsElems}
+		</div>
+	)
+})
 
-		const sectionsElems = Object.entries(sections).map(([key, section]) => (
-			<Section
-				key={key}
-				sectionKey={key}
-				section={section}
-				initialIsOpened={currentSection === key}
-				smallScreen={smallScreen}
-			/>
-		))
+Nav.displayName = 'Nav'
 
-		return (
-			<div style={computedStyles.root}>
-				{title && <div style={computedStyles.title}>{title}</div>}
-				{sectionsElems}
-			</div>
-		)
-	}
+Nav.propTypes = {
+	title: PropTypes.string,
+	sections: PropTypes.objectOf(SectionPropType).isRequired,
+	currentSection: PropTypes.string.isRequired,
+	smallScreen: PropTypes.bool.isRequired
 }
 
 export default Nav

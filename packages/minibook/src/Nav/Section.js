@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import Taply from 'taply'
-import floral from 'floral'
 
 import { SectionPropType } from '../propTypes'
+import { useStyles } from '../useStyles'
+import { useTheme } from '../ThemeContext'
 // eslint-disable-next-line import/first
 import arrowIconSvg from '!raw-loader!./arrow.svg'
 
-const styles = ({ smallScreen }, { isOpened }) => ({
+const styles = ({ smallScreen }, isOpened, theme) => ({
 	title: {
 		display: 'flex',
 		alignItems: 'center',
@@ -27,7 +28,8 @@ const styles = ({ smallScreen }, { isOpened }) => ({
 	arrow: {
 		width: 24,
 		height: 24,
-		transform: isOpened ? 'rotate(180deg)' : 'none'
+		transform: isOpened ? 'rotate(180deg)' : 'none',
+		fill: theme.text
 	},
 	link: {
 		display: 'block',
@@ -37,99 +39,82 @@ const styles = ({ smallScreen }, { isOpened }) => ({
 		paddingLeft: 15,
 		paddingRight: 10,
 		fontSize: 15,
-		color: '#999',
+		color: theme.secondary,
 		userSelect: 'none',
 		WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
 		outline: 'none'
 	},
 	isHovered: {
-		background: '#f2f2f2'
+		background: theme.highlight
 	},
 	isActive: {
-		color: '#0366d6'
+		color: theme.blue
 	}
 })
 
-@floral(styles)
-class NavSection extends Component {
-	static propTypes = {
-		initialIsOpened: PropTypes.bool,
-		section: SectionPropType.isRequired,
-		sectionKey: PropTypes.string.isRequired
-	}
-
-	constructor(props) {
-		super()
-
-		this.state = {
-			isOpened: props.initialIsOpened
-		}
-	}
-
-	addHovered(style, { isHovered, isFocused }) {
-		const { computedStyles } = this.state
-		return isHovered || isFocused
-			? { ...style, ...computedStyles.isHovered }
-			: style
-	}
-
-	renderTitle() {
-		const { computedStyles } = this.state
-		const { section } = this.props
-		return (
-			<Taply
-				onTap={() => this.setState({ isOpened: !this.state.isOpened })}
+const renderTitle = ({ section, computedStyles, setIsOpened }) => (
+	<Taply onTap={() => setIsOpened(val => !val)}>
+		{tapState => (
+			<div
+				style={{
+					...computedStyles.title,
+					...(tapState.isHovered || tapState.isFocused
+						? computedStyles.isHovered
+						: {})
+				}}
 			>
-				{tapState => (
-					<div
-						style={this.addHovered(computedStyles.title, tapState)}
-					>
-						{section.name}
-						<div
-							style={computedStyles.arrow}
-							dangerouslySetInnerHTML={{ __html: arrowIconSvg }}
-						/>
-					</div>
-				)}
-			</Taply>
-		)
-	}
-
-	renderLink(storyKey, story) {
-		const { computedStyles } = this.state
-		const { sectionKey } = this.props
-		return (
-			<Taply key={storyKey}>
-				{tapState => (
-					<NavLink
-						to={`/${sectionKey}/${storyKey}`}
-						style={this.addHovered(computedStyles.link, tapState)}
-						activeStyle={computedStyles.isActive}
-					>
-						{story.name}
-					</NavLink>
-				)}
-			</Taply>
-		)
-	}
-
-	render() {
-		const { isOpened } = this.state
-		const { section, sectionKey } = this.props
-		const { computedStyles } = this.state
-
-		const links =
-			isOpened &&
-			Object.entries(section.stories).map(([storyKey, story]) =>
-				this.renderLink(storyKey, story)
-			)
-		return (
-			<div key={sectionKey} style={computedStyles.root}>
-				{this.renderTitle()}
-				{links}
+				{section.name}
+				<div
+					style={computedStyles.arrow}
+					dangerouslySetInnerHTML={{ __html: arrowIconSvg }}
+				/>
 			</div>
+		)}
+	</Taply>
+)
+
+const renderLink = ({ sectionKey, storyKey, story, computedStyles }) => (
+	<Taply key={storyKey}>
+		{tapState => (
+			<NavLink
+				to={`/${sectionKey}/${storyKey}`}
+				style={{
+					...computedStyles.link,
+					...(tapState.isHovered || tapState.isFocused
+						? computedStyles.isHovered
+						: {})
+				}}
+				activeStyle={computedStyles.isActive}
+			>
+				{story.name}
+			</NavLink>
+		)}
+	</Taply>
+)
+
+const NavSection = props => {
+	const { section, sectionKey, initialIsOpened } = props
+	const [isOpened, setIsOpened] = useState(initialIsOpened)
+	const theme = useTheme()
+	const computedStyles = useStyles(styles, [props, isOpened, theme])
+
+	const links =
+		isOpened &&
+		Object.entries(section.stories).map(([storyKey, story]) =>
+			renderLink({ sectionKey, section, storyKey, story, computedStyles })
 		)
-	}
+	return (
+		<div key={sectionKey} style={computedStyles.root}>
+			{renderTitle({ section, computedStyles, setIsOpened })}
+			{links}
+		</div>
+	)
+}
+
+NavSection.propTypes = {
+	initialIsOpened: PropTypes.bool,
+	section: SectionPropType.isRequired,
+	sectionKey: PropTypes.string.isRequired
 }
 
 export default NavSection

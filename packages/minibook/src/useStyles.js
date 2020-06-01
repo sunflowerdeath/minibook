@@ -9,11 +9,8 @@ const composeStyles = (...stylesList) => (...deps) => {
 		let styles = flatStylesList[i]
 		let result = typeof styles === 'function' ? styles(...deps) : styles
 		for (let elem in result) {
-			if (composed[elem] === undefined) {
-				composed[elem] = result[elem]
-			} else {
-				Object.assign(composed[elem], result[elem])
-			}
+			if (composed[elem] === undefined) composed[elem] = {}
+			Object.assign(composed[elem], result[elem])
 		}
 	}
 	return composed
@@ -31,7 +28,7 @@ const useStyles = (styles, [props, ...restDeps]) => {
 	let stylesFn = useMemo(() => {
 		let items = [styles, props.styles]
 		if ('style' in props) items.push({ root: props.style })
-		return composeStyles(styles, props.styles)
+		return composeStyles(items)
 	}, [styles, props.styles, props.style])
 	return useMemo(() => stylesFn(props, ...restDeps), [props, ...restDeps])
 }

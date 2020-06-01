@@ -3,10 +3,9 @@ import React, { useState, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter, Redirect } from 'react-router-dom'
 import Helmet from 'react-helmet'
-import floral from 'floral'
 
-import { ThemeContext } from './ThemeContext'
 import { useStyles } from './useStyles'
+import { useTheme } from './ThemeContext'
 import matchMedia from './matchMedia'
 import Nav from './Nav'
 import Story from './Story'
@@ -16,16 +15,15 @@ import favicon from '!raw-loader!./favicon.base64'
 // eslint-disable-next-line import/first
 import menuIconSvg from '!raw-loader!./menu.svg'
 
-const styles = props => {
+const styles = (props, theme) => {
 	const {
-		matchedMedia: { smallScreen, wideScreen },
-		theme
+		matchedMedia: { smallScreen, wideScreen }
 	} = props
 
 	const nav = smallScreen
 		? {
 				width: 256,
-				background: 'white',
+				background: theme.highlight,
 				height: '100%',
 				boxShadow: 'rgba(0,0,0,0.15) 2px 2px 4px',
 				boxSizing: 'border-box'
@@ -34,13 +32,17 @@ const styles = props => {
 				position: 'fixed',
 				height: '100%',
 				width: 200,
-				borderRight: '1px solid #e4e4e4',
+				borderRight: `1px solid ${theme.border}`,
 				paddingRight: wideScreen ? 20 : 0
 		  }
 
 	return {
 		root: {
-			height: '100%',
+			minHeight: '100%',
+			background: theme.background,
+			color: theme.text
+		},
+		container: {
 			maxWidth: 1200,
 			margin: 'auto'
 		},
@@ -52,9 +54,9 @@ const styles = props => {
 			display: 'flex',
 			alignItems: 'center',
 			padding: '0 20px',
-			borderBottom: '1px solid #eee',
-			background: '#263238',
-			color: 'white',
+			background: theme.highlight,
+            borderBottom: `1px solid ${theme.border}`,
+			color: theme.color,
 			fontWeight: 'bold'
 		},
 		title: {
@@ -65,7 +67,7 @@ const styles = props => {
 		menu: {
 			padding: 12,
 			marginLeft: -12,
-			fill: 'white'
+			fill: theme.text
 		},
 		story: {
 			paddingLeft: do {
@@ -92,15 +94,16 @@ const styles = props => {
 }
 
 const Minibook = props => {
-	const { sections, title, match, matchedMedia, theme } = props
+	const { sections, title, match, matchedMedia } = props
 	const { section: sectionKey, story: storyKey } = match.params
 	const { smallScreen } = matchedMedia
+	const theme = useTheme()
 
-	const computedStyles = useStyles(styles, [props])
+	const computedStyles = useStyles(styles, [props, theme])
 	const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
 	const navRef = useRef()
 	const onClickOverlay = useCallback(event => {
-		const navElem = ReactDOM.findDOMNode(navRef.current)
+		const navElem = navRef.current
 		if (event.target === navElem || navElem.contains(event.target)) {
 			return
 		}
@@ -132,7 +135,7 @@ const Minibook = props => {
 	)
 
 	const root = (
-		<div style={computedStyles.root}>
+		<div style={computedStyles.container}>
 			<Helmet>
 				<title>
 					{currentSection.name}/{currentStory.name}
@@ -190,7 +193,7 @@ const Minibook = props => {
 		)
 	}
 
-	return <ThemeContext.Provider theme={theme}>{root}</ThemeContext.Provider>
+	return <div style={computedStyles.root}>{root}</div>
 }
 
 Minibook.propTypes = {
@@ -198,8 +201,7 @@ Minibook.propTypes = {
 	sections: PropTypes.objectOf(SectionPropType).isRequired,
 	// eslint-disable-next-line react/forbid-prop-types
 	match: PropTypes.object.isRequired,
-	matchedMedia: PropTypes.objectOf(PropTypes.bool).isRequired,
-	theme: PropTypes.oneOf(['light', 'dark'])
+	matchedMedia: PropTypes.objectOf(PropTypes.bool).isRequired
 }
 
 export default withRouter(
