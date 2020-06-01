@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-	"postinstall": "gnoll link",
+    "postinstall": "gnoll link",
     "lint": "eslint packages/*/src",
     "build": "lerna run build",
     "prepublishOnly": "lerna run build --ignore \"minibook-example\""
@@ -23,7 +23,13 @@
     "lerna": "^3.4.1",
     "prettier": "^1.14.2"
   },
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
   "author": "sunflowerdeath",
   "license": "Unlicense",
-  "workspaces": ["packages/*"]
+  "workspaces": [
+    "packages/*"
+  ]
 }

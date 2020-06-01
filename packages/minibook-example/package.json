@@ -21,9 +21,7 @@
   "dependencies": {
     "minibook": "^0.6.6",
     "minimark-renderer": "^0.6.6",
-    "prop-types": "^15.6.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "prop-types": "^15.6.0"
   },
   "scripts": {
     "start": "webpack-dev-server",

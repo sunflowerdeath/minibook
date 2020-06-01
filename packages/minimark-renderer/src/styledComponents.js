@@ -1,5 +1,21 @@
 import baseComponents from './baseComponents'
 
+/*
+const theme = {
+    textColor: '#000',
+	secondaryTextColor: '#666',
+	borderColor: '#e4e4e4',
+	backgroundColor: '#f2f2f2'
+}
+*/
+
+const theme = {
+    text: '#fff',
+	secondaryText: '#666',
+	border: '#e4e4e4',
+	background: '#f2f2f2'
+}
+
 const styles = {
 	Root: {
 		root: {
@@ -21,15 +37,15 @@ const styles = {
 			lineHeight: '1.25',
 			...(level === 1 && {
 				paddingBottom: 8,
-				borderBottom: '1px solid #e4e4e4'
+				borderBottom: `1px solid ${theme.border}`
 			})
 		}
 	}),
 	Blockquote: {
 		root: {
 			paddingLeft: 16,
-			color: '#666',
-			borderLeft: '4px solid #e4e4e4',
+			color: theme.secondary,
+			borderLeft: `4px solid ${theme.border}`,
 			marginLeft: 0
 		}
 	},
@@ -39,7 +55,7 @@ const styles = {
 			marginBottom: 16,
 			padding: 10,
 			fontSize: '14px',
-			background: '#f2f2f2',
+			background: theme.background,
 			whiteSpace: 'pre-wrap'
 		}
 	},
@@ -69,9 +85,9 @@ const styles = {
 			height: 4,
 			border: 'none',
 			padding: 0,
-			marginTop: 24,
-			marginBottom: 24,
-			background: '#e4e4e4'
+			marginTop: 16,
+			marginBottom: 16,
+			background: theme.border
 		}
 	},
 	Table: {
@@ -82,7 +98,7 @@ const styles = {
 	TableRow: {},
 	TableCell: ({ header, align }) => ({
 		root: {
-			border: '1px solid #e4e4e4',
+			border: `1px solid ${theme.border}`,
 			padding: '5px 10px',
 			fontWeight: header ? 'bold' : 'normal',
 			textAlign: align

@@ -15,6 +15,7 @@
   "license": "Unlicense",
   "dependencies": {
     "floral": "^0.3.2",
+    "lodash": "^4.17.15",
     "minimark-plugin-fence": "^0.6.6",
     "minimark-plugin-propsdoc": "^0.6.6",
     "minimark-plugin-table-of-contents": "^0.6.6",
@@ -29,5 +30,8 @@
   "peerDependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
+  },
+  "devDependencies": {
+    "raw-loader": "^4.0.1"
   }
 }
