@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react'
 import flattenDeep from 'lodash/flattenDeep'
 import compact from 'lodash/compact'
+import React, { useMemo } from 'react'
 
 const composeStyles = (...stylesList) => (...deps) => {
 	let composed = {}
@@ -16,9 +16,10 @@ const composeStyles = (...stylesList) => (...deps) => {
 	return composed
 }
 
-const extendComponentStyles = (Component, styles) => props => (
+const extendComponentStyles = (Component, styles) => (props, ...rest) => (
 	<Component
 		{...props}
+		{...rest}
 		styles={'styles' in props ? [styles, props.styles] : styles}
 	/>
 )

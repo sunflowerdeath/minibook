@@ -1,43 +1,41 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import React, { useRef, useEffect } from 'react'
+// import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
-import { MinimarkContext } from 'minimark-renderer'
+import {
+	MinimarkComponentsContext,
+	MinimarkThemeContext
+} from 'minimark-renderer'
 import Fence from 'minimark-plugin-fence/lib/Fence'
 import TableOfContents from 'minimark-plugin-table-of-contents/lib/TableOfContents'
 import AnchorHeading from 'minimark-plugin-table-of-contents/lib/AnchorHeading'
 import PropsDoc from 'minimark-plugin-propsdoc/lib/PropsDoc'
 
-@withRouter
-class MarkdownContainer extends Component {
-	static propTypes = {
-		markdown: PropTypes.func.isRequired,
-		history: PropTypes.object.isRequired
-	}
+import { useTheme } from './ThemeContext'
 
-	componentDidMount() {
+const MarkdownContainer = props => {
+	const { markdown } = props
+	const theme = useTheme()
+	const containerRef = useRef()
+
+	// const history = useHistory()
+	useEffect(() => {
 		// make relative links use HistoryApi
-		this.containerRef.addEventListener('click', event => {
+		containerRef.current.addEventListener('click', event => {
 			const target = event.target
 			if (target.tagName === 'A') {
 				const href = target.getAttribute('href')
 				if (href[0] === '/') {
 					event.preventDefault()
-					this.props.history.push(href)
+					// history.push(href)
 				}
 			}
 		})
-	}
+	}, [])
 
-	render() {
-		const { markdown } = this.props
-		return (
-			<div
-				className="minibook__markdown"
-				ref={ref => {
-					this.containerRef = ref
-				}}
-			>
-				<MinimarkContext.Provider
+	return (
+		<div className="minibook__markdown" ref={containerRef}>
+			<MinimarkThemeContext.Provider value={theme}>
+				<MinimarkComponentsContext.Provider
 					value={{
 						AnchorHeading,
 						TableOfContents,
@@ -46,10 +44,14 @@ class MarkdownContainer extends Component {
 					}}
 				>
 					{React.createElement(markdown)}
-				</MinimarkContext.Provider>
-			</div>
-		)
-	}
+				</MinimarkComponentsContext.Provider>
+			</MinimarkThemeContext.Provider>
+		</div>
+	)
+}
+
+MarkdownContainer.propTypes = {
+	markdown: PropTypes.func.isRequired
 }
 
 export default MarkdownContainer

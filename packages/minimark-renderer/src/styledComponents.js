@@ -1,20 +1,5 @@
 import baseComponents from './baseComponents'
-
-/*
-const theme = {
-    textColor: '#000',
-	secondaryTextColor: '#666',
-	borderColor: '#e4e4e4',
-	backgroundColor: '#f2f2f2'
-}
-*/
-
-const theme = {
-    text: '#fff',
-	secondaryText: '#666',
-	border: '#e4e4e4',
-	background: '#f2f2f2'
-}
+import { extendComponentStyles } from './useStyles'
 
 const styles = {
 	Root: {
@@ -28,7 +13,7 @@ const styles = {
 			marginBottom: 16
 		}
 	},
-	Heading: ({ level, first }) => ({
+	Heading: ({ level, first }, theme) => ({
 		root: {
 			fontSize: ['32px', '24px', '20px', '16px', '16px'][level - 1],
 			marginBottom: 16,
@@ -41,15 +26,15 @@ const styles = {
 			})
 		}
 	}),
-	Blockquote: {
+	Blockquote: theme => ({
 		root: {
 			paddingLeft: 16,
 			color: theme.secondary,
 			borderLeft: `4px solid ${theme.border}`,
 			marginLeft: 0
 		}
-	},
-	Code: {
+	}),
+	Code: theme => ({
 		root: {
 			marginTop: 0,
 			marginBottom: 16,
@@ -58,7 +43,7 @@ const styles = {
 			background: theme.background,
 			whiteSpace: 'pre-wrap'
 		}
-	},
+	}),
 	List: {
 		root: {
 			paddingLeft: 32,
@@ -80,7 +65,7 @@ const styles = {
 					}
 			  }
 			: null,
-	Break: {
+	Break: theme => ({
 		root: {
 			height: 4,
 			border: 'none',
@@ -89,14 +74,14 @@ const styles = {
 			marginBottom: 16,
 			background: theme.border
 		}
-	},
+	}),
 	Table: {
 		root: {
 			borderCollapse: 'collapse'
 		}
 	},
 	TableRow: {},
-	TableCell: ({ header, align }) => ({
+	TableCell: ({ header, align }, theme) => ({
 		root: {
 			border: `1px solid ${theme.border}`,
 			padding: '5px 10px',
@@ -108,7 +93,7 @@ const styles = {
 
 const styledComponents = {}
 for (const [name, component] of Object.entries(baseComponents)) {
-	styledComponents[name] = component.extendStyles(styles[name])
+	styledComponents[name] = extendComponentStyles(component, styles[name])
 }
 
 export default styledComponents

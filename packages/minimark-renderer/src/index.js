@@ -1,26 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import styledComponents from './styledComponents'
 
-const MinimarkContext = React.createContext()
+const MinimarkComponentsContext = React.createContext()
+const MinimarkThemeContext = React.createContext()
 
-const MinimarkRenderer = ({ component, ...restProps }) => (
-	<MinimarkContext.Consumer>
-		{providedComponents => {
-			const Component =
-				(providedComponents && providedComponents[component]) ||
-				styledComponents[component]
-			if (!Component) {
-				throw new Error(
-					`MinimarkRenderer: Component "${
-						component
-					}" is not provided!`
-				)
-			}
-			return React.createElement(Component, restProps)
-		}}
-	</MinimarkContext.Consumer>
-)
+const MinimarkRenderer = ({ component, ...restProps }) => {
+	const contextComponents = useContext(MinimarkComponentsContext)
+	const Component =
+		(contextComponents && contextComponents[component]) ||
+		styledComponents[component]
+	if (!Component) {
+		throw new Error(
+			`MinimarkRenderer: Component "${component}" is not provided!`
+		)
+	}
+	return React.createElement(Component, restProps)
+}
 
 export default MinimarkRenderer
-export { MinimarkContext }
+export { MinimarkComponentsContext, MinimarkThemeContext }

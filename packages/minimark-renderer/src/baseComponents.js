@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
 import floral from 'floral'
+// import useStyles from '@minibook/src/useStyles'
+// import { useTheme } from '@minibook/src/ThemeProvider'
+import { useStyles } from './useStyles'
+import { MinimarkThemeContext } from './index'
 
 const Root = ({ children, computedStyles }) => (
 	<div style={computedStyles.root}>{children}</div>
@@ -78,18 +83,24 @@ const TableCell = ({ children, computedStyles }) => (
 	<td style={computedStyles.root}>{children}</td>
 )
 
+const makeComponent = render => props => {
+	const theme = useContext(MinimarkThemeContext)
+	const computedStyles = useStyles({}, [props, theme])
+	return render({ ...props, computedStyles })
+}
+
 const components = {
-	Root: floral()(Root),
-	Paragraph: floral()(Paragraph),
-	Heading: floral()(Heading),
-	Blockquote: floral()(Blockquote),
-	Code: floral()(Code),
-	List: floral()(List),
-	ListItem: floral()(ListItem),
-	Break: floral()(Break),
-	Table: floral()(Table),
-	TableRow: floral()(TableRow),
-	TableCell: floral()(TableCell)
+	Root: makeComponent(Root),
+	Paragraph: makeComponent(Paragraph),
+	Heading: makeComponent(Heading),
+	Blockquote: makeComponent(Blockquote),
+	Code: makeComponent(Code),
+	List: makeComponent(List),
+	ListItem: makeComponent(ListItem),
+	Break: makeComponent(Break),
+	Table: makeComponent(Table),
+	TableRow: makeComponent(TableRow),
+	TableCell: makeComponent(TableCell)
 }
 
 export default components

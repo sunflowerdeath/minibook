@@ -6,24 +6,24 @@ import { ThemeContext, themes } from './ThemeContext'
 import MiniBook from './MiniBook'
 
 const App = ({ basename, theme, ...restProps }) => (
-    <ThemeContext.Provider value={themes[theme]}>
-        <BrowserRouter basename={basename}>
-            <Route
-                path="/:section?/:story?"
-                exact
-                render={() => <MiniBook {...restProps} />}
-            />
-        </BrowserRouter>
-    </ThemeContext.Provider>
+	<ThemeContext.Provider value={themes[theme]}>
+		<BrowserRouter basename={basename}>
+			<Route
+				path="/:section?/:story?"
+				exact
+				render={() => <MiniBook {...restProps} />}
+			/>
+		</BrowserRouter>
+	</ThemeContext.Provider>
 )
 
 App.propTypes = {
-    basename: PropTypes.string,
-    theme: PropTypes.oneOf(['light', 'dark'])
+	basename: PropTypes.string,
+	theme: PropTypes.oneOf(['light', 'dark'])
 }
 
 App.defaultProps = {
-    theme: 'dark'
+	theme: 'dark'
 }
 
 export default App
