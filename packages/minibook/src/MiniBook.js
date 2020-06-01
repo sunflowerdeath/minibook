@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom'
 import React, { useState, useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter, Redirect } from 'react-router-dom'
@@ -55,7 +54,7 @@ const styles = (props, theme) => {
 			alignItems: 'center',
 			padding: '0 20px',
 			background: theme.highlight,
-            borderBottom: `1px solid ${theme.border}`,
+			borderBottom: `1px solid ${theme.border}`,
 			color: theme.color,
 			fontWeight: 'bold'
 		},

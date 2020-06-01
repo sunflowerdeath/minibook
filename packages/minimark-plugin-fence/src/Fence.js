@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import floral from 'floral'
+import React, { useContext, useRef, useEffect } from 'react'
+import { useStyles } from 'minimark-renderer/lib/useStyles'
+import { MinimarkThemeContext } from 'minimark-renderer/lib'
 
 // Some browsers round the line-height, others don't.
 // We need to test for it to position the elements properly.
@@ -14,26 +15,26 @@ const isLineHeightRounded = (() => {
 	d.innerHTML = '&nbsp;<br />&nbsp;'
 	document.body.appendChild(d)
 	// Browsers that round the line-height should have offsetHeight === 38
-	// The others should have 39.
+	// Others should have 39.
 	const res = d.offsetHeight === 38
 	document.body.removeChild(d)
 	return res
 })()
 
-const styles = {
+const styles = (props, theme) => ({
 	root: {
 		marginBottom: '16px'
 	},
 	example: {
 		padding: 10,
-		border: '1px solid #e4e4e4'
+		border: `1px solid ${theme.border}`
 	},
 	pre: {
 		marginTop: 0,
 		marginBottom: 16,
 		padding: 10,
 		fontSize: '14px',
-		background: '#f2f2f2',
+		background: theme.highlight,
 		whiteSpace: 'pre',
 		position: 'relative',
 		overflow: 'auto',
@@ -46,85 +47,67 @@ const styles = {
 		pointerEvents: 'none',
 		background: 'rgba(232,213,32,0.2)'
 	}
-}
+})
 
-class Fence extends Component {
-	constructor() {
-		super()
-		this.state = {}
-		this.highlightLinesRefs = []
-	}
+const Fence = props => {
+	const { children, code, highlightLines, from, maxLines } = props
+	if (!code) return null
+	const theme = useContext(MinimarkThemeContext)
+	const computedStyles = useStyles(styles, [props, theme])
+	const codeRef = useRef()
+	const highlightLinesRefs =
+		highlightLines && highlightLines.map(() => useRef())
 
-	componentDidMount() {
-		const { code, highlightLines, from, maxLines } = this.props
-		if (!code) return
-
+	useEffect(() => {
+		const elemStyles = getComputedStyle(codeRef.current)
 		const parseMethod = isLineHeightRounded ? parseInt : parseFloat
-		const computedStyles = getComputedStyle(this.preRef)
-		const lineHeight = parseMethod(computedStyles.lineHeight)
-		const paddingTop = parseFloat(computedStyles.paddingTop)
-
+		const lineHeight = parseMethod(elemStyles.lineHeight)
+		const paddingTop = parseFloat(elemStyles.paddingTop)
 		if (highlightLines) {
-			this.highlightLinesRefs.forEach((ref, index) => {
+			highlightLinesRefs.forEach((ref, index) => {
 				const { start, end } = highlightLines[index]
-				ref.style.top = `${(start - from) * lineHeight +
+				ref.current.style.top = `${(start - from) * lineHeight +
 					paddingTop}px`
-				ref.style.height = `${(end - start + 1) * lineHeight}px`
+				ref.current.style.height = `${(end - start + 1) * lineHeight}px`
 			})
 		}
 
 		if (maxLines) {
-			this.preRef.style.maxHeight = `${maxLines * lineHeight +
+			codeRef.current.style.maxHeight = `${maxLines * lineHeight +
 				paddingTop}px`
 		}
-	}
+	}, [])
 
-	renderHighlightLines() {
-		const { highlightLines } = this.props
-		const { computedStyles } = this.state
-		return highlightLines.map((line, index) => (
-			<div
-				key={index}
-				ref={ref => {
-					this.highlightLinesRefs[index] = ref
-				}}
-				style={computedStyles.highlightLine}
-			/>
-		))
-	}
-
-	renderCode() {
-		const { code, highlightLines } = this.props
-		const { computedStyles } = this.state
-		return (
-			<pre
-				style={computedStyles.pre}
-				ref={ref => {
-					this.preRef = ref
-				}}
-			>
+	let codeElem
+	if (code) {
+		let highlightLinesElems
+		if (highlightLines) {
+			highlightLinesElems = highlightLines.map((line, index) => (
+				<div
+					key={index}
+					ref={highlightLinesRefs[index]}
+					style={computedStyles.highlightLine}
+				/>
+			))
+		}
+		codeElem = (
+			<pre style={computedStyles.pre} ref={codeRef}>
 				<code dangerouslySetInnerHTML={{ __html: code }} />
-				{highlightLines && this.renderHighlightLines()}
+				{highlightLinesElems}
 			</pre>
 		)
 	}
 
-	render() {
-		const { children, code } = this.props
-		const { computedStyles } = this.state
-		return (
-			<div style={computedStyles.root}>
-				{children && (
-					<div style={computedStyles.example}>{children}</div>
-				)}
-				{code && this.renderCode()}
-			</div>
-		)
-	}
+	return (
+		<div style={computedStyles.root}>
+			{children && <div style={computedStyles.example}>{children}</div>}
+			{codeElem}
+		</div>
+	)
 }
 
 Fence.defaultProps = {
 	from: 1
 }
 
-export default floral(styles)(Fence)
+export default Fence

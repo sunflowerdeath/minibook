@@ -32,8 +32,9 @@ const MarkdownContainer = props => {
 		})
 	}, [])
 
+	const className = `minibook__markdown minibook__markdown-theme-${theme.type}`
 	return (
-		<div className="minibook__markdown" ref={containerRef}>
+		<div className={className} ref={containerRef}>
 			<MinimarkThemeContext.Provider value={theme}>
 				<MinimarkComponentsContext.Provider
 					value={{

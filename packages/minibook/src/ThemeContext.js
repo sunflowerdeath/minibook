@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
 
 const dark = {
+	type: 'dark',
 	background: '#1a1a1a',
 	text: '#fff',
 	secondary: '#666',
@@ -10,6 +11,7 @@ const dark = {
 }
 
 const light = {
+	type: 'light',
 	background: '#fff',
 	text: '#000',
 	secondary: '#999',
