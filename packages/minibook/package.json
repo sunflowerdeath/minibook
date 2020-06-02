@@ -1,6 +1,6 @@
 {
   "name": "minibook",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "description": "Minimalistic interface for documentation and examples of components",
   "repository": {
     "type": "git",
@@ -16,10 +16,10 @@
   "dependencies": {
     "floral": "^0.4.0",
     "lodash": "^4.17.15",
-    "minimark-plugin-fence": "^0.6.6",
-    "minimark-plugin-propsdoc": "^0.6.6",
-    "minimark-plugin-table-of-contents": "^0.6.6",
-    "minimark-renderer": "^0.6.6",
+    "minimark-plugin-fence": "^0.7.0",
+    "minimark-plugin-propsdoc": "^0.7.0",
+    "minimark-plugin-table-of-contents": "^0.7.0",
+    "minimark-renderer": "^0.7.0",
     "prop-types": "^15.6.0",
     "react-helmet": "^5.2.0",
     "react-router": "^5.2.0",
