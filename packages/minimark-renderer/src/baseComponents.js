@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { useStyles } from 'floral'
 
-import { MinimarkThemeContext } from './context'
+import RendererContext from './context'
 
 const makeComponent = render => props => {
-	const theme = useContext(MinimarkThemeContext)
+	const { theme } = useContext(RendererContext)
 	const computedStyles = useStyles({}, [props, theme])
 	return render({ ...props, computedStyles })
 }

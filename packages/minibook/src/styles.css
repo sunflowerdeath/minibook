@@ -1,5 +1,5 @@
 .minibook__markdown a {
-	color: var(--minibook-theme-blue);
+	color: var(--minibook-theme-link);
 	text-decoration: none;
 }
 
@@ -47,10 +47,21 @@
     opacity: .7;
 }
 
+/* codeTokenKeyword */
+/* codeTokenString */
+/* codeTokenOther */
+
+.token.atrule,
+.token.keyword,
+.token.property,
+.token.attr-name {
+    color: var(--minibook-theme-codePrimary);
+}
+
 .token.string,
 .token.regex,
 .token.attr-value {
-    color: #e3116c;
+    color: var(--minibook-theme-codeSecondary);
 }
 
 .token.entity,
@@ -60,15 +71,8 @@
 .token.boolean,
 .token.variable,
 .token.constant,
-.token.property,
 .token.inserted {
-    color: #673ab7;
-}
-
-.token.atrule,
-.token.keyword,
-.token.attr-name {
-    color: var(--minibook-theme-blue);
+    color: var(--minibook-theme-codeOther);
 }
 
 .token.deleted {

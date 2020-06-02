@@ -1,10 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {
-	MinimarkComponentsContext,
-	MinimarkThemeContext
-} from 'minimark-renderer/lib/context'
+import { MinimarkContext } from 'minimark-renderer'
 import Fence from 'minimark-plugin-fence/lib/Fence'
 import TableOfContents from 'minimark-plugin-table-of-contents/lib/TableOfContents'
 import AnchorHeading from 'minimark-plugin-table-of-contents/lib/AnchorHeading'
@@ -34,18 +31,19 @@ const MarkdownContainer = props => {
 	const className = `minibook__markdown minibook__markdown-theme-${theme.type}`
 	return (
 		<div className={className} ref={containerRef}>
-			<MinimarkThemeContext.Provider value={theme}>
-				<MinimarkComponentsContext.Provider
-					value={{
+			<MinimarkContext.Provider
+				value={{
+					theme,
+					components: {
 						AnchorHeading,
 						TableOfContents,
 						Fence,
 						PropsDoc
-					}}
-				>
-					{React.createElement(markdown)}
-				</MinimarkComponentsContext.Provider>
-			</MinimarkThemeContext.Provider>
+					}
+				}}
+			>
+				{React.createElement(markdown)}
+			</MinimarkContext.Provider>
 		</div>
 	)
 }

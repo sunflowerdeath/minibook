@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
-import { ThemeContext, themes } from './ThemeContext'
+import ThemeContext from './ThemeContext'
+import { light } from './themes'
 import MiniBook from './MiniBook'
 
 const jsToCssVars = obj =>
@@ -14,9 +15,9 @@ const jsToCssVars = obj =>
 const App = ({ basename, theme, ...restProps }) => (
 	<>
 		<Helmet>
-			<style>{`:root { ${jsToCssVars(themes[theme])} }`}</style>
+			<style>{`:root { ${jsToCssVars(theme)} }`}</style>
 		</Helmet>
-		<ThemeContext.Provider value={themes[theme]}>
+		<ThemeContext.Provider value={theme}>
 			<BrowserRouter basename={basename}>
 				<Route
 					path="/:section?/:story?"
@@ -30,11 +31,11 @@ const App = ({ basename, theme, ...restProps }) => (
 
 App.propTypes = {
 	basename: PropTypes.string,
-	theme: PropTypes.oneOf(['light', 'dark'])
+	theme: PropTypes.object
 }
 
 App.defaultProps = {
-	theme: 'dark'
+	theme: light
 }
 
 export default App

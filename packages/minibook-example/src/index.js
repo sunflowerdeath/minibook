@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import MiniBook from 'minibook'
+import { dark } from 'minibook/lib/themes'
 import 'minibook/lib/styles.css'
 
 import Button from './Button'
@@ -9,7 +10,7 @@ import MarkdownElementsTest from './markdown-elements-test.md'
 import MarkdownPluginsTest from './markdown-plugins-test.md'
 
 const sections = {
-	example: {
+	'section-key': {
 		name: 'Section',
 		component: Button,
 		stories: {
@@ -55,6 +56,6 @@ const sections = {
 }
 
 ReactDOM.render(
-	<MiniBook title="Minibook" sections={sections} />,
+	<MiniBook title="Minibook" sections={sections} theme={dark} />,
 	document.querySelector('#root')
 )

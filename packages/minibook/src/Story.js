@@ -70,7 +70,7 @@ const renderContent = (props, computedStyles) => {
 
 const Story = props => {
 	const { story } = props
-    const theme = useTheme()
+	const theme = useTheme()
 	const computedStyles = useStyles(styles, [props, theme])
 
 	return (

@@ -1,6 +1,6 @@
-import React, { useContext, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useStyles } from 'floral'
-import { MinimarkThemeContext } from 'minimark-renderer/lib/context'
+import { useTheme } from 'minimark-renderer'
 
 // Some browsers round the line-height, others don't.
 // We need to test for it to position the elements properly.
@@ -52,7 +52,7 @@ const styles = (props, theme) => ({
 const Fence = props => {
 	const { children, code, highlightLines, from, maxLines } = props
 	if (!code) return null
-	const theme = useContext(MinimarkThemeContext)
+	const theme = useTheme()
 	const computedStyles = useStyles(styles, [props, theme])
 	const codeRef = useRef()
 	const highlightLinesRefs =

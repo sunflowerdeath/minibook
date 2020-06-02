@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useStyles } from 'floral'
-import { MinimarkThemeContext } from 'minimark-renderer/lib/context'
+import { useTheme } from 'minimark-renderer'
 
 import propTypeToString from './propTypeToString'
 import Shape from './Shape'
@@ -18,7 +18,7 @@ const styles = ({ odd }, theme) => ({
 const PropsDocRow = props => {
 	const { name, propInfo } = props
 	const { type, defaultValue, required } = propInfo
-	const theme = useContext(MinimarkThemeContext)
+	const theme = useTheme()
 	const computedStyles = useStyles(styles, [props, theme])
 
 	let typeElem

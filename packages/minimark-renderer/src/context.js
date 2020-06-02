@@ -1,7 +1,8 @@
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
 
-const MinimarkThemeContext = createContext()
-const MinimarkComponentsContext = createContext()
+const MinimarkContext = createContext({ components: {}, theme: {} })
 
-export { MinimarkThemeContext, MinimarkComponentsContext }
+const useTheme = () => useContext(MinimarkContext).theme
 
+export default MinimarkContext
+export { useTheme }
