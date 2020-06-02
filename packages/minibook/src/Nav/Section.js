@@ -48,7 +48,7 @@ const styles = ({ smallScreen }, isOpened, theme) => ({
 		background: theme.highlight
 	},
 	isActive: {
-		color: theme.blue
+		color: theme.link
 	}
 })
 
