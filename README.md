@@ -14,7 +14,6 @@ npm install minibook
 
 ```js
 import MiniBook from 'minibook'
-import 'minibook/lib/styles.css'
 
 import MarkdownStory from './markdown.md'
 
