@@ -1,1 +1,4 @@
-module.exports = require('gnoll/config/babelStage0')
+module.exports = {
+    presets: [require('gnoll/config/babelStage0')],
+    plugins: [require('babel-plugin-macros')]
+}

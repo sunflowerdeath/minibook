@@ -32,6 +32,8 @@
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "raw-loader": "^4.0.1"
+    "raw-loader": "^4.0.1",
+    "babel-plugin-macros": "^2.8.0",
+    "raw.macro": "^0.4.2"
   }
 }

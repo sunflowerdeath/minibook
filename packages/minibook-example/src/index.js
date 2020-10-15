@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import MiniBook from 'minibook'
 import { dark } from 'minibook/lib/themes'
-import 'minibook/lib/styles.css'
+//import 'minibook/lib/styles.css'
 
 import Button from './Button'
 import Markdown from './markdown.md'

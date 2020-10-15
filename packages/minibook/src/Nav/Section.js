@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import raw from 'raw.macro'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import Taply from 'taply'
@@ -7,11 +8,7 @@ import { useStyles } from 'floral'
 import { SectionPropType } from '../propTypes'
 import { useTheme } from '../ThemeContext'
 
-// import raw from "raw.macro"
-// const arrowIconSvg = raw('./arrow.svg')
-
-// eslint-disable-next-line import/first
-import arrowIconSvg from '!raw-loader!./arrow.svg'
+const arrowIconSvg = raw('./arrow.svg')
 
 const styles = ({ smallScreen }, isOpened, theme) => ({
 	title: {

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react'
+import raw from 'raw.macro'
 import PropTypes from 'prop-types'
 import { withRouter, Redirect } from 'react-router-dom'
 import Helmet from 'react-helmet'
@@ -9,10 +10,9 @@ import matchMedia from './matchMedia'
 import Nav from './Nav'
 import Story from './Story'
 import { SectionPropType } from './propTypes'
-// eslint-disable-next-line import/first
-import favicon from '!raw-loader!./favicon.base64'
-// eslint-disable-next-line import/first
-import menuIconSvg from '!raw-loader!./menu.svg'
+
+const favicon = raw('./favicon.base64')
+const menuIconSvg = raw('./menu.svg')
 
 const styles = (props, theme) => {
 	const {

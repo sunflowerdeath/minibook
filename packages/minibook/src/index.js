@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import raw from 'raw.macro'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
 import ThemeContext from './ThemeContext'
 import { light } from './themes'
 import MiniBook from './MiniBook'
+
+const styles = raw('./styles.css')
 
 const jsToCssVars = obj =>
 	Object.entries(obj)
@@ -16,6 +19,7 @@ const App = ({ basename, theme, ...restProps }) => (
 	<>
 		<Helmet>
 			<style>{`:root { ${jsToCssVars(theme)} }`}</style>
+            <style>{styles}</style>
 		</Helmet>
 		<ThemeContext.Provider value={theme}>
 			<BrowserRouter basename={basename}>
