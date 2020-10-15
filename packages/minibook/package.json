@@ -1,6 +1,6 @@
 {
   "name": "minibook",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Minimalistic interface for documentation and examples of components",
   "repository": {
     "type": "git",
@@ -32,8 +32,8 @@
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "raw-loader": "^4.0.1",
     "babel-plugin-macros": "^2.8.0",
+    "raw-loader": "^4.0.1",
     "raw.macro": "^0.4.2"
   }
 }
