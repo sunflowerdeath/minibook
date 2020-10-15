@@ -17,6 +17,7 @@ const Button = ({ primary, onClick, disabled, children }) => {
 		style.color = 'white'
 	} else {
 		style.background = '#eee'
+		style.color = 'black'
 	}
 
 	return (

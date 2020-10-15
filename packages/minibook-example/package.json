@@ -16,7 +16,7 @@
     "style-loader": "^0.19.0",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "minibook": "^0.7.1",

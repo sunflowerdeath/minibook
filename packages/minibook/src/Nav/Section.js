@@ -6,6 +6,10 @@ import { useStyles } from 'floral'
 
 import { SectionPropType } from '../propTypes'
 import { useTheme } from '../ThemeContext'
+
+// import raw from "raw.macro"
+// const arrowIconSvg = raw('./arrow.svg')
+
 // eslint-disable-next-line import/first
 import arrowIconSvg from '!raw-loader!./arrow.svg'
 
@@ -23,7 +27,8 @@ const styles = ({ smallScreen }, isOpened, theme) => ({
 		textTransform: 'uppercase',
 		userSelect: 'none',
 		WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-		outline: 'none'
+		outline: 'none',
+		borderRadius: 5
 	},
 	arrow: {
 		width: 24,
@@ -42,7 +47,8 @@ const styles = ({ smallScreen }, isOpened, theme) => ({
 		color: theme.secondary,
 		userSelect: 'none',
 		WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-		outline: 'none'
+		outline: 'none',
+		borderRadius: 5
 	},
 	isHovered: {
 		background: theme.highlight

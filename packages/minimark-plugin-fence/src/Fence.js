@@ -51,7 +51,6 @@ const styles = (props, theme) => ({
 
 const Fence = props => {
 	const { children, code, highlightLines, from, maxLines } = props
-	if (!code) return null
 	const theme = useTheme()
 	const computedStyles = useStyles(styles, [props, theme])
 	const codeRef = useRef()
@@ -59,6 +58,7 @@ const Fence = props => {
 		highlightLines && highlightLines.map(() => useRef())
 
 	useEffect(() => {
+	    if (!code) return
 		const elemStyles = getComputedStyle(codeRef.current)
 		const parseMethod = isLineHeightRounded ? parseInt : parseFloat
 		const lineHeight = parseMethod(elemStyles.lineHeight)

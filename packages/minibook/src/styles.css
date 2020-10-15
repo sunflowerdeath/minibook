@@ -32,7 +32,7 @@
 .minibook__markdown h4 a[href^="#"]:first-child:hover,
 .minibook__markdown h5 a[href^="#"]:first-child:hover {
     text-decoration: none;
-	color: var(--minibook-theme-blue);
+	color: var(--minibook-theme-link);
 }
 
 .token.comment,
