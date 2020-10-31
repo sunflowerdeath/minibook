@@ -22,7 +22,7 @@
     "minimark-renderer": "^0.7.2",
     "nanoid": "^1.0.4",
     "prop-types": "^15.6.2",
-    "react-docgen": "^2.20.1",
+    "react-docgen": "^5.3.1",
     "unist-util-map": "^1.0.4"
   },
   "peerDependencies": {

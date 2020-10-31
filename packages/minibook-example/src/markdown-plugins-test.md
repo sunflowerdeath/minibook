@@ -83,8 +83,18 @@ allowMarkdown: true
 
 ### Component by displayName
 
+Exported component
+
 ```@propsdoc
 file: ./Components.js
 allowMarkdown: true
 component: ComponentA
+```
+
+Functional component
+
+```@propsdoc
+file: ./Components.js
+allowMarkdown: true
+component: FunctionalComponent
 ```

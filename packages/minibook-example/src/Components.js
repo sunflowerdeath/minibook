@@ -21,6 +21,14 @@ class ComponentB extends Component {
 	}
 }
 
+const FunctionalComponent = () => {
+    return <div>1</div>
+}
+
+FunctionalComponent.propTypes = {
+	someProp: PropTypes.number.isRequried
+}
+
 class NotExportedComponent extends Component {
 	static propTypes = {
 		someProp: PropTypes.number.isRequried
@@ -31,4 +39,4 @@ class NotExportedComponent extends Component {
 	}
 }
 
-export { ComponentA, ComponentB }
+export { ComponentA, ComponentB, FunctionalComponent }
