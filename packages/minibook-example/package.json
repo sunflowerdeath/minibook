@@ -1,7 +1,7 @@
 {
   "name": "minibook-example",
   "private": true,
-  "version": "0.7.3",
+  "version": "0.7.4",
   "author": "sunflowerdeath",
   "license": "Unlicense",
   "devDependencies": {
@@ -16,7 +16,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "minibook": "^0.7.3",
+    "minibook": "^0.7.4",
     "minimark-renderer": "^0.7.2",
     "prop-types": "^15.6.0"
   },
