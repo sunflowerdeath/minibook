@@ -30,12 +30,12 @@ const PropsDocRow = (props) => {
 	const theme = useTheme()
 	const computedStyles = useStyles(styles, [props, theme])
 
-	const { type, flowType, defaultValue, required } = propInfo
+	const { type, flowType, tsType, defaultValue, required } = propInfo
 
-	let flowElem
-	if (flowType) {
-		let { name, raw } = flowType
-		flowElem = (
+	let flowTsElem
+	if (flowType || tsType) {
+		let { name, raw } = flowType || tsType
+		flowTsElem = (
 			<div>
 				Type:{' '}
 				<code style={{ whiteSpace: 'break-spaces' }}>{raw || name}</code>
@@ -69,7 +69,7 @@ const PropsDocRow = (props) => {
 					<b>{name}</b>
 				</div>
 				{typeElem}
-				{flowElem}
+				{flowTsElem}
 				{required && (
 					<div>
 						<i>Required</i>
