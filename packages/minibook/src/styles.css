@@ -13,8 +13,7 @@
 }
 
 .minibook__markdown code {
-	font-size: 14px;
-	background: var(--minibook-theme-highlight);
+	font-size: 15px;
 }
 
 .minibook__markdown h1 a[href^="#"]:first-child,

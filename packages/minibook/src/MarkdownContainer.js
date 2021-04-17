@@ -19,8 +19,9 @@ const MarkdownContainer = props => {
 		containerRef.current.addEventListener('click', event => {
 			const target = event.target
 			if (target.tagName === 'A') {
+				const target = target.getAttribute('target')
 				const href = target.getAttribute('href')
-				if (href[0] === '/') {
+				if (target === null && href[0] === '/') {
 					event.preventDefault()
 					history.push(href)
 				}

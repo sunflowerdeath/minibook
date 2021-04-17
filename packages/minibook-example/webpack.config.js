@@ -49,7 +49,7 @@ module.exports = {
 	},
 	devtool: PRODUCTION ? undefined : 'cheap-module-source-map',
 	devServer: {
-		port: 1337,
+		port: 1777,
 		historyApiFallback: true,
 		host: '0.0.0.0'
 	}

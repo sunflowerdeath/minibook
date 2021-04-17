@@ -98,3 +98,10 @@ file: ./Components.js
 allowMarkdown: true
 component: FunctionalComponent
 ```
+
+### Typescript support
+
+```@propsdoc
+file: ./PropsDocTest.tsx
+allowMarkdown: true
+```

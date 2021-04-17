@@ -8,26 +8,49 @@ import Shape from './Shape'
 const styles = ({ odd }, theme) => ({
 	root: {
 		background: odd ? theme.border : theme.highlight,
-		padding: '16px 16px 1px'
+		padding: '16px 16px 1px',
 	},
 	head: {
-		marginBottom: 16
-	}
+		marginBottom: 16,
+	},
 })
 
-const PropsDocRow = props => {
+const flowTypeToString = (flowType) => {
+	let { name, type, raw, elements } = flowType
+	if (elements) {
+		return `${name}<${elements.join(', ')}>`
+	}
+	if (name === 'signature') {
+		return raw
+	}
+}
+
+const PropsDocRow = (props) => {
 	const { name, propInfo } = props
-	const { type, defaultValue, required } = propInfo
 	const theme = useTheme()
 	const computedStyles = useStyles(styles, [props, theme])
 
-	let typeElem
+	const { type, flowType, defaultValue, required } = propInfo
+
+	let flowElem
+	if (flowType) {
+		let { name, raw } = flowType
+		flowElem = (
+			<div>
+				Type:{' '}
+				<code style={{ whiteSpace: 'break-spaces' }}>{raw || name}</code>
+			</div>
+		)
+	}
+
+	let typeElem, shapeElem
 	if (type) {
 		typeElem = (
 			<div>
 				Type: <code>{propTypeToString(type)}</code>
 			</div>
 		)
+		shapeElem = type.name === 'shape' && <Shape type={type} />
 	}
 
 	let defaultValueElem
@@ -46,13 +69,14 @@ const PropsDocRow = props => {
 					<b>{name}</b>
 				</div>
 				{typeElem}
+				{flowElem}
 				{required && (
 					<div>
 						<i>Required</i>
 					</div>
 				)}
-				{type.name === 'shape' && <Shape type={type} />}
 				{defaultValueElem}
+				{shapeElem}
 			</div>
 			{propInfo.description}
 		</div>
