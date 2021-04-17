@@ -1,6 +1,6 @@
 {
   "name": "minimark-plugin-propsdoc",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Minimark plugin for adding documentation of react components props",
   "main": "index.js",
   "scripts": {
