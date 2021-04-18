@@ -24,7 +24,7 @@ const App = ({ basename, theme, ...restProps }) => (
 		<ThemeContext.Provider value={theme}>
 			<BrowserRouter basename={basename}>
 				<Route
-					path="/:path(.+)"
+					path=":slash(/?):path(.+)"
 					exact
 					render={() => <MiniBook {...restProps} />}
 				/>

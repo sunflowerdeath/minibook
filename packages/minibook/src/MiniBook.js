@@ -101,6 +101,7 @@ const getFirstStory = (items, base = '') => {
 const Minibook = props => {
 	const { items, title, match, matchedMedia } = props
 	const segments = match.params.path.split('/')
+    console.log(segments)
 	const { smallScreen } = matchedMedia
 	const theme = useTheme()
 
@@ -120,7 +121,10 @@ const Minibook = props => {
     for (let i in segments) {
         let itemKey = segments[i]
         let item = iterItems[itemKey]
-        if (!item) return <Redirect to={getFirstStory(items)} />
+        if (!item) {
+            console.log('REDIRECT', getFirstStory(items))
+            return <Redirect to={getFirstStory(items)} />
+        }
         if (item.items) {
             iterItems = item.items
         } else {
