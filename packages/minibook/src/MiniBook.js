@@ -92,41 +92,47 @@ const styles = (props, theme) => {
 	}
 }
 
+const getFirstStory = (items, base = '') => {
+    let [firstKey, firstItem] = Object.entries(items)[0]
+    if (firstItem.items) return getFirstStory(firstItem.items, base + '/' + firstKey)
+    return base + '/' + firstKey
+}
+
 const Minibook = props => {
-	const { sections, title, match, matchedMedia } = props
-	const { section: sectionKey, story: storyKey } = match.params
+	const { items, title, match, matchedMedia } = props
+	const segments = match.params.path.split('/')
 	const { smallScreen } = matchedMedia
 	const theme = useTheme()
 
 	const computedStyles = useStyles(styles, [props, theme])
 	const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
 	const navRef = useRef()
-	const onClickOverlay = useCallback(event => {
+	const onClickOverlay = event => {
 		const navElem = navRef.current
 		if (event.target === navElem || navElem.contains(event.target)) {
 			return
 		}
 		setSidebarIsOpen(false)
-	})
-
-	const currentSection = sectionKey && sections[sectionKey]
-	if (!currentSection) {
-		const firstSection = Object.keys(sections)[0]
-		const firstStory = Object.keys(sections[firstSection].stories)[0]
-		return <Redirect to={`/${firstSection}/${firstStory}`} />
 	}
 
-	const currentStory = currentSection && currentSection.stories[storyKey]
-	if (!currentStory) {
-		const firstStory = Object.keys(currentSection.stories)[0]
-		return <Redirect to={`/${sectionKey}/${firstStory}`} />
-	}
+    let story
+    let iterItems = items
+    for (let i in segments) {
+        let itemKey = segments[i]
+        let item = iterItems[itemKey]
+        if (!item) return <Redirect to={getFirstStory(items)} />
+        if (item.items) {
+            iterItems = item.items
+        } else {
+            story = item
+            break;
+        }
+    }
 
 	const nav = (
 		<Nav
 			title={title}
-			sections={sections}
-			currentSection={sectionKey}
+			items={items}
 			smallScreen={smallScreen}
 			style={computedStyles.nav}
 			ref={navRef}
@@ -136,9 +142,7 @@ const Minibook = props => {
 	const root = (
 		<div style={computedStyles.container}>
 			<Helmet>
-				<title>
-					{currentSection.name}/{currentStory.name}
-				</title>
+				<title>{story.name}</title>
 				<link rel="shortcut icon" href={favicon} />
 				{sidebarIsOpen && <style>{'html { overflow: hidden }'}</style>}
 			</Helmet>
@@ -161,15 +165,12 @@ const Minibook = props => {
 			<div
 				style={{
 					...computedStyles.story,
-					height: currentStory.src ? '100%' : 'auto'
+					height: story.src ? '100%' : 'auto'
 				}}
 			>
 				<Story
-					key={`${sectionKey}-${storyKey}`}
-					sectionKey={sectionKey}
-					section={currentSection}
-					storyKey={storyKey}
-					story={currentStory}
+					key={segments.join('-')}
+					story={story}
 					matchedMedia={matchedMedia}
 				/>
 			</div>
@@ -197,7 +198,7 @@ const Minibook = props => {
 
 Minibook.propTypes = {
 	title: PropTypes.string,
-	sections: PropTypes.objectOf(SectionPropType).isRequired,
+	items: PropTypes.objectOf(SectionPropType).isRequired,
 	// eslint-disable-next-line react/forbid-prop-types
 	match: PropTypes.object.isRequired,
 	matchedMedia: PropTypes.objectOf(PropTypes.bool).isRequired

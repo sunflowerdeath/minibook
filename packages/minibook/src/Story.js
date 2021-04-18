@@ -32,14 +32,14 @@ const styles = ({ story, matchedMedia }, theme) => ({
 })
 
 const renderHeader = (props, computedStyles) => {
-	const { section, story } = props
+	const { story } = props
 	const { description } = story
 
 	return (
 		<div style={computedStyles.header}>
 			<div style={computedStyles.container}>
 				<div style={computedStyles.title}>
-					{section.name} / {story.name}
+					{story.name}
 				</div>
 				{description && (
 					<div style={computedStyles.description}>{description}</div>
@@ -50,9 +50,8 @@ const renderHeader = (props, computedStyles) => {
 }
 
 const renderContent = (props, computedStyles) => {
-	const { section, story } = props
-	const { component } = section
-	const { props: storyProps, render, src, markdown } = story
+	const { story } = props
+	const { props: storyProps, render, src, markdown, component } = story
 
 	if (src) {
 		return <iframe style={computedStyles.frame} src={src} title="story" />
@@ -82,7 +81,6 @@ const Story = props => {
 }
 
 Story.propTypes = {
-	section: SectionPropType.isRequired,
 	story: StoryPropType.isRequired
 }
 

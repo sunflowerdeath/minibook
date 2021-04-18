@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 import { useStyles } from 'floral'
 
-import Section from './Section'
+import NavItem from './NavItem'
 import { SectionPropType } from '../propTypes'
 
 const styles = {
@@ -19,14 +19,14 @@ const styles = {
 }
 
 const Nav = forwardRef((props, ref) => {
-	const { title, sections, currentSection, smallScreen } = props
+	const { title, items, currentSection, smallScreen } = props
 	const computedStyles = useStyles(styles, [props])
 
-	const sectionsElems = Object.entries(sections).map(([key, section]) => (
-		<Section
+	const sectionsElems = Object.entries(items).map(([key, item]) => (
+		<NavItem
 			key={key}
-			sectionKey={key}
-			section={section}
+			itemKey={key}
+			item={item}
 			initialIsOpened={currentSection === key}
 			smallScreen={smallScreen}
 		/>
@@ -44,7 +44,7 @@ Nav.displayName = 'Nav'
 
 Nav.propTypes = {
 	title: PropTypes.string,
-	sections: PropTypes.objectOf(SectionPropType).isRequired,
+	items: PropTypes.objectOf(SectionPropType).isRequired,
 	currentSection: PropTypes.string.isRequired,
 	smallScreen: PropTypes.bool.isRequired
 }
