@@ -21,7 +21,7 @@ const sections = {
     section: {
         name: 'Section name',
         component: SomeComponent,
-        stories: {
+        items: {
             'props-story': {
                 name: 'Component',
                 description: 'Story that displays React component with some props',
