@@ -8,8 +8,8 @@ const mdToJsx = require('minimark-loader/src/mdToJsx')
 
 const rawStringify = require('./rawStringify')
 
-const propsDocPlugin = ({ minimarkOptions }) => tree =>
-	map(tree, node => {
+const propsDocPlugin = ({ minimarkOptions }) => (tree) =>
+	map(tree, (node) => {
 		if (node.type !== 'code' || node.lang !== '@propsdoc') return node
 
 		const { documentPath, readFile, renderer } = minimarkOptions
@@ -22,7 +22,7 @@ const propsDocPlugin = ({ minimarkOptions }) => tree =>
 			const resolver = reactDocgen.resolver.findAllComponentDefinitions
 			const componentInfo = reactDocgen
 				.parse(source, resolver)
-				.find(c => c.displayName === component)
+				.find((c) => c.displayName === component)
 			if (!componentInfo) {
 				throw new Error(
 					`Can't find definition of the component "${component}" ` +
@@ -31,7 +31,10 @@ const propsDocPlugin = ({ minimarkOptions }) => tree =>
 			}
 			propsInfo = componentInfo.props
 		} else {
-			propsInfo = reactDocgen.parse(source).props
+			const res = reactDocgen.parse(source, undefined, undefined, {
+				configFile: false,
+			})
+			propsInfo = res.props
 		}
 
 		if (allowMarkdown) {
@@ -40,7 +43,7 @@ const propsDocPlugin = ({ minimarkOptions }) => tree =>
 					propInfo.description = new rawStringify.RawValue(
 						mdToJsx(propInfo.description, {
 							...minimarkOptions,
-							mdPlugins: undefined
+							mdPlugins: undefined,
 						})
 					)
 				}
@@ -50,7 +53,7 @@ const propsDocPlugin = ({ minimarkOptions }) => tree =>
 		const props = rawStringify({ propsInfo })
 		return {
 			type: 'raw',
-			value: `<${renderer} component="PropsDoc" { ...${props} } />`
+			value: `<${renderer} component="PropsDoc" { ...${props} } />`,
 		}
 	})
 

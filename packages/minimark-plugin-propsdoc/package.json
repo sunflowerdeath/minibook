@@ -18,8 +18,8 @@
   "dependencies": {
     "floral": "^0.4.0",
     "js-yaml": "^3.12.0",
-    "minimark-loader": "^0.9.0",
-    "minimark-renderer": "^0.9.0",
+    "minimark-loader": "*",
+    "minimark-renderer": "*",
     "nanoid": "^1.0.4",
     "prop-types": "^15.6.2",
     "react-docgen": "^5.3.1",
