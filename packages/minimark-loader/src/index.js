@@ -1,14 +1,17 @@
 const fs = require('fs')
 const frontMatter = require('front-matter')
+const externalLinksPlugin = require('remark-external-links').default
 
 const mdToJsx = require('./mdToJsx')
+const tocPlugin = require('./plugins/tableOfContents')
+const propsDocPlugin = require('./plugins/propsDoc')
+const fencePlugin = require('./plugins/fence')
 
 const DEFAULT_OPTIONS = {
 	renderer: 'MD',
-	rendererPath: require.resolve('minimark-renderer'),
 	gfm: false,
 	commonmark: false,
-	allowDangerousHTML: false
+	allowDangerousHTML: false,
 }
 
 function loader(content) {
@@ -20,7 +23,13 @@ function loader(content) {
 		...DEFAULT_OPTIONS,
 		...this.query,
 		documentPath: this.resourcePath,
-		readFile
+		readFile,
+		mdPlugins: [
+			externalLinksPlugin,
+			tocPlugin,
+			propsDocPlugin,
+			fencePlugin,
+		],
 	}
 	const { body, attributes } = frontMatter(content)
 	const jsx = mdToJsx(body, options)
@@ -28,12 +37,12 @@ function loader(content) {
 	const { renderer, rendererPath } = options
 	const defaultImports = [
 		"import React from 'react'",
-		`import ${renderer} from '${rendererPath}'`
+		`import ${renderer} from 'minimark-renderer'`,
 	]
 	const markdownImports = imports
 		? Object.entries(imports).map(
 				([key, value]) => `import ${key} from '${value}'\n`
-			)
+		  )
 		: []
 	return `
 	${[...defaultImports, ...markdownImports].join('\n')}

@@ -12,10 +12,6 @@
 	max-width: 100%;
 }
 
-.minibook__markdown code {
-	font-size: 15px;
-}
-
 .minibook__markdown h1 a[href^="#"]:first-child,
 .minibook__markdown h2 a[href^="#"]:first-child,
 .minibook__markdown h3 a[href^="#"]:first-child,

@@ -1,13 +1,19 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import MiniBook from 'minibook'
-import { dark } from 'minibook/lib/themes'
+import { createRoot } from 'react-dom/client'
+import { Minibook, themes } from 'minibook'
+
+import MD from "minimark-renderer"
+// import { Minibook } from "minibook"
+// import { dark } from 'minibook/lib/themes'
 //import 'minibook/lib/styles.css'
 
 import Button from './Button'
 import Markdown from './markdown.md'
 import MarkdownElementsTest from './markdown-elements-test.md'
 import MarkdownPluginsTest from './markdown-plugins-test.md'
+
+console.log('MINIBOOK', Minibook)
+console.log('RENDERER', MD)
 
 const items = {
 	index: {
@@ -20,7 +26,7 @@ const items = {
 	section: {
 		name: 'Section',
 		component: Button,
-		items: {
+		stories: {
 			props: {
 				name: 'Component',
 				description: 'Story description',
@@ -64,7 +70,5 @@ const items = {
 	},
 }
 
-ReactDOM.render(
-	<MiniBook title="Minibook" items={items} theme={dark} />,
-	document.querySelector('#root')
-)
+const root = createRoot(document.getElementById('root'))
+root.render(<Minibook title="Minibook" items={items} theme={themes.dark} />)

@@ -1,39 +1,36 @@
 {
-  "name": "minibook",
-  "version": "0.9.3",
-  "description": "Minimalistic interface for documentation and examples of components",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sunflowerdeath/minibook"
-  },
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "gnoll lib --source-maps",
-    "watch": "gnoll lib --watch --source-maps"
-  },
-  "author": "sunflowerdeath",
-  "license": "Unlicense",
-  "dependencies": {
-    "floral": "^0.4.0",
-    "lodash": "^4.17.15",
-    "minimark-plugin-fence": "^0.9.3",
-    "minimark-plugin-propsdoc": "^0.9.3",
-    "minimark-plugin-table-of-contents": "^0.9.3",
-    "minimark-renderer": "^0.9.3",
-    "prop-types": "^15.6.0",
-    "react-helmet": "^5.2.0",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
-    "remark-external-links": "^2.0.0",
-    "taply": "0.1.0"
-  },
-  "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
-  },
-  "devDependencies": {
-    "babel-plugin-macros": "^2.8.0",
-    "raw-loader": "^4.0.1",
-    "raw.macro": "^0.4.2"
-  }
+	"name": "minibook",
+	"version": "0.9.3",
+	"description": "Minimalistic interface for documentation and examples of components",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sunflowerdeath/minibook"
+	},
+	"main": "lib/main.js",
+	"scripts": {
+		"build": "NODE_ENV=production webpack build",
+		"watch": "webpack --watch"
+	},
+	"author": "sunflowerdeath",
+	"license": "Unlicense",
+	"dependencies": {
+		"lodash-es": "^4.17.21",
+		"react-helmet": "^5.2.0",
+		"react-router": "^5.2.0",
+		"react-router-dom": "^5.2.0",
+		"minimark-renderer": "*"
+	},
+	"peerDependencies": {
+		"minimark-renderer": "*",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"esbuild-loader": "^4.0.2",
+		"raw-loader": "^4.0.2",
+		"typescript": "^5.3.2",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^4.15.1"
+	}
 }

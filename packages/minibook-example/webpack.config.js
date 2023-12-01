@@ -1,56 +1,54 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const PRODUCTION = process.env.NODE_ENV === 'production'
-
-const plugins = [
-	new HtmlWebpackPlugin({ template: './src/index.html' }),
-	new HtmlWebpackPlugin({
-		template: './src/page.html',
-		filename: 'page.html',
-		inject: false
-	})
-]
+const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.resolve('./build'),
-		publicPath: '/'
+		publicPath: '/',
 	},
-	mode: PRODUCTION ? 'production' : 'development',
-	plugins,
+	mode: isProduction ? 'production' : 'development',
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
 				include: [path.resolve(__dirname, 'src')],
-				loader: 'babel-loader',
-				options: {
-					presets: ['@babel/preset-env', '@babel/preset-react']
-				}
+				loader: 'esbuild-loader',
+				options: { loader: 'jsx', jsx: 'automatic' },
 			},
 			{
 				test: /\.md$/,
 				use: [
 					{
-						loader: 'babel-loader',
-						options: {
-							presets: ['@babel/preset-env', '@babel/preset-react']
-						}
+						loader: 'esbuild-loader',
+						options: { loader: 'jsx', jsx: 'automatic' },
 					},
 					{
 						loader: 'minimark-loader',
-						options: require('minibook/minimark-preset')
-					}
-				]
-			}
-		]
+						options: {
+							gfm: true,
+							commonmark: true,
+							allowDangerousHTML: true,
+						},
+					},
+				],
+			},
+		],
 	},
-	devtool: PRODUCTION ? undefined : 'cheap-module-source-map',
+	plugins: [
+		new HtmlWebpackPlugin({ template: './src/index.html' }),
+		new HtmlWebpackPlugin({
+			template: './src/page.html',
+			filename: 'page.html',
+			inject: false,
+		}),
+	],
+	devtool: isProduction ? undefined : 'cheap-module-source-map',
 	devServer: {
 		port: 1777,
 		historyApiFallback: true,
-		host: '0.0.0.0'
-	}
+		host: '0.0.0.0',
+	},
 }

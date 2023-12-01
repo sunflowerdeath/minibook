@@ -1,20 +1,29 @@
 {
-  "name": "minimark-renderer",
-  "version": "0.9.3",
-  "description": "",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "gnoll lib --source-maps",
-    "watch": "gnoll lib --watch --source-maps",
-    "lint": "gnoll lint"
-  },
-  "author": "sunflowerdeath",
-  "license": "Unlicense",
-  "dependencies": {
-    "floral": "^0.4.0"
-  },
-  "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
-  }
+	"name": "minimark-renderer",
+	"version": "0.9.3",
+	"description": "",
+	"main": "lib/main.js",
+	"scripts": {
+		"build": "NODE_ENV=production webpack",
+		"watch": "webpack --watch",
+		"lint": "eslint src"
+	},
+	"author": "sunflowerdeath",
+	"license": "Unlicense",
+	"dependencies": {
+		"floral": "^0.4.0",
+		"lodash-es": "^4.17.21"
+	},
+	"peerDependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/lodash-es": "^4.17.12",
+		"esbuild": "^0.19.8",
+		"esbuild-loader": "^4.0.2",
+		"typescript": "^5.3.2",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4"
+	}
 }

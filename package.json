@@ -1,26 +1,22 @@
 {
-  "name": "minibook-monorepo",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "postinstall": "lerna bootstrap && gnoll link",
-    "lint": "eslint packages/*/src",
-    "build": "lerna run build",
-    "prepublishOnly": "lerna run build --ignore \"minibook-example\""
-  },
-  "devDependencies": {
-    "gnoll": "^0.7.0-alpha.5",
-    "lerna": "^3.4.1",
-    "prettier": "^1.14.2"
-  },
-  "dependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
-  },
-  "author": "sunflowerdeath",
-  "license": "Unlicense",
-  "workspaces": [
-    "packages/*"
-  ],
-  "packageManager": "yarn@3.2.0"
+	"name": "minibook-monorepo",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"lint": "eslint packages/*/src",
+		"build-all": "pnpm -r run build",
+		"prepublishOnly": "pnpm run build-all"
+	},
+	"devDependencies": {
+		"prettier": "^2.8.8",
+        "@types/react": "^18.2.33",
+        "@types/react-dom": "^18.2.14"
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"author": "sunflowerdeath",
+	"license": "Unlicense",
+	"workspaces": ["packages/*"]
 }
